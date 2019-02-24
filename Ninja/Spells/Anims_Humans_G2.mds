@@ -1,0 +1,25 @@
+Model ("HuS")
+{
+
+    aniEnum
+    {
+
+//////////////////////////////////////
+// MAGIC FIGHTING (Cast-Animations) //
+//////////////////////////////////////
+
+// Sacrifice (Modifiziert von Hum_SuckEnergy_Victim_K01.asc)
+            ani         ("t_MagRun_2_SacCast"   1   "s_SacCast"     0.2 0.0 M.  "HUM_MAGSAC_1_225.ASC"  F   1   18)
+            ani         ("s_SacCast"            1   "s_SacCast"     1.0 1.0 M.  "HUM_MAGSAC_1_225.ASC"  F   19  120    FPS:25)
+            ani         ("t_SacCast_2_Stand"    1   ""              0.5 0.2 M.  "HUM_MAGSAC_1_225.ASC"  R   1   18     FPS:25)
+
+            ani         ("t_SacCast_2_SacShoot" 1   "s_SacShoot"    0.2 0.0 M.  "HUM_MAGSAC_1_225.ASC"  F   121 156    FPS:35)
+            {
+               *eventSFX   (151 "M_FALL_SMALL"  EMPTY_SLOT  )
+            }
+            ani         ("s_SacShoot"           1   "s_SacShoot"    0.0 0.0 M.  "HUM_MAGSAC_1_225.ASC"  F   157 157    FPS:25)
+            ani         ("t_SacShoot_2_Stand"   1   ""              0.0 0.1 M.  "HUM_MAGSAC_1_225.ASC"  F   158 225    FPS:16)
+
+
+    }
+}
