@@ -28,6 +28,34 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
     // Spell script initializations
     Spell_ManaForLife_Init();
     Spell_PickLock_Init();
+
+    // Adjust language
+    var int lang; lang = Ninja_FirstMageKit_GuessLocalization();
+    if (lang == 1) { // DE
+        NAME_SPL_ManaForLife                     = "Manasucht";
+        NAME_SPL_PickLock                        = "Entriegeln";
+        Ninja_FirstMageKit_PRINT_NeverOpen       = "Da lässt sich nichts machen";
+        Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Das Schloß ist geknackt";
+        Ninja_FirstMageKit_PRINT_Hitpoints       = "Lebenspunktkosten:";
+        Ninja_FirstMageKit_PRINT_Mana            = "Manasteigerung:";
+        Ninja_FirstMageKit_NAME_MinManakosten    = "Manakosten (min):";
+    } else if (lang == 2) { // PL
+        NAME_SPL_ManaForLife                     = "Gwa³towny wzrost mana";
+        NAME_SPL_PickLock                        = "Odblokowaå";
+        Ninja_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siê otworzyæ.";
+        Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Zamek otwarty.";
+        Ninja_FirstMageKit_PRINT_Hitpoints       = "Wydatek punkty trafieñ:";
+        Ninja_FirstMageKit_PRINT_Mana            = "Premia many:";
+        Ninja_FirstMageKit_NAME_MinManakosten    = "Wydatek many:";
+    } else if (lang == 3) { // RU
+        NAME_SPL_ManaForLife                     = "óâåëè÷åíèå ìàíû";
+        NAME_SPL_PickLock                        = "ðàñöåïëÿòü";
+        Ninja_FirstMageKit_PRINT_NeverOpen       = "Ýòî ìíå íèêîãäà íå îòêðûòü.";
+        Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Çàìîê îòêðûò.";
+        Ninja_FirstMageKit_PRINT_Hitpoints       = "Çäîðîâüå:";
+        Ninja_FirstMageKit_PRINT_Mana            = "Ìàíà:";
+        Ninja_FirstMageKit_NAME_MinManakosten    = "Ðàñõîä ìàíû:";
+    }; // Else: Keep default -> English
 };
 
 
@@ -35,7 +63,6 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
 instance PC_Hero (Npc_Default) {
     EquipItem(self, ItRu_ManaForLife);
     EquipItem(self, ItSc_PickLock);
-    EquipItem(self, ItRu_FireBolt);
     CreateInvItems(self, ItSc_PickLock, 99);
 };
 

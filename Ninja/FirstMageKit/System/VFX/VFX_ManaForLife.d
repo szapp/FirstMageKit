@@ -88,3 +88,12 @@ INSTANCE spellFX_ManaForLife_SPIRAL2 (CFx_Base_Proto)
     emFXCreatedOwnTrj       = 0;
     emFXCreate_S            = "DEMENTOR_FX";
 };
+
+
+// Copied for Gothic 1 compatibility
+INSTANCE DEMENTOR_FX (CFx_Base_Proto)
+{
+    // ...
+    sfxid               = "Dementhor_Talk";
+    sfxisambient        = 1;
+};

@@ -23,10 +23,12 @@ instance Spell_PickLock (C_Spell_Proto) {
  * Sugar
  */
 func void Spell_PickLock_ClearKeyBuffer() {
-    const int zCInput_Win32__ClearKeyBuffer = 5068240; //0x4D55D0
+    const int zCInput_Win32__ClearKeyBuffer_G1 = 5016288; //0x4C8AE0
+    const int zCInput_Win32__ClearKeyBuffer_G2 = 5068240; //0x4D55D0
     const int call = 0;
     if (CALL_Begin(call)) {
-        CALL__thiscall(zCInput_zinput, zCInput_Win32__ClearKeyBuffer);
+        CALL__thiscall(zCInput_zinput, MEMINT_SwitchG1G2(zCInput_Win32__ClearKeyBuffer_G1,
+                                                         zCInput_Win32__ClearKeyBuffer_G2));
         call = CALL_End();
     };
 };
@@ -55,7 +57,7 @@ func int Spell_Logic_PickLock(var int manaInvested) {
         };
 
         if (Hlp_StrCmp(mob.pickLockStr, "")) {
-            Print(PRINT_NeverOpen);
+            Print(Ninja_FirstMageKit_PRINT_NeverOpen);
             Spell_PickLock_ClearKeyBuffer();
             return SPL_SENDSTOP;
         };
@@ -89,7 +91,7 @@ func int Spell_Logic_PickLock(var int manaInvested) {
         if (currCharCount >= totalCharCount) {
             //gegebenenfalls entriegen
             mob.bitfield = mob.bitfield &~ oCMobLockable_bitfield_locked;
-            Print(PRINT_PICKLOCK_UNLOCK);
+            Print(Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK);
             Snd_Play3D(self, "PICKLOCK_SUCCESS");
 
             // Prevent the player from running forward after casting
@@ -158,8 +160,11 @@ func void Spell_PickLock_Focus() {
  * Initialize the focus tweaks
  */
 func void Spell_PickLock_Init() {
-    const int oCSpell__IsTargetTypeValid    = 4743108; //0x485FC4
-    const int oCSpell__Setup                = 4737328; //0x484930
-    HookEngineF(oCSpell__IsTargetTypeValid, 5, Spell_PickLock_Focus);
-    HookEngineF(oCSpell__Setup,             7, Spell_PickLock_Prio);
+    const int oCSpell__IsTargetTypeValid_G1    = 4709316; //0x47DBC4
+    const int oCSpell__IsTargetTypeValid_G2    = 4743108; //0x485FC4
+    const int oCSpell__Setup_G1                = 4703664; //0x47C5B0
+    const int oCSpell__Setup_G2                = 4737328; //0x484930
+    HookEngineF(+MEMINT_SwitchG1G2(oCSpell__IsTargetTypeValid_G1,
+                                   oCSpell__IsTargetTypeValid_G2),        5, Spell_PickLock_Focus);
+    HookEngineF(+MEMINT_SwitchG1G2(oCSpell__Setup_G1, oCSpell__Setup_G2), 7, Spell_PickLock_Prio);
 };
