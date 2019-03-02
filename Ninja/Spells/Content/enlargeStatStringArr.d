@@ -7,9 +7,6 @@ func void Ninja_Spells_EnlargeStatStringArr(var int symbPtr, var int numNew) {
     const int zCPar_Symbol__AllocSpace_G1    = 7306832; //0x6F7E50
     const int zCPar_Symbol__AllocSpace_G2    = 8001472; //0x7A17C0
 
-    // Keep original content in case it is referenced in the scripts, e.g. as the case with SPL_RapidFirebolt
-    const int keepOriginalStringsInMemory = TRUE;
-
     // First: Backup all the relevant information of the symbol
     var zCPar_Symbol symb; symb = _^(symbPtr);
     var string name; name = symb.name;
@@ -21,14 +18,12 @@ func void Ninja_Spells_EnlargeStatStringArr(var int symbPtr, var int numNew) {
         MEM_WriteStringArray(buffer, i, MEM_ReadStringArray(symb.content, i));
     end;
 
-    // Free the content of the symbol or keep it in memory (see above)
-    if (!keepOriginalStringsInMemory) {
-        const int call = 0;
-        if (CALL_Begin(call)) {
-            CALL__thiscall(_@(symbPtr), MEMINT_SwitchG1G2(zCPar_Symbol___zCPar_Symbol_G1,
-                                                          zCPar_Symbol___zCPar_Symbol_G2));
-            call = CALL_End();
-        };
+    // Free the content of the symbol
+    const int call = 0;
+    if (CALL_Begin(call)) {
+        CALL__thiscall(_@(symbPtr), MEMINT_SwitchG1G2(zCPar_Symbol___zCPar_Symbol_G1,
+                                                      zCPar_Symbol___zCPar_Symbol_G2));
+        call = CALL_End();
     };
 
     // Reset the properties how we want them - mind the increase in elements

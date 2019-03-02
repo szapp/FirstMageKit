@@ -1,7 +1,7 @@
 ///                     XXXXXXXXXXXXXXXXXXXXXXXXXXXXX                      ///
 ///                     XX  M A N A F O R L I F E  XX                      ///
 ///                     XXXXXXXXXXXXXXXXXXXXXXXXXXXXX                      ///
-///                                mud-freak                               ///
+///                  Taken from mud-freak's Zauberpaket                    ///
 
 /* MFX_MANAFORLIFE_16BIT_TRIPOLY.TGA ist die gleiche Textur wie
  * MFX_MASTEROFDISASTER_AURA_16BIT.TGA, allerdings als Tri-Poly. Damit spar

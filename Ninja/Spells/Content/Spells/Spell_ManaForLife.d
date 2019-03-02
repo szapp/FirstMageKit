@@ -1,5 +1,6 @@
 // *****************************
-// SPL_ManaForLife (mud-freak)
+// SPL_ManaForLife
+// Taken from mud-freak's Zauberpaket
 // *****************************
 
 // Einstellungsmöglichkeinten
@@ -68,4 +69,24 @@ func int Spell_Logic_ManaForLife(var int healthInvested) {
 func void Spell_Cast_ManaForLife() {
     Wld_StopEffect("FOV_MORPH1"); // Zur Sicherheit
     self.aivar[AIV_SelectSpell] += 1;
+};
+
+
+/*
+ * Set health as the invest attribute to allow casting with zero mana
+ */
+func void Spell_ManaForLife_SetToHP() {
+    var int spellID; spellID = MEM_ReadInt(ECX+/*spellID*/84);
+    if (spellID == SPL_ManaForLife) {
+        MEM_WriteInt(ECX+/*investATR*/124, ATR_HITPOINTS);
+    };
+};
+
+
+/*
+ * Initialize to cast with zero mana
+ */
+func void Spell_ManaForLife_Init() {
+    const int oCSpell__InitValues = 4735143; //0x4840A7
+    HookEngineF(oCSpell__InitValues, 6, Spell_ManaForLife_SetToHP);
 };

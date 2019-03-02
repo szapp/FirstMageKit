@@ -22,17 +22,22 @@ func void Ninja_Spells_Menu(var int menuPtr) {
     Ninja_Spells_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           Ninja_Spells_NumNewSpells);
 
     // Add spells (also increments MAX_SPELL)
-    SPL_ManaForLife = Ninja_Spells_SetSpell("ManaForLife", "SAC", NAME_SPL_ManaForLife, "ItRu_ManaForLife",
-                                            "ItSc_ManaForLife");
+    SPL_ManaForLife = Ninja_Spells_SetSpell("ManaForLife", "SAC", NAME_SPL_ManaForLife);
+    SPL_PickLock    = Ninja_Spells_SetSpell("PickLock",    "PYR", NAME_SPL_PickLock);
 
+    // Spell script initializations
+    Spell_ManaForLife_Init();
+    Spell_PickLock_Init();
 };
 
 
-/*// Directly offer the new items to the player (only on new game)
+// Directly offer the new items to the player (only on new game)
 instance PC_Hero (Npc_Default) {
     EquipItem(self, ItRu_ManaForLife);
+    EquipItem(self, ItSc_PickLock);
     EquipItem(self, ItRu_FireBolt);
-};*/
+    CreateInvItems(self, ItSc_PickLock, 99);
+};
 
 
 /*
@@ -42,6 +47,7 @@ func int Ninja_Spells_Spell_ProcessMana(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
     if (activeSpell == SPL_ManaForLife        ) { return Spell_Logic_ManaForLife(manaInvested);         };
+    if (activeSpell == SPL_PickLock           ) { return Spell_Logic_PickLock(manaInvested);            };
 
     PassArgumentI(manaInvested);
     ContinueCall();
@@ -50,6 +56,7 @@ func int Ninja_Spells_Spell_ProcessMana_Release(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
     if (activeSpell == SPL_ManaForLife        ) { return SPL_SENDCAST;                                  };
+    if (activeSpell == SPL_PickLock           ) { return SPL_SENDSTOP; /* Aborted */                    };
 
     PassArgumentI(manaInvested);
     ContinueCall();

@@ -6,6 +6,7 @@ Content\enlargeStatStringArr.d
 Content\setSpell.d
 
 Content\Spells\Spell_ManaForLife.d
+Content\Spells\Spell_PickLock.d
 
 Content\items.d
 Content\NinjaInit.d

@@ -1,7 +1,7 @@
 ///                     XXXXXXXXXXXXXXXXXXXXXXXXXXXXX                      ///
 ///                     XX  M A N A F O R L I F E  XX                      ///
 ///                     XXXXXXXXXXXXXXXXXXXXXXXXXXXXX                      ///
-///                               mud-freak                                ///
+///                  Taken from mud-freak's Zauberpaket                    ///
 
 // Blaues "Elekron" auf der Hand
 INSTANCE spellFX_ManaForLife (CFx_Base_Proto)
