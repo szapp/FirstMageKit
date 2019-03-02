@@ -1,7 +1,7 @@
 /*
  * Enlarging stating arrays is tricky
  */
-func void Ninja_Spells_EnlargeStatStringArr(var int symbPtr, var int numNew) {
+func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNew) {
     const int zCPar_Symbol___zCPar_Symbol_G1 = 7306624; //0x6F7D80
     const int zCPar_Symbol___zCPar_Symbol_G2 = 8001264; //0x7A16F0
     const int zCPar_Symbol__AllocSpace_G1    = 7306832; //0x6F7E50

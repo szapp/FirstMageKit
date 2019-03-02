@@ -1,4 +1,4 @@
-const int Ninja_Spells_NumNewSpells = 2;
+const int Ninja_FirstMageKit_NumNewSpells = 2;
 
 // Constants.d (adjusted during initialization)
 const int SPL_ManaForLife           = 0;

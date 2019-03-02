@@ -1,13 +1,13 @@
 [BEGINVDF]
 Comment=Collection of spells for Gothic 2 to make the life of a mage easier
-VDFName=.\Spells.vdf
+VDFName=.\FirstMageKit.vdf
 
 [FILES]
 ; Resources (list the specific files from _work here)
 _work\* -r
 
 ; Script files
-Ninja\Spells\* -r
+Ninja\FirstMageKit\* -r
 
 [EXCLUDE]
 _work\Data\Scripts\* -r

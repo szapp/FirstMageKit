@@ -3,7 +3,7 @@
  *
  * Here used to inject initialization once before first new game/loading
  */
-func void Ninja_Spells_Menu(var int menuPtr) {
+func void Ninja_FirstMageKit_Menu(var int menuPtr) {
     const int once = 0;
     if (once) {
         return;
@@ -13,17 +13,17 @@ func void Ninja_Spells_Menu(var int menuPtr) {
     MEM_InitAll();
 
     // Add mana processing calls
-    HookDaedalusFuncS("Spell_ProcessMana",         "Ninja_Spells_Spell_ProcessMana");
-    HookDaedalusFuncS("Spell_ProcessMana_Release", "Ninja_Spells_Spell_ProcessMana_Release");
+    HookDaedalusFuncS("Spell_ProcessMana",         "Ninja_FirstMageKit_Spell_ProcessMana");
+    HookDaedalusFuncS("Spell_ProcessMana_Release", "Ninja_FirstMageKit_Spell_ProcessMana_Release");
 
     // Enlarge static arrays
-    Ninja_Spells_EnlargeStatStringArr(MEM_GetSymbol("spellFxInstanceNames"), Ninja_Spells_NumNewSpells);
-    Ninja_Spells_EnlargeStatStringArr(MEM_GetSymbol("spellFxAniLetters"),    Ninja_Spells_NumNewSpells);
-    Ninja_Spells_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           Ninja_Spells_NumNewSpells);
+    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxInstanceNames"), Ninja_FirstMageKit_NumNewSpells);
+    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxAniLetters"),    Ninja_FirstMageKit_NumNewSpells);
+    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           Ninja_FirstMageKit_NumNewSpells);
 
     // Add spells (also increments MAX_SPELL)
-    SPL_ManaForLife = Ninja_Spells_SetSpell("ManaForLife", "SAC", NAME_SPL_ManaForLife);
-    SPL_PickLock    = Ninja_Spells_SetSpell("PickLock",    "PYR", NAME_SPL_PickLock);
+    SPL_ManaForLife = Ninja_FirstMageKit_SetSpell("ManaForLife", "SAC", NAME_SPL_ManaForLife);
+    SPL_PickLock    = Ninja_FirstMageKit_SetSpell("PickLock",    "PYR", NAME_SPL_PickLock);
 
     // Spell script initializations
     Spell_ManaForLife_Init();
@@ -43,7 +43,7 @@ instance PC_Hero (Npc_Default) {
 /*
  * Additions to the mana processing functions
  */
-func int Ninja_Spells_Spell_ProcessMana(var int manaInvested) {
+func int Ninja_FirstMageKit_Spell_ProcessMana(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
     if (activeSpell == SPL_ManaForLife        ) { return Spell_Logic_ManaForLife(manaInvested);         };
@@ -52,7 +52,7 @@ func int Ninja_Spells_Spell_ProcessMana(var int manaInvested) {
     PassArgumentI(manaInvested);
     ContinueCall();
 };
-func int Ninja_Spells_Spell_ProcessMana_Release(var int manaInvested) {
+func int Ninja_FirstMageKit_Spell_ProcessMana_Release(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
     if (activeSpell == SPL_ManaForLife        ) { return SPL_SENDCAST;                                  };
