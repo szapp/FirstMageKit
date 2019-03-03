@@ -1,13 +1,15 @@
 Ikarus
 LeGo
 
-Content\const.d
-Content\localization.d
-Content\enlargeStatStringArr.d
-Content\setSpell.d
-
 Content\Spells\Spell_ManaForLife.d
 Content\Spells\Spell_PickLock.d
 
+Content\localization.d
+Content\spells.d
+
 Content\items_G2.d
+
+Content\trading.d
+Content\world.d
+
 Content\NinjaInit.d

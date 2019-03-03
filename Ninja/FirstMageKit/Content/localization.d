@@ -16,3 +16,48 @@ func int Ninja_FirstMageKit_GuessLocalization() {
     };
     return 0; // Otherwise EN
 };
+
+
+/*
+ * Texts to be localized (default: English)
+ */
+const string NAME_SPL_ManaForLife                     = "Mana surge";
+const string NAME_SPL_PickLock                        = "Unlock";
+const string Ninja_FirstMageKit_PRINT_NeverOpen       = "It will never open.";
+const string Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "The lock's open.";
+const string Ninja_FirstMageKit_PRINT_Hitpoints       = "Hitpoint cost:";
+const string Ninja_FirstMageKit_PRINT_Mana            = "Mana increase:";
+const string Ninja_FirstMageKit_NAME_MinManakosten    = "Mana cost (min):";
+
+
+/*
+ * Adjust texts to language
+ */
+func void Ninja_FirstMageKit_LocalizeTexts() {
+    var int lang; lang = Ninja_FirstMageKit_GuessLocalization();
+    if (lang == 1) { // DE
+        NAME_SPL_ManaForLife                     = "Manasucht";
+        NAME_SPL_PickLock                        = "Entriegeln";
+        Ninja_FirstMageKit_PRINT_NeverOpen       = "Da lässt sich nichts machen";
+        Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Das Schloß ist geknackt";
+        Ninja_FirstMageKit_PRINT_Hitpoints       = "Lebenspunktkosten:";
+        Ninja_FirstMageKit_PRINT_Mana            = "Manasteigerung:";
+        Ninja_FirstMageKit_NAME_MinManakosten    = "Manakosten (min):";
+    } else if (lang == 2) { // PL
+        NAME_SPL_ManaForLife                     = "Gwa³towny wzrost mana";
+        NAME_SPL_PickLock                        = "Odblokowaå";
+        Ninja_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siê otworzyæ.";
+        Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Zamek otwarty.";
+        Ninja_FirstMageKit_PRINT_Hitpoints       = "Wydatek punkty trafieñ:";
+        Ninja_FirstMageKit_PRINT_Mana            = "Premia many:";
+        Ninja_FirstMageKit_NAME_MinManakosten    = "Wydatek many:";
+    } else if (lang == 3) { // RU
+        NAME_SPL_ManaForLife                     = "óâåëè÷åíèå ìàíû";
+        NAME_SPL_PickLock                        = "ğàñöåïëÿòü";
+        Ninja_FirstMageKit_PRINT_NeverOpen       = "İòî ìíå íèêîãäà íå îòêğûòü.";
+        Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Çàìîê îòêğûò.";
+        Ninja_FirstMageKit_PRINT_Hitpoints       = "Çäîğîâüå:";
+        Ninja_FirstMageKit_PRINT_Mana            = "Ìàíà:";
+        Ninja_FirstMageKit_NAME_MinManakosten    = "Ğàñõîä ìàíû:";
+    }; // Else: Keep default -> English
+};

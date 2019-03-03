@@ -1,5 +1,5 @@
 const int Value_Sc_ManaForLife =   5;
-const int Value_Sc_PickLock    =   5;
+const int Value_Sc_PickLock    =  10;
 
 instance ItRu_ManaForLife (C_Item) {
     name                =   NAME_Rune;

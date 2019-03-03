@@ -3,6 +3,9 @@
 // Taken from mud-freak's Zauberpaket
 // *****************************
 
+// Constants.d (adjusted during initialization)
+const int SPL_ManaForLife          = 0;
+
 // Einstellungsmöglichkeinten
 const int SPL_ManaForLife_RELATION = 2;    // 1 HP entspricht wieviel MP
 const int SPL_ManaForLife_MINHP    = 20;   // Minimum an HP übrig lassen
@@ -32,7 +35,11 @@ func int Spell_Logic_ManaForLife(var int healthInvested) {
         };
         SPL_ManaForLife_SplLevel = 0;
 
-        Wld_StopEffect("FOV_MORPH1"); // Zur Sicherheit
+        if (GOTHIC_BASE_VERSION == 2) { // Gothic 1 parsing compatibility
+            // Zur Sicherheit
+            MEM_PushStringParam("FOV_MORPH1");
+            MEM_CallByString("WLD_STOPEFFECT");
+        };
         return SPL_NEXTLEVEL; // Damit der FX startet
     };
 

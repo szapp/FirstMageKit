@@ -1,5 +1,5 @@
-const int Value_Sc_ManaForLife = 200;
-const int Value_Sc_PickLock    = 200;
+const int Value_Sc_ManaForLife = 250;
+const int Value_Sc_PickLock    =  10;
 
 instance ItRu_ManaForLife (C_Item) {
     name                =   NAME_Rune;
@@ -102,8 +102,9 @@ instance ItSc_PickLock (C_Item) {
 
     spell               =   SPL_PickLock;
 
-    wear                =   WEAR_EFFECT;
-    effect              =   "SPELLFX_WEAKGLIMMER";
+    // Out! This messes with the ease of inserting the item
+    //wear                =   WEAR_EFFECT;
+    //effect              =   "SPELLFX_WEAKGLIMMER";
 
     description         =   NAME_SPL_PickLock;
 

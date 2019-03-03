@@ -3,19 +3,26 @@
 // Largely inspired by https://forum.worldofplayers.de/forum/threads/?p=12237820
 // *****************************
 
-const int SPL_Cost_PickLock     = 5;   // Mana cost per lock tick
-const int SPL_Time_PickLock     = 250;
+// Constants.d (adjusted during initialization)
+const int SPL_PickLock          = 0;
 
-const int TARGET_TYPE_MOB       = 128; // Technically invalid (see below)
+const int SPL_Cost_PickLock     = 5;    // Mana cost per lock tick
+const int SPL_Time_PickLock     = 1500; // MS per lock tick (not per mana!)
+
+const int TARGET_TYPE_MOB       = 128;  // Technically invalid (see below)
 
 instance Spell_PickLock (C_Spell_Proto) {
-    time_per_mana               = 200; // Dynamically modified below
+    time_per_mana               = castFromIntf(fracf(SPL_Time_PickLock, SPL_Cost_PickLock));  // Do not change
     spelltype                   = SPELL_NEUTRAL;
     targetCollectAlgo           = TARGET_COLLECT_FOCUS;
     targetCollectType           = TARGET_TYPE_MOB;
-    targetCollectRange          = 500;
-    canTurnDuringInvest         = FALSE;
+    targetCollectRange          = 550;
+    canTurnDuringInvest         = TRUE;
     canChangeTargetDuringInvest = FALSE;
+    if (GOTHIC_BASE_VERSION == 2) {
+        // Gothic 2 does not allow canTurnDuringInvest for non-NPC focus, so we'll restrict the azimuth instead
+        targetCollectAzi        = 20;
+    };
 };
 
 
@@ -41,11 +48,7 @@ func int Spell_Logic_PickLock(var int manaInvested) {
     var oCNpc slf; slf = Hlp_GetNpc(self);
     var oCMobLockable mob;
 
-    if (self.attribute[ATR_MANA] < SPL_Cost_PickLock) {
-        return SPL_SENDSTOP;
-    };
-
-    if (manaInvested <= SPL_Cost_PickLock) {
+    if (Npc_GetActiveSpellLevel(self) <= MEMINT_SwitchG1G2(2, 1)) { // Gothic 1 needs one level more for starting the FX
         if (!Hlp_Is_oCMobLockable(slf.focus_vob)) {
             return SPL_SENDSTOP;
         };
@@ -59,6 +62,10 @@ func int Spell_Logic_PickLock(var int manaInvested) {
         if (Hlp_StrCmp(mob.pickLockStr, "")) {
             Print(Ninja_FirstMageKit_PRINT_NeverOpen);
             Spell_PickLock_ClearKeyBuffer();
+            return SPL_SENDSTOP;
+        };
+
+        if (self.attribute[ATR_MANA] < SPL_Cost_PickLock) {
             return SPL_SENDSTOP;
         };
 
@@ -94,6 +101,11 @@ func int Spell_Logic_PickLock(var int manaInvested) {
             Print(Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK);
             Snd_Play3D(self, "PICKLOCK_SUCCESS");
 
+            // No handouts! SPL_SENDCAST does not decrease the mana
+            if (GOTHIC_BASE_VERSION == 2) {
+                self.attribute[ATR_MANA] -= 1;
+            };
+
             // Prevent the player from running forward after casting
             Spell_PickLock_ClearKeyBuffer();
             return SPL_SENDCAST;
@@ -101,10 +113,14 @@ func int Spell_Logic_PickLock(var int manaInvested) {
 
         //immerhin einen Schritt weiter
         Snd_Play3D(self, "PICKLOCK_SUCCESS");
+
+        // Vary the timing
+        var int timestep;
+        timestep = roundf(fracf(SPL_Time_PickLock, SPL_Cost_PickLock)); // Divide total time by mana needed
+        timestep = Hlp_Random(timestep) + /*minimum*/80;                // Create oscillations
+        Spell_PickLock.time_per_mana = castFromIntf(mkf(timestep));     // Cast to Daedalus float
     };
 
-    // Vary the timing
-    Spell_PickLock.time_per_mana = castFromIntf(mkf(Hlp_Random(SPL_Time_PickLock) + SPL_Time_PickLock/3));
     return SPL_RECEIVEINVEST;
 };
 func int Spell_Cast_PickLock() {};
@@ -123,7 +139,7 @@ func void Spell_PickLock_Prio() {
         return;
     };
 
-    const int mob_prio_backup = 42;
+    const int mob_prio_backup = 42; // 42 == not initialized yet
     if (mob_prio_backup == 42) {
         mob_prio_backup = Focus_Magic.mob_prio;
     };
@@ -167,4 +183,16 @@ func void Spell_PickLock_Init() {
     HookEngineF(+MEMINT_SwitchG1G2(oCSpell__IsTargetTypeValid_G1,
                                    oCSpell__IsTargetTypeValid_G2),        5, Spell_PickLock_Focus);
     HookEngineF(+MEMINT_SwitchG1G2(oCSpell__Setup_G1, oCSpell__Setup_G2), 7, Spell_PickLock_Prio);
+
+
+    // Make sure Focus_Magic is initialized (necessary for Spell_PickLock_Prio). For details see GothicFreeAim
+    const int oCNpcFocus__focuslist_G1         =  9283120; //0x8DA630
+    const int oCNpcFocus__focuslist_G2         = 11208440; //0xAB06F8
+
+    var int fMagicPtr; fMagicPtr = MEM_ReadIntArray(+MEMINT_SwitchG1G2(oCNpcFocus__focuslist_G1,
+                                                                       oCNpcFocus__focuslist_G2), /*Focus_Magic*/ 5);
+    if (fMagicPtr) {
+        MEM_Info("Spell_PickLock: Reinitializing Focus_Magic instance");
+        Focus_Magic = _^(fMagicPtr);
+    };
 };
