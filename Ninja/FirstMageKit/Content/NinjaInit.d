@@ -25,7 +25,7 @@ func void Ninja_FirstMageKit_Init() {
     // Wrapper for "LeGo_Init" to ensure correct LeGo initialization without breaking the mod
     LeGo_MergeFlags(LeGo_FrameFunctions);
 
-    Spell_ManaForLife_Init();
-    Spell_PickLock_Init();
+    Spell_FMKManaForLife_Init();
+    Spell_FMKPickLock_Init();
     Ninja_FirstMageKit_PlaceSpellItems();
 };

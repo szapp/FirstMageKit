@@ -21,8 +21,8 @@ func int Ninja_FirstMageKit_GuessLocalization() {
 /*
  * Texts to be localized (default: English)
  */
-const string NAME_SPL_ManaForLife                     = "Mana surge";
-const string NAME_SPL_PickLock                        = "Unlock";
+const string NAME_SPL_FMKManaForLife                  = "Mana surge";
+const string NAME_SPL_FMKPickLock                     = "Unlock";
 const string Ninja_FirstMageKit_PRINT_NeverOpen       = "It will never open.";
 const string Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "The lock's open.";
 const string Ninja_FirstMageKit_PRINT_Hitpoints       = "Hitpoint cost:";
@@ -36,24 +36,24 @@ const string Ninja_FirstMageKit_NAME_MinManakosten    = "Mana cost (min):";
 func void Ninja_FirstMageKit_LocalizeTexts() {
     var int lang; lang = Ninja_FirstMageKit_GuessLocalization();
     if (lang == 1) { // DE
-        NAME_SPL_ManaForLife                     = "Manasucht";
-        NAME_SPL_PickLock                        = "Entriegeln";
+        NAME_SPL_FMKManaForLife                  = "Manasucht";
+        NAME_SPL_FMKPickLock                     = "Entriegeln";
         Ninja_FirstMageKit_PRINT_NeverOpen       = "Da lдsst sich nichts machen";
         Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Das SchloЯ ist geknackt";
         Ninja_FirstMageKit_PRINT_Hitpoints       = "Lebenspunktkosten:";
         Ninja_FirstMageKit_PRINT_Mana            = "Manasteigerung:";
         Ninja_FirstMageKit_NAME_MinManakosten    = "Manakosten (min):";
     } else if (lang == 2) { // PL
-        NAME_SPL_ManaForLife                     = "Gwaіtowny wzrost mana";
-        NAME_SPL_PickLock                        = "Odblokowaе";
+        NAME_SPL_FMKManaForLife                  = "Gwaіtowny wzrost mana";
+        NAME_SPL_FMKPickLock                     = "Odblokowaе";
         Ninja_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siк otworzyж.";
         Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Zamek otwarty.";
         Ninja_FirstMageKit_PRINT_Hitpoints       = "Wydatek punkty trafieс:";
         Ninja_FirstMageKit_PRINT_Mana            = "Premia many:";
         Ninja_FirstMageKit_NAME_MinManakosten    = "Wydatek many:";
     } else if (lang == 3) { // RU
-        NAME_SPL_ManaForLife                     = "увеличение маны";
-        NAME_SPL_PickLock                        = "расцеплять";
+        NAME_SPL_FMKManaForLife                  = "увеличение маны";
+        NAME_SPL_FMKPickLock                     = "расцеплять";
         Ninja_FirstMageKit_PRINT_NeverOpen       = "Это мне никогда не открыть.";
         Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Замок открыт.";
         Ninja_FirstMageKit_PRINT_Hitpoints       = "Здоровье:";

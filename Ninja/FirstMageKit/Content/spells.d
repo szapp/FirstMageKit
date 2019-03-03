@@ -75,8 +75,8 @@ func void Ninja_FirstMageKit_CreateSpells() {
     Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           NumNewSpells);
 
     // Add spells (also increments MAX_SPELL)
-    SPL_ManaForLife = Ninja_FirstMageKit_SetSpell("ManaForLife", "SAC", NAME_SPL_ManaForLife);
-    SPL_PickLock    = Ninja_FirstMageKit_SetSpell("PickLock",    "PYR", NAME_SPL_PickLock);
+    SPL_FMKManaForLife = Ninja_FirstMageKit_SetSpell("FMKManaForLife", "SAC", NAME_SPL_FMKManaForLife);
+    SPL_FMKPickLock    = Ninja_FirstMageKit_SetSpell("FMKPickLock",    "PYR", NAME_SPL_FMKPickLock);
 
     // Add mana processing calls
     HookDaedalusFuncS("Spell_ProcessMana",         "Ninja_FirstMageKit_Spell_ProcessMana");
@@ -90,8 +90,8 @@ func void Ninja_FirstMageKit_CreateSpells() {
 func int Ninja_FirstMageKit_Spell_ProcessMana(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
-    if (activeSpell == SPL_ManaForLife        ) { return Spell_Logic_ManaForLife(manaInvested);         };
-    if (activeSpell == SPL_PickLock           ) { return Spell_Logic_PickLock(manaInvested);            };
+    if (activeSpell == SPL_FMKManaForLife     ) { return Spell_Logic_FMKManaForLife(manaInvested);      };
+    if (activeSpell == SPL_FMKPickLock        ) { return Spell_Logic_FMKPickLock(manaInvested);         };
 
     PassArgumentI(manaInvested);
     ContinueCall();
@@ -99,8 +99,8 @@ func int Ninja_FirstMageKit_Spell_ProcessMana(var int manaInvested) {
 func int Ninja_FirstMageKit_Spell_ProcessMana_Release(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
-    if (activeSpell == SPL_ManaForLife        ) { return SPL_SENDCAST;                                  };
-    if (activeSpell == SPL_PickLock           ) { return SPL_SENDSTOP; /* Aborted */                    };
+    if (activeSpell == SPL_FMKManaForLife     ) { return SPL_SENDCAST;                                  };
+    if (activeSpell == SPL_FMKPickLock        ) { return SPL_SENDSTOP; /* Aborted */                    };
 
     PassArgumentI(manaInvested);
     ContinueCall();

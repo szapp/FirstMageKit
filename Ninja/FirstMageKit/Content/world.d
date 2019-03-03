@@ -83,13 +83,18 @@ func void Ninja_FirstMageKit_PlaceSpellItems() {
     };
 
     // Do the following for each world only once. To check this, we use a neat trick here (explained below)
-    if (!Hlp_IsValidItem(ItSc_PickLock)) {
+    if (!Hlp_IsValidItem(ItSc_FMKPickLock)) {
+
+        // Only add it if it does not exist in the mod already
+        if (MEM_GetSymbol("SPL_PickLock")) {
+            return;
+        };
 
         // For any lock pick in any container in the world add the same number of lock pick spells
         if (GOTHIC_BASE_VERSION == 1) {
-            Ninja_FirstMageKit_MatchItemInContainers("ItKeLockpick", "ItSc_PickLock");
+            Ninja_FirstMageKit_MatchItemInContainers("ItKeLockpick", "ItSc_FMKPickLock");
         } else {
-            Ninja_FirstMageKit_MatchItemInContainers("ItKe_Lockpick", "ItSc_PickLock");
+            Ninja_FirstMageKit_MatchItemInContainers("ItKe_Lockpick", "ItSc_FMKPickLock");
         };
 
         // Now mark this world as processed by inserting an item. This item will stay in the world throughout saving and
@@ -106,7 +111,7 @@ func void Ninja_FirstMageKit_PlaceSpellItems() {
  */
 func void Ninja_FirstMageKit_AddIndicatorOnce() {
     // That's all:
-    Wld_InsertItem(ItSc_PickLock, MEM_FARFARAWAY);
+    Wld_InsertItem(ItSc_FMKPickLock, MEM_FARFARAWAY);
 
     // Sugar:
     // Since we are dealing with who-knows-what kind of mods that might not have the waypoint "TOT", the item would
@@ -133,5 +138,8 @@ func void Ninja_FirstMageKit_AddIndicatorOnce() {
  * Add the mana for life spell (as rune) to the player inventory - only once ever. This function is called from init
  */
 func void Ninja_FirstMageKit_AddRuneOnce() {
-    CreateInvItem(hero, ItRu_ManaForLife);
+    if (!MEM_GetSymbol("SPL_ManaForLife")) {
+        // Only add it if it does not exist in the mod already
+        CreateInvItem(hero, ItRu_FMKManaForLife);
+    };
 };

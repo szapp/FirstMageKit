@@ -4,15 +4,15 @@
 // *****************************
 
 // Constants.d (adjusted during initialization)
-const int SPL_PickLock          = 0;
+const int SPL_FMKPickLock       = 0;
 
-const int SPL_Cost_PickLock     = 5;    // Mana cost per lock tick
-const int SPL_Time_PickLock     = 1500; // MS per lock tick (not per mana!)
+const int SPL_Cost_FMKPickLock  = 5;    // Mana cost per lock tick
+const int SPL_Time_FMKPickLock  = 1500; // MS per lock tick (not per mana!)
 
 const int TARGET_TYPE_MOB       = 128;  // Technically invalid (see below)
 
-instance Spell_PickLock (C_Spell_Proto) {
-    time_per_mana               = castFromIntf(fracf(SPL_Time_PickLock, SPL_Cost_PickLock));  // Do not change
+instance Spell_FMKPickLock (C_Spell_Proto) {
+    time_per_mana               = castFromIntf(fracf(SPL_Time_FMKPickLock, SPL_Cost_FMKPickLock));  // Do not change
     spelltype                   = SPELL_NEUTRAL;
     targetCollectAlgo           = TARGET_COLLECT_FOCUS;
     targetCollectType           = TARGET_TYPE_MOB;
@@ -29,7 +29,7 @@ instance Spell_PickLock (C_Spell_Proto) {
 /*
  * Sugar
  */
-func void Spell_PickLock_ClearKeyBuffer() {
+func void Spell_FMKPickLock_ClearKeyBuffer() {
     const int zCInput_Win32__ClearKeyBuffer_G1 = 5016288; //0x4C8AE0
     const int zCInput_Win32__ClearKeyBuffer_G2 = 5068240; //0x4D55D0
     const int call = 0;
@@ -44,7 +44,7 @@ func void Spell_PickLock_ClearKeyBuffer() {
 /*
  * Modified from https://forum.worldofplayers.de/forum/threads/?p=12237820
  */
-func int Spell_Logic_PickLock(var int manaInvested) {
+func int Spell_Logic_FMKPickLock(var int manaInvested) {
     var oCNpc slf; slf = Hlp_GetNpc(self);
     var oCMobLockable mob;
 
@@ -61,18 +61,18 @@ func int Spell_Logic_PickLock(var int manaInvested) {
 
         if (Hlp_StrCmp(mob.pickLockStr, "")) {
             Print(Ninja_FirstMageKit_PRINT_NeverOpen);
-            Spell_PickLock_ClearKeyBuffer();
+            Spell_FMKPickLock_ClearKeyBuffer();
             return SPL_SENDSTOP;
         };
 
-        if (self.attribute[ATR_MANA] < SPL_Cost_PickLock) {
+        if (self.attribute[ATR_MANA] < SPL_Cost_FMKPickLock) {
             return SPL_SENDSTOP;
         };
 
         // Change in FX
         return SPL_NEXTLEVEL;
 
-    } else if (!(manaInvested % SPL_Cost_PickLock)) {
+    } else if (!(manaInvested % SPL_Cost_FMKPickLock)) {
         mob = _^(slf.focus_vob);
 
         //Für die Wahrnehmung so tun, als würde der Spieler das Mob benutzen
@@ -107,7 +107,7 @@ func int Spell_Logic_PickLock(var int manaInvested) {
             };
 
             // Prevent the player from running forward after casting
-            Spell_PickLock_ClearKeyBuffer();
+            Spell_FMKPickLock_ClearKeyBuffer();
             return SPL_SENDCAST;
         };
 
@@ -116,20 +116,20 @@ func int Spell_Logic_PickLock(var int manaInvested) {
 
         // Vary the timing
         var int timestep;
-        timestep = roundf(fracf(SPL_Time_PickLock, SPL_Cost_PickLock)); // Divide total time by mana needed
-        timestep = Hlp_Random(timestep) + /*minimum*/80;                // Create oscillations
-        Spell_PickLock.time_per_mana = castFromIntf(mkf(timestep));     // Cast to Daedalus float
+        timestep = roundf(fracf(SPL_Time_FMKPickLock, SPL_Cost_FMKPickLock)); // Divide total time by mana needed
+        timestep = Hlp_Random(timestep) + /*minimum*/80;                      // Create oscillations
+        Spell_FMKPickLock.time_per_mana = castFromIntf(mkf(timestep));        // Cast to Daedalus float
     };
 
     return SPL_RECEIVEINVEST;
 };
-func int Spell_Cast_PickLock() {};
+func int Spell_Cast_FMKPickLock() {};
 
 
 /*
  * Enable focusing mob when using the spell
  */
-func void Spell_PickLock_Prio() {
+func void Spell_FMKPickLock_Prio() {
     var int caster; caster = MEM_ReadInt(ESP+4);
     if (!caster) {
         return;
@@ -145,7 +145,7 @@ func void Spell_PickLock_Prio() {
     };
 
     var int spellID; spellID = MEM_ReadInt(/*oCSpell*/ECX+/*spellID*/84);
-    if (spellID == SPL_PickLock) {
+    if (spellID == SPL_FMKPickLock) {
         // Adjust the global(!) focus priorities temporarily(!)
         Focus_Magic.mob_prio = 1;
     } else if (mob_prio_backup != 42) {
@@ -158,8 +158,8 @@ func void Spell_PickLock_Prio() {
 /*
  * Make the focus check mob specific (disallow NPC)
  */
-func void Spell_PickLock_Focus() {
-    // Constructed case that will only happen for Spell_PickLock
+func void Spell_FMKPickLock_Focus() {
+    // Constructed case that will only happen for Spell_FMKPickLock
     if (ECX == TARGET_TYPE_MOB) {
         var int vobPtr; vobPtr = MEM_ReadInt(ESP+4);
         if (Hlp_Is_oCMobLockable(vobPtr)) {
@@ -175,24 +175,24 @@ func void Spell_PickLock_Focus() {
 /*
  * Initialize the focus tweaks
  */
-func void Spell_PickLock_Init() {
+func void Spell_FMKPickLock_Init() {
     const int oCSpell__IsTargetTypeValid_G1    = 4709316; //0x47DBC4
     const int oCSpell__IsTargetTypeValid_G2    = 4743108; //0x485FC4
     const int oCSpell__Setup_G1                = 4703664; //0x47C5B0
     const int oCSpell__Setup_G2                = 4737328; //0x484930
     HookEngineF(+MEMINT_SwitchG1G2(oCSpell__IsTargetTypeValid_G1,
-                                   oCSpell__IsTargetTypeValid_G2),        5, Spell_PickLock_Focus);
-    HookEngineF(+MEMINT_SwitchG1G2(oCSpell__Setup_G1, oCSpell__Setup_G2), 7, Spell_PickLock_Prio);
+                                   oCSpell__IsTargetTypeValid_G2),        5, Spell_FMKPickLock_Focus);
+    HookEngineF(+MEMINT_SwitchG1G2(oCSpell__Setup_G1, oCSpell__Setup_G2), 7, Spell_FMKPickLock_Prio);
 
 
-    // Make sure Focus_Magic is initialized (necessary for Spell_PickLock_Prio). For details see GothicFreeAim
+    // Make sure Focus_Magic is initialized (necessary for Spell_FMKPickLock_Prio). For details see GothicFreeAim
     const int oCNpcFocus__focuslist_G1         =  9283120; //0x8DA630
     const int oCNpcFocus__focuslist_G2         = 11208440; //0xAB06F8
 
     var int fMagicPtr; fMagicPtr = MEM_ReadIntArray(+MEMINT_SwitchG1G2(oCNpcFocus__focuslist_G1,
                                                                        oCNpcFocus__focuslist_G2), /*Focus_Magic*/ 5);
     if (fMagicPtr) {
-        MEM_Info("Spell_PickLock: Reinitializing Focus_Magic instance");
+        MEM_Info("Spell_FMKPickLock: Reinitializing Focus_Magic instance");
         Focus_Magic = _^(fMagicPtr);
     };
 };

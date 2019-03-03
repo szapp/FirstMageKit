@@ -40,7 +40,7 @@ func void Ninja_FirstMageKit_SetupTrading() {
     };
     if (valueSymbPtr) {
         var zCPar_Symbol valueSymb; valueSymb = _^(valueSymbPtr);
-        Value_Sc_PickLock = valueSymb.content;
+        Value_Sc_FMKPickLock = valueSymb.content;
     };
 };
 
@@ -67,8 +67,8 @@ func void Ninja_FirstMageKit_AddSPLOnTrade() {
     };
 
     // Giving negative number of items actually removes them from the inventory (Gothic 1)
-    var int amount; amount = TraderMinSpells - Npc_HasItems(npc, ItSc_PickLock);
+    var int amount; amount = TraderMinSpells - Npc_HasItems(npc, ItSc_FMKPickLock);
     if (amount > 0) {
-        CreateInvItems(npc, ItSc_PickLock, amount);
+        CreateInvItems(npc, ItSc_FMKPickLock, amount);
     };
 };

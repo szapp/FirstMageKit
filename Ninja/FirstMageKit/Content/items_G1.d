@@ -1,7 +1,7 @@
-const int Value_Sc_ManaForLife =   5;
-const int Value_Sc_PickLock    =  10;
+const int Value_Sc_FMKManaForLife =   5;
+const int Value_Sc_FMKPickLock    =  10;
 
-instance ItRu_ManaForLife (C_Item) {
+instance ItRu_FMKManaForLife (C_Item) {
     name                =   NAME_Rune;
 
     mainflag            =   ITEM_KAT_RUNE;
@@ -10,11 +10,11 @@ instance ItRu_ManaForLife (C_Item) {
     visual              =   "NINJA_FMK_MANAFORLIFE_RU_G1.3DS";
     material            =   MAT_STONE;
 
-    spell               =   SPL_ManaForLife;
+    spell               =   SPL_FMKManaForLife;
 
     mag_circle          =   3;
 
-    description         =   NAME_SPL_ManaForLife;
+    description         =   NAME_SPL_FMKManaForLife;
     TEXT    [0]         =   NAME_Mag_Circle;
     COUNT   [0]         =   mag_circle;
 
@@ -24,10 +24,10 @@ instance ItRu_ManaForLife (C_Item) {
     COUNT   [2]         =   1;
 
     TEXT    [3]         =   Ninja_FirstMageKit_PRINT_Mana;
-    COUNT   [3]         =   SPL_ManaForLife_RELATION;
+    COUNT   [3]         =   SPL_FMKManaForLife_RELATION;
 };
 
-instance ItRu_PickLock (C_Item) {
+instance ItRu_FMKPickLock (C_Item) {
     name                =   NAME_Rune;
 
     mainflag            =   ITEM_KAT_RUNE;
@@ -36,35 +36,35 @@ instance ItRu_PickLock (C_Item) {
     visual              =   "NINJA_FMK_PICKLOCK_RU_G1.3DS";
     material            =   MAT_STONE;
 
-    spell               =   SPL_PickLock;
+    spell               =   SPL_FMKPickLock;
 
     mag_circle          =   1;
 
-    description         =   NAME_SPL_PickLock;
+    description         =   NAME_SPL_FMKPickLock;
     TEXT    [0]         =   NAME_Mag_Circle;
     COUNT   [0]         =   mag_circle;
 
     TEXT    [1]         =   NAME_Spell_Invest;
 
     TEXT    [2]         =   Ninja_FirstMageKit_NAME_MinManakosten;
-    COUNT   [2]         =   SPL_Cost_PickLock;
+    COUNT   [2]         =   SPL_Cost_FMKPickLock;
 };
 
 
-instance ItSc_ManaForLife (C_Item) {
+instance ItSc_FMKManaForLife (C_Item) {
     name                =   NAME_Spruchrolle;
 
     mainflag            =   ITEM_KAT_RUNE;
     flags               =   ITEM_MULTI;
 
-    value               =   Value_Sc_ManaForLife;
+    value               =   Value_Sc_FMKManaForLife;
 
     visual              =   "NINJA_FMK_MANAFORLIFE_SC_G1.3DS";
     material            =   MAT_LEATHER;
 
-    spell               =   SPL_ManaForLife;
+    spell               =   SPL_FMKManaForLife;
 
-    description         =   NAME_SPL_ManaForLife;
+    description         =   NAME_SPL_FMKManaForLife;
 
     TEXT    [1]         =   NAME_Spell_Invest;
 
@@ -72,31 +72,31 @@ instance ItSc_ManaForLife (C_Item) {
     COUNT   [2]         =   1;
 
     TEXT    [3]         =   Ninja_FirstMageKit_PRINT_Mana;
-    COUNT   [3]         =   SPL_ManaForLife_RELATION;
+    COUNT   [3]         =   SPL_FMKManaForLife_RELATION;
 
     TEXT    [5]         =   NAME_Value;
     COUNT   [5]         =   value;
 };
 
-instance ItSc_PickLock (C_Item) {
+instance ItSc_FMKPickLock (C_Item) {
     name                =   NAME_Spruchrolle;
 
     mainflag            =   ITEM_KAT_RUNE;
     flags               =   ITEM_MULTI;
 
-    value               =   Value_Sc_PickLock;
+    value               =   Value_Sc_FMKPickLock;
 
     visual              =   "NINJA_FMK_PICKLOCK_SC_G1.3DS";
     material            =   MAT_LEATHER;
 
-    spell               =   SPL_PickLock;
+    spell               =   SPL_FMKPickLock;
 
-    description         =   NAME_SPL_PickLock;
+    description         =   NAME_SPL_FMKPickLock;
 
     TEXT    [1]         =   NAME_Spell_Invest;
 
     TEXT    [2]         =   Ninja_FirstMageKit_NAME_MinManakosten;
-    COUNT   [2]         =   SPL_Cost_PickLock;
+    COUNT   [2]         =   SPL_Cost_FMKPickLock;
 
     TEXT    [5]         =   NAME_Value;
     COUNT   [5]         =   value;
