@@ -7,7 +7,7 @@ Model ("HuS")
 // Sacrifice taken from mud-freak's Zauberpaket
         ani         ("t_MagRun_2_SacCast"   1   "s_SacCast"     0.2 0.0 M.  "HUM_MAGSAC_1_225.ASC"  F   1   18)
         ani         ("s_SacCast"            1   "s_SacCast"     1.0 1.0 M.  "HUM_MAGSAC_1_225.ASC"  F   19  120    FPS:25)
-        ani         ("t_SacCast_2_stand"    1   ""              0.5 0.2 M.  "HUM_MAGSAC_1_225.ASC"  R   1   18     FPS:25)
+        ani         ("t_SacCast_2_Stand"    1   ""              0.5 0.2 M.  "HUM_MAGSAC_1_225.ASC"  R   1   18     FPS:25)
 
         ani         ("t_SacCast_2_SacShoot" 1   "s_SacShoot"    0.2 0.0 M.  "HUM_MAGSAC_1_225.ASC"  F   121 156    FPS:35)
         {
@@ -15,5 +15,15 @@ Model ("HuS")
         }
         ani         ("s_SacShoot"           1   "s_SacShoot"    0.0 0.0 M.  "HUM_MAGSAC_1_225.ASC"  F   157 157    FPS:25)
         ani         ("t_SacShoot_2_Stand"   1   ""              0.0 0.1 M.  "HUM_MAGSAC_1_225.ASC"  F   158 225    FPS:16)
+
+
+// PYR fixed for release spells (no change to animation)
+        ani         ("t_MagRun_2_Py2Cast"   1   "s_Py2Cast"     0.1 0.0 M.  "HUM_MAGPYRO_A01.ASC"   F   1   21)
+        ani         ("s_Py2Cast"            1   "s_Py2Cast"     0.0 0.0 M.  "HUM_MAGPYRO_A01.ASC"   F   22  32)
+        ani         ("t_Py2Cast_2_Stand"    1   ""              0.0 0.1 M.  "HUM_MAGPYRO_A01.ASC"   F   33  39)
+
+        ani         ("t_Py2Cast_2_Py2Shoot" 1   "s_Py2Shoot"    0.1 0.0 M.  "HUM_MAGPYRO_A01.ASC"   F   22  32)
+        ani         ("s_Py2Shoot"           1   "s_Py2Shoot"    0.0 0.0 M.  "HUM_MAGPYRO_A01.ASC"   F   22  32)
+        ani         ("t_Py2Shoot_2_Stand"   1   ""              0.0 0.1 M.  "HUM_MAGPYRO_A01.ASC"   F   33  39)
     }
 }

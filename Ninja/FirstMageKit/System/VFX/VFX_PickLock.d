@@ -15,8 +15,8 @@ instance spellFX_FMKPickLock (CFx_Base_Proto) {
         pfx_ppsisloopingChg = 1;
         emtrjmode_s         = "FIXED";
         emtrjeasevel        = 0.000001;
-        sfxid               = "MFX_PickLock_Cast";
-        sfxIsAmbient        = 1;
+        // sfxid            = "MFX_PickLock_Cast"; // Moved to spell script
+        // sfxIsAmbient     = 1;
 };
 instance spellFX_FMKPickLock_InvestTarget (CFx_Base_Proto) {
     visname_S               = "MFX_PickLock_TARGET";

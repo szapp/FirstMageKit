@@ -76,7 +76,7 @@ func void Ninja_FirstMageKit_CreateSpells() {
 
     // Add spells (also increments MAX_SPELL)
     SPL_FMKManaForLife = Ninja_FirstMageKit_SetSpell("FMKManaForLife", "SAC", NAME_SPL_FMKManaForLife);
-    SPL_FMKPickLock    = Ninja_FirstMageKit_SetSpell("FMKPickLock",    "PYR", NAME_SPL_FMKPickLock);
+    SPL_FMKPickLock    = Ninja_FirstMageKit_SetSpell("FMKPickLock",    "PY2", NAME_SPL_FMKPickLock);
 
     // Add mana processing calls
     HookDaedalusFuncS("Spell_ProcessMana",         "Ninja_FirstMageKit_Spell_ProcessMana");
@@ -100,7 +100,7 @@ func int Ninja_FirstMageKit_Spell_ProcessMana_Release(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
     if (activeSpell == SPL_FMKManaForLife     ) { return SPL_SENDCAST;                                  };
-    if (activeSpell == SPL_FMKPickLock        ) { return SPL_SENDSTOP; /* Aborted */                    };
+    if (activeSpell == SPL_FMKPickLock        ) { return SPL_SENDCAST;                                  };
 
     PassArgumentI(manaInvested);
     ContinueCall();

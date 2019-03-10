@@ -1,6 +1,8 @@
 // *****************************
 // SPL_ManaForLife (name modified for compatibility)
 // Taken from mud-freak's Zauberpaket
+//
+// If using this spell in a mod (instead of this patch) make sure to remove 'FMK' from all symbol names!
 // *****************************
 
 // Constants.d (adjusted during initialization)
@@ -75,7 +77,7 @@ func int Spell_Logic_FMKManaForLife(var int healthInvested) {
     return SPL_RECEIVEINVEST;
 };
 
-func void Spell_Cast_FMKManaForLife() {
+func void Spell_Cast_FMKManaForLife(var int spellLevel) {
     if (GOTHIC_BASE_VERSION == 2) { // Gothic 1 parsing compatibility
         // Zur Sicherheit
         MEM_PushStringParam("FOV_MORPH1");

@@ -1,6 +1,8 @@
 // *****************************
-// SPL_PickLock
+// SPL_PickLock (name modified for compatibility)
 // Largely inspired by https://forum.worldofplayers.de/forum/threads/?p=12237820
+//
+// If using this spell in a mod (instead of this patch) make sure to remove 'FMK' from all symbol names!
 // *****************************
 
 // Constants.d (adjusted during initialization)
@@ -101,6 +103,9 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
             Print(Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK);
             Snd_Play3D(self, "PICKLOCK_SUCCESS");
 
+            // FX sound here, because VFX would also trigger it when aborting (releasing button prematurely)
+            AI_Snd_Play(self, "MFX_PICKLOCK_CAST");
+
             // No handouts! SPL_SENDCAST does not decrease the mana
             if (GOTHIC_BASE_VERSION == 2) {
                 self.attribute[ATR_MANA] -= 1;
@@ -123,7 +128,7 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
 
     return SPL_RECEIVEINVEST;
 };
-func int Spell_Cast_FMKPickLock() {};
+func void Spell_Cast_FMKPickLock(var int spellLevel) {};
 
 
 /*
