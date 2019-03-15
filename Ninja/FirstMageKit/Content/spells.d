@@ -1,7 +1,7 @@
 /*
  * Enlarging stating arrays is tricky
  */
-func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNew) {
+func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNewTotal) {
     const int zCPar_Symbol___zCPar_Symbol_G1 = 7306624; //0x6F7D80
     const int zCPar_Symbol___zCPar_Symbol_G2 = 8001264; //0x7A16F0
     const int zCPar_Symbol__AllocSpace_G1    = 7306832; //0x6F7E50
@@ -12,6 +12,12 @@ func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNe
     var string name; name = symb.name;
     var int bitfield; bitfield = symb.bitfield;
     var int numEle; numEle = bitfield & zCPar_Symbol_bitfield_ele;
+
+    // I refuse to make it smaller
+    if (numNewTotal <= numEle) {
+        return;
+    };
+
     // The string content we'll have to backup this way (one string at a time, deep copy)
     var int buffer; buffer = MEM_Alloc(numEle * sizeof_zSTRING);
     repeat(i, numEle); var int i;
@@ -28,7 +34,7 @@ func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNe
 
     // Reset the properties how we want them - mind the increase in elements
     symb.name = name;
-    symb.bitfield = (bitfield & ~zCPar_Symbol_bitfield_ele) | (numEle+numNew);
+    symb.bitfield = (bitfield & ~zCPar_Symbol_bitfield_ele) | numNewTotal;
     symb.bitfield = symb.bitfield & ~4194304; // Set 'allocated' to false
 
     // Have Gothic allocate the space for the content (we cannot do this ourselves, because it's tied to a pool)
@@ -70,9 +76,9 @@ func void Ninja_FirstMageKit_CreateSpells() {
     const int NumNewSpells = 2;
 
     // Enlarge static arrays
-    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxInstanceNames"), NumNewSpells);
-    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxAniLetters"),    NumNewSpells);
-    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           NumNewSpells);
+    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxInstanceNames"), MAX_SPELL + NumNewSpells);
+    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxAniLetters"),    MAX_SPELL + NumNewSpells);
+    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           MAX_SPELL + NumNewSpells);
 
     // Add spells (also increments MAX_SPELL)
     SPL_FMKManaForLife = Ninja_FirstMageKit_SetSpell("FMKManaForLife", "SAC", NAME_SPL_FMKManaForLife);
