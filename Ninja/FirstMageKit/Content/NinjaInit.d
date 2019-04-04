@@ -12,8 +12,8 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
 
     MEM_InitAll();
 
-    Ninja_FirstMageKit_CreateSpells();
     Ninja_FirstMageKit_LocalizeTexts();
+    Ninja_FirstMageKit_CreateSpells();
     Ninja_FirstMageKit_SetupTrading();
 };
 
