@@ -26,6 +26,11 @@ func int Ninja_FirstMageKit_ContainerSearchMainflag(var int containerPtr, var in
  * Implement hook for trading (initialization function)
  */
 func void Ninja_FirstMageKit_SetupTrading() {
+    if (MEM_GetSymbol("SPL_PickLock")) {
+        // Only add it if it does not exist in the mod already
+        return;
+    };
+
     const int oCInformationManager__OnTradeBegin_setNpc_G1 = 7528916; //0x72E1D4
     const int oCInformationManager__OnTradeBegin_setNpc_G2 = 6696756; //0x662F34
     HookEngineF(+MEMINT_SwitchG1G2(oCInformationManager__OnTradeBegin_setNpc_G1,
