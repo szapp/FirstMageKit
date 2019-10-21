@@ -1,5 +1,6 @@
 [BEGINVDF]
-Comment=Collection of spells to make the life of a mage easier (Gothic 1 and Gothic 2 NotR)%%NPicklocking scrolls are available from traders and in chests that contain lock picks%%NMana-for-life rune (magic circle 3) is placed in the player's inventory
+Comment=Collection of spells to make the life of a mage easier (Gothic 1 and Gothic 2 NotR)%%NLock picking scrolls are available from traders and in chests that contain lock picks%%NMana-for-life rune (magic circle 3) is placed in the player's inventory
+BaseDir=.\
 VDFName=.\FirstMageKit.vdf
 
 [FILES]
@@ -14,6 +15,8 @@ _work\Data\Scripts\* -r
 *.vm
 *.vdf
 *.bat
+.gitignore
+.git
 
 [INCLUDE]
 
