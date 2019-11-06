@@ -66,7 +66,7 @@ INSTANCE MFX_ManaForLife_INIT2 (C_PARTICLEFX)
 };
 
 // Copied from Gothic 2 NotR
-PROTOTYPE MFX_INFLATE_FOUNTAIN (C_PARTICLEFX)
+PROTOTYPE MFX_ManaForLife_FOUNTAIN (C_PARTICLEFX)
 {
     ppsvalue = 200;
     ppsscalekeys_s = "2 1 1 1 1 1 0.8 0.6 0.4 0.2";
@@ -102,7 +102,7 @@ PROTOTYPE MFX_INFLATE_FOUNTAIN (C_PARTICLEFX)
 };
 
 // Wir bedienen uns dem Inflatezauber und passen den Spritz-Effekt an
-INSTANCE MFX_ManaForLife_SPATTER_0 (MFX_INFLATE_FOUNTAIN)
+INSTANCE MFX_ManaForLife_SPATTER_0 (MFX_ManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";           // Wir loopen den Effekt, weil er unter-
     ppsIsLooping = 1;               //  schiedlich lang sein kann.
@@ -111,7 +111,7 @@ INSTANCE MFX_ManaForLife_SPATTER_0 (MFX_INFLATE_FOUNTAIN)
     vistexcolorstart_s = "98 0 0";  // In Blutrot
     vistexcolorend_s = "191 28 28";
 };
-INSTANCE MFX_ManaForLife_SPATTER_90 (MFX_INFLATE_FOUNTAIN)
+INSTANCE MFX_ManaForLife_SPATTER_90 (MFX_ManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";
     ppsIsLooping = 1;
@@ -121,7 +121,7 @@ INSTANCE MFX_ManaForLife_SPATTER_90 (MFX_INFLATE_FOUNTAIN)
     vistexcolorstart_s = "98 0 0";
     vistexcolorend_s = "191 28 28";
 };
-INSTANCE MFX_ManaForLife_SPATTER_180 (MFX_INFLATE_FOUNTAIN)
+INSTANCE MFX_ManaForLife_SPATTER_180 (MFX_ManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";
     ppsIsLooping = 1;

@@ -65,8 +65,44 @@ INSTANCE MFX_ManaForLife_INIT2 (C_PARTICLEFX)
      useemittersfor = 1;
 };
 
+// Copied from Gothic 2 NotR
+PROTOTYPE MFX_ManaForLife_FOUNTAIN (C_PARTICLEFX)
+{
+    ppsvalue = 200;
+    ppsscalekeys_s = "2 1 1 1 1 1 0.8 0.6 0.4 0.2";
+    ppsfps = 1;
+    shptype_s = "POINT";
+    shpfor_s = "OBJECT";
+    shpoffsetvec_s = "20 0 0";
+    shpdistribtype_s = "BOX";
+    shpdim_s = "20 2 2";
+    shpmeshrender_b = 1;
+    shpscalekeys_s = "1";
+    shpscaleissmooth = 1;
+    dirmode_s = "DIR";
+    dirfor_s = "OBJECT";
+    dirmodetargetfor_s = "OBJECT";
+    dirmodetargetpos_s = "0 0 0";
+    dirangleheadvar = 2;
+    dirangleelevvar = 2;
+    velavg = 0.600000024;
+    velvar = 0.100000001;
+    lsppartavg = 1700;
+    lsppartvar = 300;
+    flygravity_s = "0 -0.0008 0";
+    visname_s = "INFLATE_WATER.TGA";
+    visorientation_s = "VELO3D";
+    vistexanifps = 18;
+    vistexcolorstart_s = "200 220 250";
+    vistexcolorend_s = "128 200 255";
+    vissizestart_s = "5 25";
+    visalphafunc_s = "BLEND";
+    visalphastart = 150;
+    visalphaend = 50;
+};
+
 // Wir bedienen uns dem Inflatezauber und passen den Spritz-Effekt an
-INSTANCE MFX_ManaForLife_SPATTER_0 (MFX_INFLATE_FOUNTAIN)
+INSTANCE MFX_ManaForLife_SPATTER_0 (MFX_ManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";           // Wir loopen den Effekt, weil er unter-
     ppsIsLooping = 1;               //  schiedlich lang sein kann.
@@ -75,7 +111,7 @@ INSTANCE MFX_ManaForLife_SPATTER_0 (MFX_INFLATE_FOUNTAIN)
     vistexcolorstart_s = "98 0 0";  // In Blutrot
     vistexcolorend_s = "191 28 28";
 };
-INSTANCE MFX_ManaForLife_SPATTER_90 (MFX_INFLATE_FOUNTAIN)
+INSTANCE MFX_ManaForLife_SPATTER_90 (MFX_ManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";
     ppsIsLooping = 1;
@@ -85,7 +121,7 @@ INSTANCE MFX_ManaForLife_SPATTER_90 (MFX_INFLATE_FOUNTAIN)
     vistexcolorstart_s = "98 0 0";
     vistexcolorend_s = "191 28 28";
 };
-INSTANCE MFX_ManaForLife_SPATTER_180 (MFX_INFLATE_FOUNTAIN)
+INSTANCE MFX_ManaForLife_SPATTER_180 (MFX_ManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";
     ppsIsLooping = 1;
