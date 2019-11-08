@@ -28,6 +28,7 @@ const string Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "The lock's open.";
 const string Ninja_FirstMageKit_PRINT_Hitpoints       = "Hitpoint cost:";
 const string Ninja_FirstMageKit_PRINT_Mana            = "Mana increase:";
 const string Ninja_FirstMageKit_NAME_MinManakosten    = "Mana cost (min):";
+const string Ninja_FirstMageKit_NAME_MageScroll       = "Scroll";
 
 
 /*
@@ -43,6 +44,7 @@ func void Ninja_FirstMageKit_LocalizeTexts() {
         Ninja_FirstMageKit_PRINT_Hitpoints       = "Lebenspunktkosten:";
         Ninja_FirstMageKit_PRINT_Mana            = "Manasteigerung:";
         Ninja_FirstMageKit_NAME_MinManakosten    = "Manakosten (min):";
+        Ninja_FirstMageKit_NAME_MageScroll       = "Spruchrolle";
     } else if (lang == 2) { // PL
         NAME_SPL_FMKManaForLife                  = "Gwa³towny wzrost mana";
         NAME_SPL_FMKPickLock                     = "Odblokowaå";
@@ -51,6 +53,7 @@ func void Ninja_FirstMageKit_LocalizeTexts() {
         Ninja_FirstMageKit_PRINT_Hitpoints       = "Wydatek punkty trafieñ:";
         Ninja_FirstMageKit_PRINT_Mana            = "Premia many:";
         Ninja_FirstMageKit_NAME_MinManakosten    = "Wydatek many:";
+        Ninja_FirstMageKit_NAME_MageScroll       = "Zwój";
     } else if (lang == 3) { // RU
         NAME_SPL_FMKManaForLife                  = "óâåëè÷åíèå ìàíû";
         NAME_SPL_FMKPickLock                     = "ğàñöåïëÿòü";
@@ -59,5 +62,6 @@ func void Ninja_FirstMageKit_LocalizeTexts() {
         Ninja_FirstMageKit_PRINT_Hitpoints       = "Çäîğîâüå:";
         Ninja_FirstMageKit_PRINT_Mana            = "Ìàíà:";
         Ninja_FirstMageKit_NAME_MinManakosten    = "Ğàñõîä ìàíû:";
+        Ninja_FirstMageKit_NAME_MageScroll       = "Ñâèòîê";
     }; // Else: Keep default -> English
 };

@@ -75,7 +75,7 @@ instance ItSc_FMKManaForLife (C_Item) {
 
     description         =   NAME_SPL_FMKManaForLife;
 
-    TEXT    [0]         =   Name_MageScroll;
+    TEXT    [0]         =   Ninja_FirstMageKit_NAME_MageScroll;
 
     TEXT    [1]         =   NAME_Spell_Invest;
 
@@ -108,7 +108,7 @@ instance ItSc_FMKPickLock (C_Item) {
 
     description         =   NAME_SPL_FMKPickLock;
 
-    TEXT    [0]         =   Name_MageScroll;
+    TEXT    [0]         =   Ninja_FirstMageKit_NAME_MageScroll;
 
     TEXT    [1]         =   NAME_Spell_Invest;
 
