@@ -46,13 +46,13 @@ func void Ninja_FirstMageKit_LocalizeTexts() {
         Ninja_FirstMageKit_NAME_MinManakosten    = "Manakosten (min):";
         Ninja_FirstMageKit_NAME_MageScroll       = "Spruchrolle";
     } else if (lang == 2) { // PL
-        NAME_SPL_FMKManaForLife                  = "Gwa³towny wzrost mana";
-        NAME_SPL_FMKPickLock                     = "Odblokowaå";
-        Ninja_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siê otworzyæ.";
+        NAME_SPL_FMKManaForLife                  = "Ofiara krwi";
+        NAME_SPL_FMKPickLock                     = "Otwieranie zamków";
+        Ninja_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siý otworzyå.";
         Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Zamek otwarty.";
-        Ninja_FirstMageKit_PRINT_Hitpoints       = "Wydatek punkty trafieñ:";
+        Ninja_FirstMageKit_PRINT_Hitpoints       = "Wydatek punktów trafieñ:";
         Ninja_FirstMageKit_PRINT_Mana            = "Premia many:";
-        Ninja_FirstMageKit_NAME_MinManakosten    = "Wydatek many:";
+        Ninja_FirstMageKit_NAME_MinManakosten    = "Min. wydatek many:";
         Ninja_FirstMageKit_NAME_MageScroll       = "Zwój";
     } else if (lang == 3) { // RU
         NAME_SPL_FMKManaForLife                  = "óâåëè÷åíèå ìàíû";
