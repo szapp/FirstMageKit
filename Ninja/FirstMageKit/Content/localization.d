@@ -48,7 +48,7 @@ func void Ninja_FirstMageKit_LocalizeTexts() {
     } else if (lang == 2) { // PL
         NAME_SPL_FMKManaForLife                  = "Ofiara krwi";
         NAME_SPL_FMKPickLock                     = "Otwieranie zamków";
-        Ninja_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siý otworzyå.";
+        Ninja_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siê otworzyæ.";
         Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Zamek otwarty.";
         Ninja_FirstMageKit_PRINT_Hitpoints       = "Wydatek punktów trafieñ:";
         Ninja_FirstMageKit_PRINT_Mana            = "Premia many:";
