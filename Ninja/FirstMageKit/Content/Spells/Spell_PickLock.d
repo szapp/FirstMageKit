@@ -1,5 +1,6 @@
 // *****************************
 // SPL_PickLock (name modified for compatibility)
+// Source: https://forum.worldofplayers.de/forum/threads/1547129
 // Largely inspired by https://forum.worldofplayers.de/forum/threads/?p=12237820
 //
 // If using this spell in a mod (instead of this patch) make sure to remove 'FMK' from all symbol names!
@@ -14,7 +15,7 @@ const int SPL_Time_FMKPickLock  = 1500; // MS per lock tick (not per mana!)
 const int TARGET_TYPE_MOB       = 128;  // Technically invalid (see below)
 
 instance Spell_FMKPickLock (C_Spell_Proto) {
-    time_per_mana               = castFromIntf(fracf(SPL_Time_FMKPickLock, SPL_Cost_FMKPickLock));  // Do not change
+    time_per_mana               = IntToFloat(SPL_Time_FMKPickLock / SPL_Cost_FMKPickLock); // Do not change
     spelltype                   = SPELL_NEUTRAL;
     targetCollectAlgo           = TARGET_COLLECT_FOCUS;
     targetCollectType           = TARGET_TYPE_MOB;
@@ -121,14 +122,48 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
 
         // Vary the timing
         var int timestep;
-        timestep = roundf(fracf(SPL_Time_FMKPickLock, SPL_Cost_FMKPickLock)); // Divide total time by mana needed
-        timestep = Hlp_Random(timestep) + /*minimum*/80;                      // Create oscillations
-        Spell_FMKPickLock.time_per_mana = castFromIntf(mkf(timestep));        // Cast to Daedalus float
+        timestep = SPL_Time_FMKPickLock / SPL_Cost_FMKPickLock; // Divide total time by mana needed
+        timestep = Hlp_Random(timestep) + /*minimum*/80;        // Create oscillations
+        Spell_FMKPickLock.time_per_mana = IntToFloat(timestep); // Cast to Daedalus float
     };
 
     return SPL_RECEIVEINVEST;
 };
 func void Spell_Cast_FMKPickLock(var int spellLevel) {};
+
+
+/*
+ * Reset Focus_Magic instance
+ * This function is called if (and only if) the active spell changes
+ */
+func void Spell_FMKPickLock_ResetFocus() {
+    var oCMag_Book mb; mb = _^(ECX);
+    if (!mb.owner) {
+        return;
+    };
+    var C_Npc slf; slf = _^(mb.owner);
+    if (!Npc_IsPlayer(slf)) {
+        return;
+    };
+
+    // Should never happen, but safety first
+    if (!_@(Focus_Magic)) {
+        return;
+    };
+
+    // Backup/reset Focus_Magic completely
+    const int focusCopy = 0;
+    const int sizeof_oCNpcFocus = 80;
+    if (!focusCopy) {
+        // Create one-time backup per session
+        MEM_Info("Spell_FMKPickLock: Backing up original Focus_Magic values");
+        focusCopy = MEM_Alloc(sizeof_oCNpcFocus);
+        MEM_CopyBytes(_@(Focus_Magic), focusCopy, sizeof_oCNpcFocus);
+    } else {
+        // Reset on every spell change
+        MEM_CopyBytes(focusCopy, _@(Focus_Magic), sizeof_oCNpcFocus);
+    };
+};
 
 
 /*
@@ -144,18 +179,10 @@ func void Spell_FMKPickLock_Prio() {
         return;
     };
 
-    const int mob_prio_backup = 42; // 42 == not initialized yet
-    if (mob_prio_backup == 42) {
-        mob_prio_backup = Focus_Magic.mob_prio;
-    };
-
     var int spellID; spellID = MEM_ReadInt(/*oCSpell*/ECX+/*spellID*/84);
     if (spellID == SPL_FMKPickLock) {
-        // Adjust the global(!) focus priorities temporarily(!)
+        // Adjust the global(!) focus priorities temporarily(!) = until the active spell changes
         Focus_Magic.mob_prio = 1;
-    } else if (mob_prio_backup != 42) {
-        // Reset the focus priorities for all other spells!
-        Focus_Magic.mob_prio = mob_prio_backup;
     };
 };
 
@@ -181,23 +208,27 @@ func void Spell_FMKPickLock_Focus() {
  * Initialize the focus tweaks
  */
 func void Spell_FMKPickLock_Init() {
-    const int oCSpell__IsTargetTypeValid_G1    = 4709316; //0x47DBC4
-    const int oCSpell__IsTargetTypeValid_G2    = 4743108; //0x485FC4
-    const int oCSpell__Setup_G1                = 4703664; //0x47C5B0
-    const int oCSpell__Setup_G2                = 4737328; //0x484930
-    HookEngineF(+MEMINT_SwitchG1G2(oCSpell__IsTargetTypeValid_G1,
-                                   oCSpell__IsTargetTypeValid_G2),        5, Spell_FMKPickLock_Focus);
-    HookEngineF(+MEMINT_SwitchG1G2(oCSpell__Setup_G1, oCSpell__Setup_G2), 7, Spell_FMKPickLock_Prio);
+    MEM_InitAll();
 
+    const int oCSpell__IsTargetTypeValid_G1 = 4709316; //0x47DBC4
+    const int oCSpell__IsTargetTypeValid_G2 = 4743108; //0x485FC4
+    const int oCSpell__Setup_G1             = 4703664; //0x47C5B0
+    const int oCSpell__Setup_G2             = 4737328; //0x484930
+    const int oCMag_Book__SetFrontSpell_G1  = 4660480; //0x471D00
+    const int oCMag_Book__SetFrontSpell_G2  = 4688320; //004789C0
+    HookEngineF(MEMINT_SwitchG1G2(oCSpell__IsTargetTypeValid_G1,
+                                  oCSpell__IsTargetTypeValid_G2),        5, Spell_FMKPickLock_Focus);
+    HookEngineF(MEMINT_SwitchG1G2(oCSpell__Setup_G1, oCSpell__Setup_G2), 7, Spell_FMKPickLock_Prio);
+    HookEngineF(MEMINT_SwitchG1G2(oCMag_Book__SetFrontSpell_G1,
+                                  oCMag_Book__SetFrontSpell_G2),         7, Spell_FMKPickLock_ResetFocus);
 
-    // Make sure Focus_Magic is initialized (necessary for Spell_FMKPickLock_Prio). For details see GothicFreeAim
-    const int oCNpcFocus__focuslist_G1         =  9283120; //0x8DA630
-    const int oCNpcFocus__focuslist_G2         = 11208440; //0xAB06F8
-
-    var int fMagicPtr; fMagicPtr = MEM_ReadIntArray(+MEMINT_SwitchG1G2(oCNpcFocus__focuslist_G1,
+    // Ensure that Focus_Magic is not empty (necessary for Spell_FMKPickLock_Prio). For details see GothicFreeAim
+    const int oCNpcFocus__focuslist_G1      =  9283120; //0x8DA630
+    const int oCNpcFocus__focuslist_G2      = 11208440; //0xAB06F8
+    var int fMagicPtr; fMagicPtr = MEM_ReadIntArray(MEMINT_SwitchG1G2(oCNpcFocus__focuslist_G1,
                                                                        oCNpcFocus__focuslist_G2), /*Focus_Magic*/ 5);
     if (fMagicPtr) {
-        MEM_Info("Spell_FMKPickLock: Reinitializing Focus_Magic instance");
+        MEM_Info("Spell_FMKPickLock: Reassigning Focus_Magic instance");
         Focus_Magic = _^(fMagicPtr);
     };
 };
