@@ -73,7 +73,7 @@ func void Ninja_FirstMageKit_LocalizeTexts() {
         Ninja_FirstMageKit_NAME_Value            = "Wartoњж:";
     } else if (lang == 3) { // RU (Windows 1251)
         NAME_SPL_FMKManaForLife                  = "увеличение маны";
-        NAME_SPL_FMKPickLock                     = "расцеплять";
+        NAME_SPL_FMKPickLock                     = "Вскрытие замков";
         Ninja_FirstMageKit_PRINT_NeverOpen       = "Это мне никогда не открыть.";
         Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Замок открыт.";
         Ninja_FirstMageKit_PRINT_Hitpoints       = "Здоровье:";
