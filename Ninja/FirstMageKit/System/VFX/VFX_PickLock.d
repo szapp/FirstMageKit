@@ -1,4 +1,4 @@
-instance spellFX_FMKPickLock (CFx_Base_Proto) {
+instance spellFX_FMKPickLock (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto) {
     visname_S               = "MFX_PickLock_INIT";
     emtrjoriginnode         = "ZS_RIGHTHAND";
     emtrjmode_s             = "FIXED";
@@ -18,12 +18,12 @@ instance spellFX_FMKPickLock (CFx_Base_Proto) {
         // sfxid            = "MFX_PickLock_Cast"; // Moved to spell script
         // sfxIsAmbient     = 1;
 };
-instance spellFX_FMKPickLock_InvestTarget (CFx_Base_Proto) {
+instance spellFX_FMKPickLock_InvestTarget (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto) {
     visname_S               = "MFX_PickLock_TARGET";
     lightPresetName         = "CATACLYSM";
     emFXCreate_S            = "spellFX_FMKPickLock_InvestSound";
 };
-instance spellFX_FMKPickLock_InvestSound (CFx_Base_Proto) {
+instance spellFX_FMKPickLock_InvestSound (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto) {
     // Separate instance for immediate stopping on release (sorry for the zSpy warnings)
     sfxid                   = "MFX_PickLock_INVEST";
     sfxIsAmbient            = 0;

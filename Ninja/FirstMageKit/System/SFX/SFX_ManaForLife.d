@@ -1,17 +1,29 @@
-instance MFX_MANAFORLIFE_HEARTBEAT (C_SFX_DEF) {
+instance MFX_MANAFORLIFE_HEARTBEAT (/*C_SFX_DEF*/ C_SFX) {
     file = "MFX_HEARTBEAT.WAV";
     vol  = 127;
     loop = 1;
+
+    // C_SFX_DEF
+    loopEndOffset = -1;
+    reverbLevel   = 1;
 };
 
 
 // Copied for Gothic 1 compatibility
-instance SFX_HealObsession (C_SFX_DEF) {
+instance SFX_HealObsession (/*C_SFX_DEF*/ C_SFX) {
     file = "MFX_BREATHOFDEATH_CAST.WAV";
     vol  = 50;
+
+    // C_SFX_DEF
+    loopEndOffset = -1;
+    reverbLevel   = 1;
 };
-instance DEMENTHOR_TALK (C_SFX_DEF) {
+instance DEMENTHOR_TALK (/*C_SFX_DEF*/ C_SFX) {
     file = "DEMENTHORTALK.WAV";
     vol  = 60;
     loop = 1;
+
+    // C_SFX_DEF
+    loopEndOffset = -1;
+    reverbLevel   = 1;
 };
