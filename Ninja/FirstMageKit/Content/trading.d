@@ -61,7 +61,7 @@ func void Ninja_FirstMageKit_AddSPLOnTrade() {
 
     // We only want to give trader NPCs scrolls who trade with magic goods
     if (GOTHIC_BASE_VERSION == 1) {
-        if (!NPC_GetInvItemBySlot(npc, INV_RUNE, 0)) {
+        if (!NPC_GetInvItemBySlot(npc, /*INV_RUNE*/ 3, 0)) {
             return;
         };
     } else {

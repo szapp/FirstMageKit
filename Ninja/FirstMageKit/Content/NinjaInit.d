@@ -15,6 +15,9 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
     Ninja_FirstMageKit_LocalizeTexts();
     Ninja_FirstMageKit_CreateSpells();
     Ninja_FirstMageKit_SetupTrading();
+
+    // Has to be initialized before first loading (Ninja_FirstMageKit_Init is too late)
+    Spell_FMKManaForLife_Init();
 };
 
 

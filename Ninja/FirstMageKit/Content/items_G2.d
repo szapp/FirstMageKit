@@ -2,7 +2,7 @@ const int Value_Sc_FMKManaForLife = 250;
 const int Value_Sc_FMKPickLock    =  10;
 
 instance ItRu_FMKManaForLife (C_Item) {
-    name                =   NAME_Rune;
+    name                =   Ninja_FirstMageKit_NAME_Rune;
 
     mainflag            =   ITEM_KAT_RUNE;
     flags               =   0;
@@ -18,10 +18,10 @@ instance ItRu_FMKManaForLife (C_Item) {
     effect              =   "SPELLFX_WEAKGLIMMER_RED";
 
     description         =   NAME_SPL_FMKManaForLife;
-    TEXT    [0]         =   NAME_Mag_Circle;
+    TEXT    [0]         =   Ninja_FirstMageKit_NAME_Mag_Circle;
     COUNT   [0]         =   mag_circle;
 
-    TEXT    [1]         =   NAME_Spell_Invest;
+    TEXT    [1]         =   Ninja_FirstMageKit_NAME_Spell_Invest;
 
     TEXT    [2]         =   Ninja_FirstMageKit_PRINT_Hitpoints;
     COUNT   [2]         =   1;
@@ -31,7 +31,7 @@ instance ItRu_FMKManaForLife (C_Item) {
 };
 
 instance ItRu_FMKPickLock (C_Item) {
-    name                =   NAME_Rune;
+    name                =   Ninja_FirstMageKit_NAME_Rune;
 
     mainflag            =   ITEM_KAT_RUNE;
     flags               =   0;
@@ -47,10 +47,10 @@ instance ItRu_FMKPickLock (C_Item) {
     effect              =   "SPELLFX_WEAKGLIMMER";
 
     description         =   NAME_SPL_FMKPickLock;
-    TEXT    [0]         =   NAME_Mag_Circle;
+    TEXT    [0]         =   Ninja_FirstMageKit_NAME_Mag_Circle;
     COUNT   [0]         =   mag_circle;
 
-    TEXT    [1]         =   NAME_Spell_Invest;
+    TEXT    [1]         =   Ninja_FirstMageKit_NAME_Spell_Invest;
 
     TEXT    [2]         =   Ninja_FirstMageKit_NAME_MinManakosten;
     COUNT   [2]         =   SPL_Cost_FMKPickLock;
@@ -58,7 +58,7 @@ instance ItRu_FMKPickLock (C_Item) {
 
 
 instance ItSc_FMKManaForLife (C_Item) {
-    name                =   NAME_Spruchrolle;
+    name                =   Ninja_FirstMageKit_NAME_Spruchrolle;
 
     mainflag            =   ITEM_KAT_RUNE;
     flags               =   ITEM_MULTI;
@@ -77,7 +77,7 @@ instance ItSc_FMKManaForLife (C_Item) {
 
     TEXT    [0]         =   Ninja_FirstMageKit_NAME_MageScroll;
 
-    TEXT    [1]         =   NAME_Spell_Invest;
+    TEXT    [1]         =   Ninja_FirstMageKit_NAME_Spell_Invest;
 
     TEXT    [2]         =   Ninja_FirstMageKit_PRINT_Hitpoints;
     COUNT   [2]         =   1;
@@ -85,12 +85,12 @@ instance ItSc_FMKManaForLife (C_Item) {
     TEXT    [3]         =   Ninja_FirstMageKit_PRINT_Mana;
     COUNT   [3]         =   SPL_FMKManaForLife_RELATION;
 
-    TEXT    [5]         =   NAME_Value;
+    TEXT    [5]         =   Ninja_FirstMageKit_NAME_Value;
     COUNT   [5]         =   value;
 };
 
 instance ItSc_FMKPickLock (C_Item) {
-    name                =   NAME_Spruchrolle;
+    name                =   Ninja_FirstMageKit_NAME_Spruchrolle;
 
     mainflag            =   ITEM_KAT_RUNE;
     flags               =   ITEM_MULTI;
@@ -110,11 +110,11 @@ instance ItSc_FMKPickLock (C_Item) {
 
     TEXT    [0]         =   Ninja_FirstMageKit_NAME_MageScroll;
 
-    TEXT    [1]         =   NAME_Spell_Invest;
+    TEXT    [1]         =   Ninja_FirstMageKit_NAME_Spell_Invest;
 
     TEXT    [2]         =   Ninja_FirstMageKit_NAME_MinManakosten;
     COUNT   [2]         =   SPL_Cost_FMKPickLock;
 
-    TEXT    [5]         =   NAME_Value;
+    TEXT    [5]         =   Ninja_FirstMageKit_NAME_Value;
     COUNT   [5]         =   value;
 };

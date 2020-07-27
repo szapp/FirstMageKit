@@ -14,7 +14,13 @@ const int SPL_Time_FMKPickLock  = 1500; // MS per lock tick (not per mana!)
 
 const int TARGET_TYPE_MOB       = 128;  // Technically invalid (see below)
 
-instance Spell_FMKPickLock (C_Spell_Proto) {
+instance Spell_FMKPickLock (/*C_Spell_Proto*/ C_Spell) {
+    // Remaining standards copied from C_Spell_Proto (might not exist in mod)
+    // --- C_Spell_Proto ---
+    targetCollectAzi            = 60;
+    targetCollectElev           = 60;
+    // --- C_Spell_Proto ---
+
     time_per_mana               = IntToFloat(SPL_Time_FMKPickLock / SPL_Cost_FMKPickLock); // Do not change
     spelltype                   = SPELL_NEUTRAL;
     targetCollectAlgo           = TARGET_COLLECT_FOCUS;

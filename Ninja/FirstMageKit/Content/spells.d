@@ -1,5 +1,6 @@
 /*
  * Enlarging stating arrays is tricky
+ * Source: https://github.com/szapp/Ninja/wiki/Applications-and-Examples
  */
 func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNewTotal) {
     const int zCPar_Symbol___zCPar_Symbol_G1 = 7306624; //0x6F7D80
@@ -53,12 +54,41 @@ func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNe
 
 
 /*
+ * Obtain number spells in a safe way
+ */
+func int Ninja_FirstMageKit_GetMaxSpell() {
+    var int symbPtr; symbPtr = MEM_GetSymbol("spellFxInstanceNames");
+    if (symbPtr) {
+        var zCPar_Symbol symb; symb = _^(symbPtr);
+        return (symb.bitfield & zCPar_Symbol_bitfield_ele);
+    } else {
+        // That should be near impossible
+        MEM_SendToSpy(zERR_TYPE_FATAL, "Symbol 'spellFxInstanceNames' not found.");
+        return -1;
+    };
+};
+
+
+/*
+ * Set MAX_SPELL if the symbol exists
+ */
+func void Ninja_FirstMageKit_SetMaxSpell(var int value) {
+    var int symbPtr; symbPtr = MEM_GetSymbol("MAX_SPELL");
+    if (symbPtr) {
+        var zCPar_Symbol symb; symb = _^(symbPtr);
+        symb.content = value;
+    };
+};
+
+
+/*
  * Add a new spell at "runtime" (kind of). Expects the static arrays to be already enlarged (see above)
  */
 func int Ninja_FirstMageKit_SetSpell(var string spellFxInst, var string spellFxAniLetter, var string spellTxt) {
     // Increase index
-    var int spellID; spellID = MAX_SPELL;
-    MAX_SPELL += 1;
+    var int spellID; spellID = Ninja_FirstMageKit_GetMaxSpell();
+    var int MAX_SPELL; MAX_SPELL = spellID + 1;
+    Ninja_FirstMageKit_SetMaxSpell(MAX_SPELL);
 
     // Set static arrays
     MEM_WriteStatStringArr(spellFxInstanceNames, spellID, spellFxInst);
@@ -74,6 +104,9 @@ func int Ninja_FirstMageKit_SetSpell(var string spellFxInst, var string spellFxA
  */
 func void Ninja_FirstMageKit_CreateSpells() {
     const int NumNewSpells = 2;
+
+    // Get MAX_SPELL (this constant might not exist in the mod, e.g. sometimes missing in translated scripts)
+    var int MAX_SPELL; MAX_SPELL = Ninja_FirstMageKit_GetMaxSpell();
 
     // Enlarge static arrays
     Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxInstanceNames"), MAX_SPELL + NumNewSpells);

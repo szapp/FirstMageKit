@@ -15,8 +15,16 @@ const int SPL_FMKManaForLife_MAXHP    = 250;  // Maximum investbare HP
 const int SPL_FMKManaForLife_SAYTIME  = 50;   // Interval zum Stöhnen (pro HP)
 const int SPL_FMKManaForLife_SplLevel = 0;    // Previously used AI-var AIV_SpellLevel
 
-INSTANCE Spell_FMKManaForLife (C_Spell_Proto) {
-    time_per_mana           = 50;            // Ms pro 1 HP (nicht zu hoch!)
+INSTANCE Spell_FMKManaForLife (/*C_Spell_Proto*/ C_Spell) {
+    // Remaining standards copied from C_Spell_Proto (might not exist in mod)
+    // --- C_Spell_Proto ---
+    canChangeTargetDuringInvest = 1;
+    targetCollectRange          = 10000;
+    targetCollectAzi            = 60;
+    targetCollectElev           = 60;
+    // --- C_Spell_Proto ---
+
+    time_per_mana           = IntToFloat(MEMINT_SwitchG1G2(250, 50)); // Ms pro 1 HP (nicht zu hoch!)
     spelltype               = SPELL_NEUTRAL;
     targetCollectAlgo       = TARGET_COLLECT_CASTER;
     canTurnDuringInvest     = FALSE;
@@ -105,5 +113,10 @@ func void Spell_FMKManaForLife_SetToHP() {
 func void Spell_FMKManaForLife_Init() {
     const int oCSpell__InitValues_G1 = 4701341; //0x47BC9D
     const int oCSpell__InitValues_G2 = 4735143; //0x4840A7
-    HookEngineF(+MEMINT_SwitchG1G2(oCSpell__InitValues_G1, oCSpell__InitValues_G2), 6, Spell_FMKManaForLife_SetToHP);
+    HookEngineF(MEMINT_SwitchG1G2(oCSpell__InitValues_G1, oCSpell__InitValues_G2), 6, Spell_FMKManaForLife_SetToHP);
+
+    // There is way less mana compared to HP in Gothic 1
+    if (GOTHIC_BASE_VERSION == 1) {
+        SPL_FMKManaForLife_RELATION = 1;
+    };
 };
