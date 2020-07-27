@@ -54,18 +54,47 @@ func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNe
 
 
 /*
- * Obtain number spells in a safe way
+ * Obtain number of spells in a safe way
  */
 func int Ninja_FirstMageKit_GetMaxSpell() {
-    var int symbPtr; symbPtr = MEM_GetSymbol("spellFxInstanceNames");
+    var int symbPtr; var zCPar_Symbol symb;
+    var int ret;
+
+    // Get MAX_SPELL if exists
+    symbPtr = MEM_GetSymbol("MAX_SPELL");
     if (symbPtr) {
-        var zCPar_Symbol symb; symb = _^(symbPtr);
-        return (symb.bitfield & zCPar_Symbol_bitfield_ele);
+        symb = _^(symbPtr);
+        ret = symb.content;
+    };
+
+    // Get number of elements in spellFxInstanceNames
+    symbPtr = MEM_GetSymbol("spellFxInstanceNames");
+    if (symbPtr) {
+        symb = _^(symbPtr);
+        if (ret < (symb.bitfield & zCPar_Symbol_bitfield_ele)) {
+            ret = (symb.bitfield & zCPar_Symbol_bitfield_ele);
+        };
     } else {
         // That should be near impossible
         MEM_SendToSpy(zERR_TYPE_FATAL, "Symbol 'spellFxInstanceNames' not found.");
         return -1;
     };
+
+    // Get number of elements in spellFxAniLetters
+    symbPtr = MEM_GetSymbol("spellFxAniLetters");
+    if (symbPtr) {
+        symb = _^(symbPtr);
+        if (ret < (symb.bitfield & zCPar_Symbol_bitfield_ele)) {
+            ret = (symb.bitfield & zCPar_Symbol_bitfield_ele);
+        };
+    } else {
+        // That should be near impossible
+        MEM_SendToSpy(zERR_TYPE_FATAL, "Symbol 'spellFxAniLetters' not found.");
+        return -1;
+    };
+
+    // Return the most number of elements
+    return ret;
 };
 
 
@@ -84,18 +113,12 @@ func void Ninja_FirstMageKit_SetMaxSpell(var int value) {
 /*
  * Add a new spell at "runtime" (kind of). Expects the static arrays to be already enlarged (see above)
  */
-func int Ninja_FirstMageKit_SetSpell(var string spellFxInst, var string spellFxAniLetter, var string spellTxt) {
-    // Increase index
-    var int spellID; spellID = Ninja_FirstMageKit_GetMaxSpell();
-    var int MAX_SPELL; MAX_SPELL = spellID + 1;
-    Ninja_FirstMageKit_SetMaxSpell(MAX_SPELL);
-
+func void Ninja_FirstMageKit_SetSpell(var int spellID, var string spellFxInst, var string spellFxAniLetter,
+                                      var string spellTxt) {
     // Set static arrays
     MEM_WriteStatStringArr(spellFxInstanceNames, spellID, spellFxInst);
     MEM_WriteStatStringArr(spellFxAniLetters,    spellID, spellFxAniLetter);
     MEM_WriteStatStringArr(TXT_SPELLS,           spellID, spellTxt);
-
-    return spellID;
 };
 
 
@@ -113,9 +136,14 @@ func void Ninja_FirstMageKit_CreateSpells() {
     Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxAniLetters"),    MAX_SPELL + NumNewSpells);
     Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           MAX_SPELL + NumNewSpells);
 
-    // Add spells (also increments MAX_SPELL)
-    SPL_FMKManaForLife = Ninja_FirstMageKit_SetSpell("FMKManaForLife", "SAC", NAME_SPL_FMKManaForLife);
-    SPL_FMKPickLock    = Ninja_FirstMageKit_SetSpell("FMKPickLock",    "PY2", NAME_SPL_FMKPickLock);
+    // Assign new spell ID
+    SPL_FMKManaForLife = MAX_SPELL;
+    SPL_FMKPickLock    = MAX_SPELL + 1;
+    Ninja_FirstMageKit_SetMaxSpell(MAX_SPELL + NumNewSpells);
+
+    // Add spells
+    Ninja_FirstMageKit_SetSpell(SPL_FMKManaForLife, "FMKManaForLife", "SAC", NAME_SPL_FMKManaForLife);
+    Ninja_FirstMageKit_SetSpell(SPL_FMKPickLock,    "FMKPickLock",    "PY2", NAME_SPL_FMKPickLock);
 
     // Add mana processing calls
     HookDaedalusFuncS("Spell_ProcessMana",         "Ninja_FirstMageKit_Spell_ProcessMana");
