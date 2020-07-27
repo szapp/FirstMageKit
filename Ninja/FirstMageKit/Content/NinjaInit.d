@@ -16,6 +16,13 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
     Ninja_FirstMageKit_CreateSpells();
     Ninja_FirstMageKit_SetupTrading();
 
+    // Retrieve rate from ini
+    SPL_FMKManaForLife_RELATION = STR_ToInt(MEM_GetGothOpt("MANAFORLIFE", "hpPerOneMana"));
+    if (SPL_FMKManaForLife_RELATION < 1) { // Force positive values
+        SPL_FMKManaForLife_RELATION = MEMINT_SwitchG1G2(10, 2); // Default values
+        MEM_SetGothOpt("MANAFORLIFE", "hpPerOneMana", IntToString(SPL_FMKManaForLife_RELATION));
+    };
+
     // Has to be initialized before first loading (Ninja_FirstMageKit_Init is too late)
     Spell_FMKManaForLife_Init();
 };
