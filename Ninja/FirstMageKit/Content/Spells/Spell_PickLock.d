@@ -56,6 +56,7 @@ func void Spell_FMKPickLock_ClearKeyBuffer() {
 func int Spell_Logic_FMKPickLock(var int manaInvested) {
     var oCNpc slf; slf = Hlp_GetNpc(self);
     var oCMobLockable mob;
+    var int mobPtr;
 
     if (Npc_GetActiveSpellLevel(self) <= MEMINT_SwitchG1G2(2, 1)) { // Gothic 1 needs one level more for starting the FX
         if (!Hlp_Is_oCMobLockable(slf.focus_vob)) {
@@ -78,11 +79,19 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
             return SPL_SENDSTOP;
         };
 
+        // Remember verified focus
+        mobPtr = slf.focus_vob;
+
         // Change in FX
         return SPL_NEXTLEVEL;
 
     } else if (!(manaInvested % SPL_Cost_FMKPickLock)) {
         mob = _^(slf.focus_vob);
+
+        // Ensure focus was not changed
+        if (slf.focus_vob != mobPtr) {
+            return SPL_SENDSTOP;
+        };
 
         //Für die Wahrnehmung so tun, als würde der Spieler das Mob benutzen
         slf.interactMob = slf.focus_vob;
