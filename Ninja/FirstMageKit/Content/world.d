@@ -1,7 +1,7 @@
 /*
  * Iterate over all containers in the world and add n items 'addItemInst' for all n items 'findItemInst' found
  */
-func void Ninja_FirstMageKit_MatchItemInContainers(var string findItemInst, var string addItemInst) {
+func void Patch_FirstMageKit_MatchItemInContainers(var string findItemInst, var string addItemInst) {
     const int zCWorld__SearchVobListByBaseClass_G1 =  6250016; //0x5F5E20
     const int zCWorld__SearchVobListByBaseClass_G2 =  6439712; //0x624320
     const int oCMobContainer__classDef_G1          =  9285504; //0x8DAF80
@@ -73,12 +73,12 @@ func void Ninja_FirstMageKit_MatchItemInContainers(var string findItemInst, var 
 /*
  * Make the patch come to life, by adding the spell items in appropriate manner (into inventory/placed into containers)
  */
-func void Ninja_FirstMageKit_PlaceSpellItems() {
+func void Patch_FirstMageKit_PlaceSpellItems() {
     // On very first time add the mana for life spell (as rune) to the player inventory
     var int loaded;
     if (!loaded) {
         // Wait for player to be spawned
-        FF_ApplyOnceExt(Ninja_FirstMageKit_AddRuneOnce, 1, 1);
+        FF_ApplyOnceExt(Patch_FirstMageKit_AddRuneOnce, 1, 1);
         loaded = 1;
     };
 
@@ -92,16 +92,16 @@ func void Ninja_FirstMageKit_PlaceSpellItems() {
 
         // For any lock pick in any container in the world add the same number of lock pick spells
         if (GOTHIC_BASE_VERSION == 1) {
-            Ninja_FirstMageKit_MatchItemInContainers("ItKeLockpick", "ItSc_FMKPickLock");
+            Patch_FirstMageKit_MatchItemInContainers("ItKeLockpick", "ItSc_FMKPickLock");
         } else {
-            Ninja_FirstMageKit_MatchItemInContainers("ItKe_Lockpick", "ItSc_FMKPickLock");
+            Patch_FirstMageKit_MatchItemInContainers("ItKe_Lockpick", "ItSc_FMKPickLock");
         };
 
         // Now mark this world as processed by inserting an item. This item will stay in the world throughout saving and
         // loading, and we'll know next time that we already added the scrolls here. This method is more convenient than
         // checking variables, because we'd need one variable per unknown number(!) of worlds.
         // But it's best do to this once the player exists. So let's wait for that, see function below.
-        FF_ApplyOnceExt(Ninja_FirstMageKit_AddIndicatorOnce, 1, 1);
+        FF_ApplyOnceExt(Patch_FirstMageKit_AddIndicatorOnce, 1, 1);
     };
 };
 
@@ -109,7 +109,7 @@ func void Ninja_FirstMageKit_PlaceSpellItems() {
 /*
  * Add an indicator item into the world - for each world only once ever. This function is called from init
  */
-func void Ninja_FirstMageKit_AddIndicatorOnce() {
+func void Patch_FirstMageKit_AddIndicatorOnce() {
     // That's all:
     Wld_InsertItem(ItSc_FMKPickLock, MEM_FARFARAWAY);
 
@@ -137,7 +137,7 @@ func void Ninja_FirstMageKit_AddIndicatorOnce() {
 /*
  * Add the mana for life spell (as rune) to the player inventory - only once ever. This function is called from init
  */
-func void Ninja_FirstMageKit_AddRuneOnce() {
+func void Patch_FirstMageKit_AddRuneOnce() {
     if (!MEM_GetSymbol("SPL_ManaForLife")) {
         // Only add it if it does not exist in the mod already
         CreateInvItem(hero, ItRu_FMKManaForLife);

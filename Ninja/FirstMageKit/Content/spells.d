@@ -2,7 +2,7 @@
  * Enlarging stating arrays is tricky
  * Source: https://github.com/szapp/Ninja/wiki/Applications-and-Examples
  */
-func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNewTotal) {
+func void Patch_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNewTotal) {
     const int zCPar_Symbol___zCPar_Symbol_G1 = 7306624; //0x6F7D80
     const int zCPar_Symbol___zCPar_Symbol_G2 = 8001264; //0x7A16F0
     const int zCPar_Symbol__AllocSpace_G1    = 7306832; //0x6F7E50
@@ -56,7 +56,7 @@ func void Ninja_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNe
 /*
  * Obtain number of spells in a safe way
  */
-func int Ninja_FirstMageKit_GetMaxSpell() {
+func int Patch_FirstMageKit_GetMaxSpell() {
     var int symbPtr; var zCPar_Symbol symb;
     var int ret;
 
@@ -101,7 +101,7 @@ func int Ninja_FirstMageKit_GetMaxSpell() {
 /*
  * Set MAX_SPELL if the symbol exists
  */
-func void Ninja_FirstMageKit_SetMaxSpell(var int value) {
+func void Patch_FirstMageKit_SetMaxSpell(var int value) {
     var int symbPtr; symbPtr = MEM_GetSymbol("MAX_SPELL");
     if (symbPtr) {
         var zCPar_Symbol symb; symb = _^(symbPtr);
@@ -113,7 +113,7 @@ func void Ninja_FirstMageKit_SetMaxSpell(var int value) {
 /*
  * Add a new spell at "runtime" (kind of). Expects the static arrays to be already enlarged (see above)
  */
-func void Ninja_FirstMageKit_SetSpell(var int spellID, var string spellFxInst, var string spellFxAniLetter,
+func void Patch_FirstMageKit_SetSpell(var int spellID, var string spellFxInst, var string spellFxAniLetter,
                                       var string spellTxt) {
     // Set static arrays
     MEM_WriteStatStringArr(spellFxInstanceNames, spellID, spellFxInst);
@@ -125,36 +125,36 @@ func void Ninja_FirstMageKit_SetSpell(var int spellID, var string spellFxInst, v
 /*
  * Initialize the new spells
  */
-func void Ninja_FirstMageKit_CreateSpells() {
+func void Patch_FirstMageKit_CreateSpells() {
     const int NumNewSpells = 2;
 
     // Get MAX_SPELL (this constant might not exist in the mod, e.g. sometimes missing in translated scripts)
-    var int MAX_SPELL; MAX_SPELL = Ninja_FirstMageKit_GetMaxSpell();
+    var int MAX_SPELL; MAX_SPELL = Patch_FirstMageKit_GetMaxSpell();
 
     // Enlarge static arrays
-    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxInstanceNames"), MAX_SPELL + NumNewSpells);
-    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxAniLetters"),    MAX_SPELL + NumNewSpells);
-    Ninja_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           MAX_SPELL + NumNewSpells);
+    Patch_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxInstanceNames"), MAX_SPELL + NumNewSpells);
+    Patch_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("spellFxAniLetters"),    MAX_SPELL + NumNewSpells);
+    Patch_FirstMageKit_EnlargeStatStringArr(MEM_GetSymbol("TXT_SPELLS"),           MAX_SPELL + NumNewSpells);
 
     // Assign new spell ID
     SPL_FMKManaForLife = MAX_SPELL;
     SPL_FMKPickLock    = MAX_SPELL + 1;
-    Ninja_FirstMageKit_SetMaxSpell(MAX_SPELL + NumNewSpells);
+    Patch_FirstMageKit_SetMaxSpell(MAX_SPELL + NumNewSpells);
 
     // Add spells
-    Ninja_FirstMageKit_SetSpell(SPL_FMKManaForLife, "FMKManaForLife", "SAC", NAME_SPL_FMKManaForLife);
-    Ninja_FirstMageKit_SetSpell(SPL_FMKPickLock,    "FMKPickLock",    "PY2", NAME_SPL_FMKPickLock);
+    Patch_FirstMageKit_SetSpell(SPL_FMKManaForLife, "FMKManaForLife", "SAC", NAME_SPL_FMKManaForLife);
+    Patch_FirstMageKit_SetSpell(SPL_FMKPickLock,    "FMKPickLock",    "PY2", NAME_SPL_FMKPickLock);
 
     // Add mana processing calls
-    HookDaedalusFuncS("Spell_ProcessMana",         "Ninja_FirstMageKit_Spell_ProcessMana");
-    HookDaedalusFuncS("Spell_ProcessMana_Release", "Ninja_FirstMageKit_Spell_ProcessMana_Release");
+    HookDaedalusFuncS("Spell_ProcessMana",         "Patch_FirstMageKit_Spell_ProcessMana");
+    HookDaedalusFuncS("Spell_ProcessMana_Release", "Patch_FirstMageKit_Spell_ProcessMana_Release");
 };
 
 
 /*
  * Additions to the mana processing functions
  */
-func int Ninja_FirstMageKit_Spell_ProcessMana(var int manaInvested) {
+func int Patch_FirstMageKit_Spell_ProcessMana(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
     if (activeSpell == SPL_FMKManaForLife     ) { return Spell_Logic_FMKManaForLife(manaInvested);      };
@@ -163,7 +163,7 @@ func int Ninja_FirstMageKit_Spell_ProcessMana(var int manaInvested) {
     PassArgumentI(manaInvested);
     ContinueCall();
 };
-func int Ninja_FirstMageKit_Spell_ProcessMana_Release(var int manaInvested) {
+func int Patch_FirstMageKit_Spell_ProcessMana_Release(var int manaInvested) {
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
     if (activeSpell == SPL_FMKManaForLife     ) { return SPL_SENDCAST;                                  };

@@ -1,4 +1,4 @@
-prototype Ninja_FirstMakeKit_CFx_Base_Proto(CFx_Base) {
+prototype Patch_FirstMakeKit_CFx_Base_Proto(CFx_Base) {
     visName_S                = "";
     visAlpha                 = 1;
     emTrjMode_S              = "FIXED";

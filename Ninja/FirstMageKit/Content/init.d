@@ -12,18 +12,18 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
 
     MEM_InitAll();
 
-    Ninja_FirstMageKit_LocalizeTexts();
-    Ninja_FirstMageKit_CreateSpells();
-    Ninja_FirstMageKit_SetupTrading();
+    Patch_FirstMageKit_LocalizeTexts();
+    Patch_FirstMageKit_CreateSpells();
+    Patch_FirstMageKit_SetupTrading();
 
     // Retrieve rate from ini
     SPL_FMKManaForLife_RELATION = STR_ToInt(MEM_GetGothOpt("MANAFORLIFE", "hpPerOneMana"));
     if (SPL_FMKManaForLife_RELATION < 1) { // Force positive values
-        SPL_FMKManaForLife_RELATION = MEMINT_SwitchG1G2(10, 2); // Default values
+        SPL_FMKManaForLife_RELATION = MEMINT_SwitchExe(10, 10, 2, 2); // Default values
         MEM_SetGothOpt("MANAFORLIFE", "hpPerOneMana", IntToString(SPL_FMKManaForLife_RELATION));
     };
 
-    // Has to be initialized before first loading (Ninja_FirstMageKit_Init is too late)
+    // Has to be initialized before first loading (Patch_FirstMageKit_Init is too late)
     Spell_FMKManaForLife_Init();
 };
 
@@ -37,5 +37,5 @@ func void Ninja_FirstMageKit_Init() {
 
     Spell_FMKManaForLife_Init();
     Spell_FMKPickLock_Init();
-    Ninja_FirstMageKit_PlaceSpellItems();
+    Patch_FirstMageKit_PlaceSpellItems();
 };

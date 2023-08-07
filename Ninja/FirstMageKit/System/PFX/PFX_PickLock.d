@@ -1,4 +1,4 @@
-instance MFX_PickLock_INIT (C_PARTICLEFX) {
+instance MFX_FMKPickLock_INIT (C_PARTICLEFX) {
     ppsvalue = 100.000000000;
     ppsscalekeys_s = "1";
     ppsislooping = 1;
@@ -23,7 +23,7 @@ instance MFX_PickLock_INIT (C_PARTICLEFX) {
     lsppartavg = 1000.000000000;
     flygravity_s = "0 0 0";
     flycolldet_b = 0;
-    visname_s = "WHITECLOUD.TGA";
+    visname_s = "FMK_WHITECLOUD.TGA";
     visorientation_s = "VELO";
     vistexanifps = 18.000000000;
     vistexaniislooping = 1;
@@ -36,7 +36,7 @@ instance MFX_PickLock_INIT (C_PARTICLEFX) {
     visalphaend = 1.000000000;
 };
 
-instance MFX_PickLock_TARGET (C_PARTICLEFX) {
+instance MFX_FMKPickLock_TARGET (C_PARTICLEFX) {
     ppsvalue = 200.000000000;
     ppsscalekeys_s = "1";
     ppsislooping = 1;
@@ -61,7 +61,7 @@ instance MFX_PickLock_TARGET (C_PARTICLEFX) {
     lsppartavg = 1900.000000000;
     flygravity_s = "0 0 0";
     flycolldet_b = 0;
-    visname_s = "MFX_SLEEP_STAR.TGA";
+    visname_s = "MFX_FMK_SLEEP_STAR.TGA";
     visorientation_s = "NONE";
     vistexanifps = 18.000000000;
     vistexaniislooping = 1;

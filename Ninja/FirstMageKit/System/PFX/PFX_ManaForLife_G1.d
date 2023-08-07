@@ -3,10 +3,10 @@
 ///                     XXXXXXXXXXXXXXXXXXXXXXXXXXXXX                      ///
 ///                  Taken from mud-freak's Zauberpaket                    ///
 
-/* MFX_MANAFORLIFE_16BIT_TRIPOLY.TGA ist die gleiche Textur wie
+/* MFX_FMK_MANAFORLIFE_16BIT_TRIPOLY.TGA ist die gleiche Textur wie
  * MFX_MASTEROFDISASTER_AURA_16BIT.TGA, allerdings als Tri-Poly. Damit spar
  * ich mir die Option vistexisquadpoly, die doppelt so rechenaufwendig ist. */
-INSTANCE MFX_ManaForLife_INIT (C_PARTICLEFX)
+INSTANCE MFX_FMKManaForLife_INIT (C_PARTICLEFX)
 {
      ppsvalue = 75.000000000;
      ppsscalekeys_s = "1";
@@ -20,7 +20,7 @@ INSTANCE MFX_ManaForLife_INIT (C_PARTICLEFX)
      lsppartavg = 150.000000000;
      flygravity_s = "0 0 0";
      flycolldet_b = 0;
-     visname_s = "MFX_MANAFORLIFE_16BIT_TRIPOLY.TGA";
+     visname_s = "MFX_FMK_MANAFORLIFE_16BIT_TRIPOLY.TGA";
      vistexisquadpoly = 0;
      visorientation_s = "NONE";
      vistexcolorstart_s = "100 100 255";
@@ -31,11 +31,11 @@ INSTANCE MFX_ManaForLife_INIT (C_PARTICLEFX)
      visalphastart = 255.000000000;
      visalphaend = 255.000000000;
      trlFadeSpeed = 1;
-     trltexture_s = "HEAVENLIGHT.TGA";
+     trltexture_s = "FMK_HEAVENLIGHT.TGA";
      trlwidth = 1;
      // useemittersfor = 1; // Does not exist in Gothic 1
 };
-INSTANCE MFX_ManaForLife_INIT2 (C_PARTICLEFX)
+INSTANCE MFX_FMKManaForLife_INIT2 (C_PARTICLEFX)
 {
      ppsvalue = 75.000000000;
      ppsscalekeys_s = "1";
@@ -49,7 +49,7 @@ INSTANCE MFX_ManaForLife_INIT2 (C_PARTICLEFX)
      lsppartavg = 150.000000000;
      flygravity_s = "0 0 0";
      flycolldet_b = 0;
-     visname_s = "MFX_MANAFORLIFE_16BIT_TRIPOLY.TGA";
+     visname_s = "MFX_FMK_MANAFORLIFE_16BIT_TRIPOLY.TGA";
      vistexisquadpoly = 0;
      visorientation_s = "NONE";
      vistexcolorstart_s = "255 100 100";
@@ -60,13 +60,13 @@ INSTANCE MFX_ManaForLife_INIT2 (C_PARTICLEFX)
      visalphastart = 255.000000000;
      visalphaend = 255.000000000;
      trlFadeSpeed = 1;
-     trltexture_s = "HELLLIGHT.TGA";
+     trltexture_s = "FMK_HELLLIGHT.TGA";
      trlwidth = 1;
      // useemittersfor = 1; // Does not exist in Gothic 1
 };
 
 // Copied from Gothic 2 NotR
-PROTOTYPE MFX_ManaForLife_FOUNTAIN (C_PARTICLEFX)
+PROTOTYPE MFX_FMKManaForLife_FOUNTAIN (C_PARTICLEFX)
 {
     ppsvalue = 200;
     ppsscalekeys_s = "2 1 1 1 1 1 0.8 0.6 0.4 0.2";
@@ -90,7 +90,7 @@ PROTOTYPE MFX_ManaForLife_FOUNTAIN (C_PARTICLEFX)
     lsppartavg = 1700;
     lsppartvar = 300;
     flygravity_s = "0 -0.0008 0";
-    visname_s = "INFLATE_WATER.TGA";
+    visname_s = "FMK_INFLATE_WATER.TGA";
     visorientation_s = "VELO3D";
     vistexanifps = 18;
     vistexcolorstart_s = "200 220 250";
@@ -102,7 +102,7 @@ PROTOTYPE MFX_ManaForLife_FOUNTAIN (C_PARTICLEFX)
 };
 
 // Wir bedienen uns dem Inflatezauber und passen den Spritz-Effekt an
-INSTANCE MFX_ManaForLife_SPATTER_0 (MFX_ManaForLife_FOUNTAIN)
+INSTANCE MFX_FMKManaForLife_SPATTER_0 (MFX_FMKManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";           // Wir loopen den Effekt, weil er unter-
     ppsIsLooping = 1;               //  schiedlich lang sein kann.
@@ -111,7 +111,7 @@ INSTANCE MFX_ManaForLife_SPATTER_0 (MFX_ManaForLife_FOUNTAIN)
     vistexcolorstart_s = "98 0 0";  // In Blutrot
     vistexcolorend_s = "191 28 28";
 };
-INSTANCE MFX_ManaForLife_SPATTER_90 (MFX_ManaForLife_FOUNTAIN)
+INSTANCE MFX_FMKManaForLife_SPATTER_90 (MFX_FMKManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";
     ppsIsLooping = 1;
@@ -121,7 +121,7 @@ INSTANCE MFX_ManaForLife_SPATTER_90 (MFX_ManaForLife_FOUNTAIN)
     vistexcolorstart_s = "98 0 0";
     vistexcolorend_s = "191 28 28";
 };
-INSTANCE MFX_ManaForLife_SPATTER_180 (MFX_ManaForLife_FOUNTAIN)
+INSTANCE MFX_FMKManaForLife_SPATTER_180 (MFX_FMKManaForLife_FOUNTAIN)
 {
     ppsscalekeys_s = "2";
     ppsIsLooping = 1;
@@ -132,7 +132,7 @@ INSTANCE MFX_ManaForLife_SPATTER_180 (MFX_ManaForLife_FOUNTAIN)
     vistexcolorend_s = "191 28 28";
 };
 
-INSTANCE MFX_ManaForLife_RING_LARGE1 (C_PARTICLEFX)
+INSTANCE MFX_FMKManaForLife_RING_LARGE1 (C_PARTICLEFX)
 {
     ppsvalue = 250.000000000;
     ppsscalekeys_s = "1";
@@ -147,7 +147,7 @@ INSTANCE MFX_ManaForLife_RING_LARGE1 (C_PARTICLEFX)
     lsppartavg = 600.000000000;
     flygravity_s = "0 0 0";
     flycolldet_b = 0;
-    visname_s = "MFX_MANAFORLIFE_16BIT_TRIPOLY.TGA";
+    visname_s = "MFX_FMK_MANAFORLIFE_16BIT_TRIPOLY.TGA";
     vistexisquadpoly = 0;
     visorientation_s = "NONE";
     vistexcolorstart_s = "100 100 255"; // "0 0 255"; // Lichterkettenartefakt
@@ -159,7 +159,7 @@ INSTANCE MFX_ManaForLife_RING_LARGE1 (C_PARTICLEFX)
     visalphaend = 255.000000000;
 };
 
-INSTANCE MFX_ManaForLife_RING_LARGE2 (C_PARTICLEFX)
+INSTANCE MFX_FMKManaForLife_RING_LARGE2 (C_PARTICLEFX)
 {
     ppsvalue = 250.000000000;
     ppsscalekeys_s = "1";
@@ -174,7 +174,7 @@ INSTANCE MFX_ManaForLife_RING_LARGE2 (C_PARTICLEFX)
     lsppartavg = 600.000000000;
     flygravity_s = "0 0 0";
     flycolldet_b = 0;
-    visname_s = "MFX_MANAFORLIFE_16BIT_TRIPOLY.TGA";
+    visname_s = "MFX_FMK_MANAFORLIFE_16BIT_TRIPOLY.TGA";
     vistexisquadpoly = 0;
     visorientation_s = "NONE";
     vistexcolorstart_s = "255 100 100"; // "255 0 0"; // Lichterkettenartefakt
@@ -189,7 +189,7 @@ INSTANCE MFX_ManaForLife_RING_LARGE2 (C_PARTICLEFX)
 
 /* Kopie von MFX_Fear_ORIGIN aber mit mehr Partikeln (ppsvalue), wichtig!
  * Mit zu wenig pps weigert sich Gothic unter Umständen den FX zu rendern.  */
-INSTANCE MFX_ManaForLife_ORIGIN (C_PARTICLEFX)
+INSTANCE MFX_FMKManaForLife_ORIGIN (C_PARTICLEFX)
 {
      ppsvalue = 75;
      ppsscalekeys_s = "1 1 1 1 1 1 1 1";
@@ -210,7 +210,7 @@ INSTANCE MFX_ManaForLife_ORIGIN (C_PARTICLEFX)
      lsppartavg = 1000;
      lsppartvar = 150;
      flygravity_s = "0 0 0";
-     visname_s = "HEAVENLIGHT.TGA";
+     visname_s = "FMK_HEAVENLIGHT.TGA";
      visorientation_s = "VELO";
      vistexisquadpoly = 1;
      vistexcolorstart_s = "255 0 0";

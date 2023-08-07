@@ -70,7 +70,7 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
         };
 
         if (Hlp_StrCmp(mob.pickLockStr, "")) {
-            Print(Ninja_FirstMageKit_PRINT_NeverOpen);
+            Print(Patch_FirstMageKit_PRINT_NeverOpen);
             Spell_FMKPickLock_ClearKeyBuffer();
             return SPL_SENDSTOP;
         };
@@ -116,7 +116,7 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
         if (currCharCount >= totalCharCount) {
             //gegebenenfalls entriegen
             mob.bitfield = mob.bitfield &~ oCMobLockable_bitfield_locked;
-            Print(Ninja_FirstMageKit_PRINT_PICKLOCK_UNLOCK);
+            Print(Patch_FirstMageKit_PRINT_PICKLOCK_UNLOCK);
             Snd_Play3D(self, "PICKLOCK_SUCCESS");
 
             // FX sound here, because VFX would also trigger it when aborting (releasing button prematurely)

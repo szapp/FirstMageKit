@@ -4,9 +4,9 @@
 ///                  Taken from mud-freak's Zauberpaket                    ///
 
 // Blaues "Elekron" auf der Hand
-INSTANCE spellFX_FMKManaForLife (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto)
+INSTANCE spellFX_FMKManaForLife (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_Proto)
 {
-    visname_S               = "MFX_ManaForLife_INIT";
+    visname_S               = "MFX_FMKManaForLife_INIT";
     emtrjoriginnode         = "ZS_RIGHTHAND";
     emtrjmode_s             = "FIXED";
     emtrjloopmode_s         = "NONE";
@@ -18,14 +18,14 @@ INSTANCE spellFX_FMKManaForLife (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_
     };
     INSTANCE spellFX_FMKManaForLife_KEY_CAST (C_ParticleFXEmitKey)
     {
-        visname_S           = "MFX_ManaForLife_ORIGIN";
-        sfxid               = "SFX_HealObsession";
+        visname_S           = "MFX_FMKManaForLife_ORIGIN";
+        sfxid               = "SFX_FMKHealObsession";
         sfxIsAmbient        = 1;
 };
 // Rotes "Elekron" auf der Hand
-INSTANCE spellFX_FMKManaForLife_2OBJ (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto)
+INSTANCE spellFX_FMKManaForLife_2OBJ (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_Proto)
 {
-    visname_S               = "MFX_ManaForLife_INIT2";
+    visname_S               = "MFX_FMKManaForLife_INIT2";
     emtrjoriginnode         = "ZS_RIGHTHAND";
     emtrjmode_s             = "FIXED";
     emtrjloopmode_s         = "NONE";
@@ -42,35 +42,35 @@ INSTANCE spellFX_FMKManaForLife_2OBJ (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_
         pfx_ppsisloopingChg  = 1; // Beenden sonst bleibt es nach Zauber
 };
 // Investphase
-INSTANCE spellFX_FMKManaForLife_INVEST (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto)
+INSTANCE spellFX_FMKManaForLife_INVEST (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_Proto)
 {
-    visname_S               = "MFX_ManaForLife_SPATTER_0";
+    visname_S               = "MFX_FMKManaForLife_SPATTER_0";
     emTrjOriginNode         = "BIP01 Spine2";
     emFXCreatedOwnTrj       = 1;
-    sfxid                   = "MFX_MANAFORLIFE_HEARTBEAT";
+    sfxid                   = "MFX_FMKMANAFORLIFE_HEARTBEAT";
     sfxIsAmbient            = 1;
     lightPresetname         = "AURA";
     emFXCreate_S            = "spellFX_FMKManaForLife_SPATTER_90";
     emFXLifeSpan            = 30; // Kindersicherung: Falls es hängen bleibt.
 };
-INSTANCE spellFX_FMKManaForLife_SPATTER_90 (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto)
+INSTANCE spellFX_FMKManaForLife_SPATTER_90 (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_Proto)
 {
-    visname_S               = "MFX_ManaForLife_SPATTER_90";
+    visname_S               = "MFX_FMKManaForLife_SPATTER_90";
     emTrjOriginNode         = "BIP01 Spine2";
     emFXCreatedOwnTrj       = 1;
     emFXCreate_S            = "spellFX_FMKManaForLife_SPATTER_180";
 };
-INSTANCE spellFX_FMKManaForLife_SPATTER_180 (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto)
+INSTANCE spellFX_FMKManaForLife_SPATTER_180 (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_Proto)
 {
-    visname_S               = "MFX_ManaForLife_SPATTER_180";
+    visname_S               = "MFX_FMKManaForLife_SPATTER_180";
     emTrjOriginNode         = "BIP01 Pelvis";
     emFXCreatedOwnTrj       = 1;
     emFXCreate_S            = "spellFX_FMKManaForLife_SPIRAL";
 };
 // Spirale in HP-Rot und Mana-Blau um den Caster
-INSTANCE spellFX_FMKManaForLife_SPIRAL (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto)
+INSTANCE spellFX_FMKManaForLife_SPIRAL (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_Proto)
 {
-    visname_S               = "MFX_ManaForLife_RING_LARGE1";
+    visname_S               = "MFX_FMKManaForLife_RING_LARGE1";
     emTrjOriginNode         = "Bip01";
     emtrjmode_s             = "FIXED";
     emSelfRotVel_S          = "0 400 0";
@@ -78,22 +78,23 @@ INSTANCE spellFX_FMKManaForLife_SPIRAL (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CF
     emFXCreatedOwnTrj       = 1;
     emFXCreate_S            = "spellFX_FMKManaForLife_SPIRAL2";
 };
-INSTANCE spellFX_FMKManaForLife_SPIRAL2 (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto)
+INSTANCE spellFX_FMKManaForLife_SPIRAL2 (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_Proto)
 {
-    visname_S               = "MFX_ManaForLife_RING_LARGE2";
+    visname_S               = "MFX_FMKManaForLife_RING_LARGE2";
     emTrjOriginNode         = "Bip01";
     emtrjmode_s             = "FIXED";
     emSelfRotVel_S          = "0 400 0";
     emtrjdynupdatedelay     = 0;
     emFXCreatedOwnTrj       = 0;
-    emFXCreate_S            = "DEMENTOR_FX";
+    emFXCreate_S            = "FMKDEMENTOR_FX";
 };
 
 
 // Copied for Gothic 1 compatibility
-INSTANCE DEMENTOR_FX (/*CFx_Base_Proto*/ Ninja_FirstMakeKit_CFx_Base_Proto)
+INSTANCE FMKDEMENTOR_FX (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_Proto)
 {
     // ...
-    sfxid               = "Dementhor_Talk";
+    // ...
+    sfxid               = "FMKDementhor_Talk";
     sfxisambient        = 1;
 };
