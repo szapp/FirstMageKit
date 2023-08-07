@@ -3,10 +3,8 @@
  * Source: https://github.com/szapp/Ninja/wiki/Applications-and-Examples
  */
 func void Patch_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNewTotal) {
-    const int zCPar_Symbol___zCPar_Symbol_G1 = 7306624; //0x6F7D80
-    const int zCPar_Symbol___zCPar_Symbol_G2 = 8001264; //0x7A16F0
-    const int zCPar_Symbol__AllocSpace_G1    = 7306832; //0x6F7E50
-    const int zCPar_Symbol__AllocSpace_G2    = 8001472; //0x7A17C0
+    const int zCPar_Symbol___zCPar_Symbol[4] = {/*G1*/7306624, /*G1A*/7544544, /*G2*/7609520, /*G2A*/8001264};
+    const int zCPar_Symbol__AllocSpace[4]    = {/*G1*/7306832, /*G1A*/7544784, /*G2*/7609728, /*G2A*/8001472};
 
     // First: Backup all the relevant information of the symbol
     var zCPar_Symbol symb; symb = _^(symbPtr);
@@ -28,20 +26,19 @@ func void Patch_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNe
     // Free the content of the symbol
     const int call = 0;
     if (CALL_Begin(call)) {
-        CALL__thiscall(_@(symbPtr), MEMINT_SwitchG1G2(zCPar_Symbol___zCPar_Symbol_G1,
-                                                      zCPar_Symbol___zCPar_Symbol_G2));
+        CALL__thiscall(_@(symbPtr), zCPar_Symbol___zCPar_Symbol[IDX_EXE]);
         call = CALL_End();
     };
 
     // Reset the properties how we want them - mind the increase in elements
     symb.name = name;
     symb.bitfield = (bitfield & ~zCPar_Symbol_bitfield_ele) | numNewTotal;
-    symb.bitfield = symb.bitfield & ~4194304; // Set 'allocated' to false
+    symb.bitfield = symb.bitfield & ~zCPar_Symbol_bitfield_space; // Set 'allocated' to false
 
     // Have Gothic allocate the space for the content (we cannot do this ourselves, because it's tied to a pool)
     const int call2 = 0;
     if (CALL_Begin(call2)) {
-        CALL__thiscall(_@(symbPtr), MEMINT_SwitchG1G2(zCPar_Symbol__AllocSpace_G1, zCPar_Symbol__AllocSpace_G2));
+        CALL__thiscall(_@(symbPtr), zCPar_Symbol__AllocSpace[IDX_EXE]);
         call2 = CALL_End();
     };
 

@@ -1,0 +1,17 @@
+Ikarus
+LeGo
+
+Content\dependencies.d
+
+Content\Spells\Spell_ManaForLife.d
+Content\Spells\Spell_PickLock.d
+
+Content\localization.d
+Content\spells.d
+
+Content\items_G130.d
+
+Content\trading.d
+Content\world.d
+
+Content\init.d

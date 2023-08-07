@@ -1,6 +1,8 @@
 /*
  * Ensure that common dependencies exist
  */
+const int INV_RUNE             = 3;
+
 const int ITEM_KAT_RUNE         = 1 << 9;
 const int ITEM_MULTI            = 1 << 21;
 

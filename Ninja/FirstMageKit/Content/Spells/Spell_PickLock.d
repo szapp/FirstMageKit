@@ -28,7 +28,7 @@ instance Spell_FMKPickLock (/*C_Spell_Proto*/ C_Spell) {
     targetCollectRange          = 550;
     canTurnDuringInvest         = TRUE;
     canChangeTargetDuringInvest = FALSE;
-    if (GOTHIC_BASE_VERSION == 2) {
+    if (GOTHIC_BASE_VERSION == 130) || (GOTHIC_BASE_VERSION == 2) {
         // Gothic 2 does not allow canTurnDuringInvest for non-NPC focus, so we'll restrict the azimuth instead
         targetCollectAzi        = 20;
     };
@@ -39,12 +39,10 @@ instance Spell_FMKPickLock (/*C_Spell_Proto*/ C_Spell) {
  * Sugar
  */
 func void Spell_FMKPickLock_ClearKeyBuffer() {
-    const int zCInput_Win32__ClearKeyBuffer_G1 = 5016288; //0x4C8AE0
-    const int zCInput_Win32__ClearKeyBuffer_G2 = 5068240; //0x4D55D0
+    const int zCInput_Win32__ClearKeyBuffer[4] = {/*G1*/5016288, /*G1A*/5081840, /*G2*/5058576, /*G2A*/5068240};
     const int call = 0;
     if (CALL_Begin(call)) {
-        CALL__thiscall(zCInput_zinput, MEMINT_SwitchG1G2(zCInput_Win32__ClearKeyBuffer_G1,
-                                                         zCInput_Win32__ClearKeyBuffer_G2));
+        CALL__thiscall(zCInput_zinput, zCInput_Win32__ClearKeyBuffer[IDX_EXE]);
         call = CALL_End();
     };
 };
@@ -58,7 +56,7 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
     var oCMobLockable mob;
     var int mobPtr;
 
-    if (Npc_GetActiveSpellLevel(self) <= MEMINT_SwitchG1G2(2, 1)) { // Gothic 1 needs one level more for starting the FX
+    if (Npc_GetActiveSpellLevel(self) <= MEMINT_SwitchExe(2, 2, 1, 1)) { // G1 needs one level more for starting the FX
         if (!Hlp_Is_oCMobLockable(slf.focus_vob)) {
             return SPL_SENDSTOP;
         };
@@ -123,7 +121,7 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
             Snd_Play("MFX_PICKLOCK_CAST");
 
             // No handouts! SPL_SENDCAST does not decrease the mana
-            if (GOTHIC_BASE_VERSION == 2) {
+            if (GOTHIC_BASE_VERSION == 130) || (GOTHIC_BASE_VERSION == 2) {
                 self.attribute[ATR_MANA] -= 1;
             };
 
@@ -167,7 +165,7 @@ func void Spell_FMKPickLock_ResetFocus() {
     };
 
     // Backup/reset Focus_Magic completely
-    const int focusCopy = 0;
+    const int focusCopy         = 0;
     const int sizeof_oCNpcFocus = 80;
     if (!focusCopy) {
         // Create one-time backup per session
@@ -185,7 +183,10 @@ func void Spell_FMKPickLock_ResetFocus() {
  * Enable focusing mob when using the spell
  */
 func void Spell_FMKPickLock_Prio() {
-    var int caster; caster = MEM_ReadInt(ESP+4);
+    const int arg0_offset            = 4;
+    const int oCSpell_spellID_offset = 84;
+
+    var int caster; caster = MEM_ReadInt(ESP + arg0_offset);
     if (!caster) {
         return;
     };
@@ -194,7 +195,7 @@ func void Spell_FMKPickLock_Prio() {
         return;
     };
 
-    var int spellID; spellID = MEM_ReadInt(/*oCSpell*/ECX+/*spellID*/84);
+    var int spellID; spellID = MEM_ReadInt(ECX + oCSpell_spellID_offset);
     if (spellID == SPL_FMKPickLock) {
         // Adjust the global(!) focus priorities temporarily(!) = until the active spell changes
         Focus_Magic.mob_prio = 1;
@@ -206,9 +207,11 @@ func void Spell_FMKPickLock_Prio() {
  * Make the focus check mob specific (disallow NPC)
  */
 func void Spell_FMKPickLock_Focus() {
+    const int arg0_offset = 4;
+
     // Constructed case that will only happen for Spell_FMKPickLock
     if (ECX == TARGET_TYPE_MOB) {
-        var int vobPtr; vobPtr = MEM_ReadInt(ESP+4);
+        var int vobPtr; vobPtr = MEM_ReadInt(ESP + arg0_offset);
         if (Hlp_Is_oCMobLockable(vobPtr)) {
             var oCMobLockable mob; mob = _^(vobPtr);
             if (mob.bitfield & oCMobLockable_bitfield_locked) {
@@ -223,25 +226,20 @@ func void Spell_FMKPickLock_Focus() {
  * Initialize the focus tweaks
  */
 func void Spell_FMKPickLock_Init() {
+    const int oCSpell__IsTargetTypeValid[4] = {/*G1*/4709316, /*G1A*/4752548, /*G2*/4737444, /*G2A*/ 4743108};
+    const int oCSpell__Setup[4]             = {/*G1*/4703664, /*G1A*/4746560, /*G2*/4731600, /*G2A*/ 4737328};
+    const int oCMag_Book__SetFrontSpell[4]  = {/*G1*/4660480, /*G1A*/4697600, /*G2*/4683296, /*G2A*/ 4688320};
+    const int oCNpcFocus__focuslist[4]      = {/*G1*/9283120, /*G1A*/9571240, /*G2*/9966160, /*G2A*/11208440};
+    const int Focus_Magic_Index             = 5;
+
     MEM_InitAll();
 
-    const int oCSpell__IsTargetTypeValid_G1 = 4709316; //0x47DBC4
-    const int oCSpell__IsTargetTypeValid_G2 = 4743108; //0x485FC4
-    const int oCSpell__Setup_G1             = 4703664; //0x47C5B0
-    const int oCSpell__Setup_G2             = 4737328; //0x484930
-    const int oCMag_Book__SetFrontSpell_G1  = 4660480; //0x471D00
-    const int oCMag_Book__SetFrontSpell_G2  = 4688320; //004789C0
-    HookEngineF(MEMINT_SwitchG1G2(oCSpell__IsTargetTypeValid_G1,
-                                  oCSpell__IsTargetTypeValid_G2),        5, Spell_FMKPickLock_Focus);
-    HookEngineF(MEMINT_SwitchG1G2(oCSpell__Setup_G1, oCSpell__Setup_G2), 7, Spell_FMKPickLock_Prio);
-    HookEngineF(MEMINT_SwitchG1G2(oCMag_Book__SetFrontSpell_G1,
-                                  oCMag_Book__SetFrontSpell_G2),         7, Spell_FMKPickLock_ResetFocus);
+    HookEngineF(oCSpell__IsTargetTypeValid[IDX_EXE], 5, Spell_FMKPickLock_Focus);
+    HookEngineF(oCSpell__Setup[IDX_EXE],             7, Spell_FMKPickLock_Prio);
+    HookEngineF(oCMag_Book__SetFrontSpell[IDX_EXE],  7, Spell_FMKPickLock_ResetFocus);
 
     // Ensure that Focus_Magic is not empty (necessary for Spell_FMKPickLock_Prio). For details see GothicFreeAim
-    const int oCNpcFocus__focuslist_G1      =  9283120; //0x8DA630
-    const int oCNpcFocus__focuslist_G2      = 11208440; //0xAB06F8
-    var int fMagicPtr; fMagicPtr = MEM_ReadIntArray(MEMINT_SwitchG1G2(oCNpcFocus__focuslist_G1,
-                                                                       oCNpcFocus__focuslist_G2), /*Focus_Magic*/ 5);
+    var int fMagicPtr; fMagicPtr = MEM_ReadIntArray(oCNpcFocus__focuslist[IDX_EXE], Focus_Magic_Index);
     if (fMagicPtr) {
         MEM_Info("Spell_FMKPickLock: Reassigning Focus_Magic instance");
         Focus_Magic = _^(fMagicPtr);

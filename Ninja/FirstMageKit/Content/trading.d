@@ -6,7 +6,9 @@ func int Patch_FirstMageKit_ContainerSearchMainflag(var int containerPtr, var in
         return 0;
     };
 
-    var int list; list = MEM_ReadInt(containerPtr+/*contents*/4);
+    const int oCItemContainer_contents_offset = 4;
+
+    var int list; list = MEM_ReadInt(containerPtr+oCItemContainer_contents_offset);
     var zCListSort l;
     while(list);
         l = _^(list);
@@ -31,14 +33,12 @@ func void Patch_FirstMageKit_SetupTrading() {
         return;
     };
 
-    const int oCInformationManager__OnTradeBegin_setNpc_G1 = 7528916; //0x72E1D4
-    const int oCInformationManager__OnTradeBegin_setNpc_G2 = 6696756; //0x662F34
-    HookEngineF(+MEMINT_SwitchG1G2(oCInformationManager__OnTradeBegin_setNpc_G1,
-                                   oCInformationManager__OnTradeBegin_setNpc_G2), 6, Patch_FirstMageKit_AddSPLOnTrade);
+    const int oCInformationManager__OnTradeBegin_setNpc[4] = {/*G1*/7528916, /*G1A*/7784467, /*G2*/7838996, /*G2A*/6696756};
+    HookEngineF(oCInformationManager__OnTradeBegin_setNpc[IDX_EXE], 6, Patch_FirstMageKit_AddSPLOnTrade);
 
     // Adjust value of scroll to match lock pick item
     var int valueSymbPtr;
-    if (GOTHIC_BASE_VERSION == 1) {
+    if (GOTHIC_BASE_VERSION == 1) || (GOTHIC_BASE_VERSION == 112) {
         valueSymbPtr = MEM_GetSymbol("Value_Dietrich");
     } else {
         valueSymbPtr = MEM_GetSymbol("Value_Lockpick");
@@ -56,12 +56,13 @@ func void Patch_FirstMageKit_SetupTrading() {
 func void Patch_FirstMageKit_AddSPLOnTrade() {
     // Minimum number of spells for traders to have
     const int TraderMinSpells = 5;
+    const int oCInformationManager_npc_offset = 32;
 
-    var oCNpc npc; npc = _^(MEM_ReadInt(ESI+32)); // oCInformationManager->npc
+    var oCNpc npc; npc = _^(MEM_ReadInt(ESI + oCInformationManager_npc_offset));
 
-    // We only want to give trader NPCs scrolls who trade with magic goods
-    if (GOTHIC_BASE_VERSION == 1) {
-        if (!NPC_GetInvItemBySlot(npc, /*INV_RUNE*/ 3, 0)) {
+    // We only want to give scrolls to trader NPCs who trade with magic goods
+    if (GOTHIC_BASE_VERSION == 1) || (GOTHIC_BASE_VERSION == 112) {
+        if (!NPC_GetInvItemBySlot(npc, INV_RUNE, 0)) {
             return;
         };
     } else {
@@ -74,6 +75,7 @@ func void Patch_FirstMageKit_AddSPLOnTrade() {
     // Giving negative number of items actually removes them from the inventory (Gothic 1)
     var int amount; amount = TraderMinSpells - Npc_HasItems(npc, ItSc_FMKPickLock);
     if (amount > 0) {
+        MEM_Info("FirstMageKit: Replenishing trader inventory with lock picking spells");
         CreateInvItems(npc, ItSc_FMKPickLock, amount);
     };
 };

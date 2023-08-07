@@ -2,19 +2,15 @@
  * Iterate over all containers in the world and add n items 'addItemInst' for all n items 'findItemInst' found
  */
 func void Patch_FirstMageKit_MatchItemInContainers(var string findItemInst, var string addItemInst) {
-    const int zCWorld__SearchVobListByBaseClass_G1 =  6250016; //0x5F5E20
-    const int zCWorld__SearchVobListByBaseClass_G2 =  6439712; //0x624320
-    const int oCMobContainer__classDef_G1          =  9285504; //0x8DAF80
-    const int oCMobContainer__classDef_G2          = 11212976; //0xAB18B0
-    const int oCMobContainer__IsIn_G1              =  6833040; //0x684390
-    const int oCMobContainer__IsIn_G2              =  7496896; //0x7264C0
-    const int oCMobContainer__CreateContents_G1    =  6832208; //0x684050
-    const int oCMobContainer__CreateContents_G2    =  7496080; //0x726190
+    const int zCWorld__SearchVobListByBaseClass[4] = {/*G1*/ 6250016, /*G1A*/6385120, /*G2*/6408896, /*G2A*/ 6439712};
+    const int oCMobContainer__classDef[4]          = {/*G1*/ 9285504, /*G1A*/9576984, /*G2*/9970696, /*G2A*/11212976};
+    const int oCMobContainer__IsIn[4]              = {/*G1*/ 6833040, /*G1A*/7028576, /*G2*/7111728, /*G2A*/ 7496896};
+    const int oCMobContainer__CreateContents[4]    = {/*G1*/ 6832208, /*G1A*/7027648, /*G2*/7110912, /*G2A*/ 7496080};
 
     // Check if the instance even exists - if not, tough luck
     var int itemSymbID; itemSymbID = MEM_FindParserSymbol(findItemInst);
     if (itemSymbID == -1) {
-        MEM_SendToSpy(zERR_TYPE_WARN, ConcatStrings("Instance not found: ", findItemInst));
+        MEM_SendToSpy(zERR_TYPE_WARN, ConcatStrings("FirstMageKit: Instance not found: ", findItemInst));
         return;
     };
     var string contentStr; contentStr = ConcatStrings(STR_Upper(addItemInst), ":");
@@ -26,14 +22,13 @@ func void Patch_FirstMageKit_MatchItemInContainers(var string findItemInst, var 
     // Search containers and fill the array
     var int vobTreePtr; vobTreePtr = _@(MEM_Vobtree);
     var int worldPtr;   worldPtr   = MEM_Game._zCSession_world;
-    var int classDef;   classDef   = MEMINT_SwitchG1G2(oCMobContainer__classDef_G1, oCMobContainer__classDef_G2);
+    var int addedTotal; addedTotal = 0;
     const int call = 0;
     if (CALL_Begin(call)) {
         CALL_PtrParam(_@(vobTreePtr));
         CALL_PtrParam(_@(vobListPtr));
-        CALL_PtrParam(_@(classDef));
-        CALL__thiscall(_@(worldPtr), MEMINT_SwitchG1G2(zCWorld__SearchVobListByBaseClass_G1,
-                                                       zCWorld__SearchVobListByBaseClass_G2));
+        CALL_PtrParam(_@(oCMobContainer__classDef[IDX_EXE]));
+        CALL__thiscall(_@(worldPtr), zCWorld__SearchVobListByBaseClass[IDX_EXE]);
         call = CALL_End();
     };
 
@@ -44,7 +39,7 @@ func void Patch_FirstMageKit_MatchItemInContainers(var string findItemInst, var 
         if (CALL_Begin(call2)) {
             CALL_PtrParam(_@(itemSymbID));
             CALL_PutRetValTo(_@(amount));
-            CALL__thiscall(_@(containerPtr), MEMINT_SwitchG1G2(oCMobContainer__IsIn_G1, oCMobContainer__IsIn_G2));
+            CALL__thiscall(_@(containerPtr), oCMobContainer__IsIn[IDX_EXE]);
             call2 = CALL_End();
         };
 
@@ -53,17 +48,27 @@ func void Patch_FirstMageKit_MatchItemInContainers(var string findItemInst, var 
             continue;
         };
 
+        addedTotal += amount;
         var string contentStrNum; contentStrNum = ConcatStrings(contentStr, IntToString(amount));
         var int contentStrPtr; contentStrPtr = _@s(contentStrNum);
 
         const int call3 = 0;
         if (CALL_Begin(call3)) {
             CALL_PtrParam(_@(contentStrPtr));
-            CALL__thiscall(_@(containerPtr), MEMINT_SwitchG1G2(oCMobContainer__CreateContents_G1,
-                                                               oCMobContainer__CreateContents_G2));
+            CALL__thiscall(_@(containerPtr), oCMobContainer__CreateContents[IDX_EXE]);
             call3 = CALL_End();
         };
+
     end;
+
+    if (addedTotal > 0) {
+        var string msg; msg = "FirstMageKit: Added ";
+        msg = ConcatStrings(msg, IntToString(addedTotal));
+        msg = ConcatStrings(msg, " ");
+        msg = ConcatStrings(msg, addItemInst);
+        msg = ConcatStrings(msg, " items to containers");
+        MEM_Info(msg);
+    };
 
     // Free container array
     MEM_ArrayFree(vobListPtr);
@@ -120,15 +125,14 @@ func void Patch_FirstMageKit_AddIndicatorOnce() {
     var int itmPtr; itmPtr = newTreeNode.data;
     var zCVob itm; itm = _^(itmPtr);
     itm.bitfield[0] = itm.bitfield[0] & ~(zCVob_bitfield0_collDetectionStatic | zCVob_bitfield0_collDetectionDynamic);
-    const int zCVob__Move_G1 = 6217184; //0x5EDDE0
-    const int zCVob__Move_G2 = 6402784; //0x61B2E0
-    const int abyss = -636609590;
+    const int zCVob__Move[4] = {/*G1*/6217184, /*G1A*/6350240, /*G2*/6372384, /*G2A*/6402784};
+    const int abyss = -636609590; // Around -1e16
     const int call = 0;
     if (CALL_Begin(call)) {
         CALL_FloatParam(_@(FLOATNULL));   // Z
         CALL_FloatParam(_@(abyss));       // Y Very negative integer float
         CALL_FloatParam(_@(FLOATNULL));   // X
-        CALL__thiscall(_@(itmPtr), MEMINT_SwitchG1G2(zCVob__Move_G1, zCVob__Move_G2));
+        CALL__thiscall(_@(itmPtr), zCVob__Move[IDX_EXE]);
         call = CALL_End();
     };
 };

@@ -11,7 +11,7 @@ const int SPL_FMKManaForLife          = 0;
 // Einstellungsmöglichkeinten
 const int SPL_FMKManaForLife_RELATION = 2;    // 1 HP entspricht wieviel MP - NO, IT'S REVERSED HERE!
 const int SPL_FMKManaForLife_MINHP    = 20;   // Minimum an HP übrig lassen
-const int SPL_FMKManaForLife_MAXHP    = 250;  // Maximum investbare HP
+const int SPL_FMKManaForLife_MAXHP    = 400;  // Maximum investbare HP
 const int SPL_FMKManaForLife_SAYTIME  = 50;   // Interval zum Stöhnen (pro HP) - OVERWRITTEN BELOW
 const int SPL_FMKManaForLife_SplLevel = 0;    // Previously used AI-var AIV_SpellLevel
 
@@ -47,7 +47,7 @@ func int Spell_Logic_FMKManaForLife(var int healthInvested) {
         };
         SPL_FMKManaForLife_SplLevel = 0;
 
-        if (GOTHIC_BASE_VERSION == 2) { // Gothic 1 parsing compatibility
+        if (GOTHIC_BASE_VERSION == 130) || (GOTHIC_BASE_VERSION == 2) { // Gothic 1 parsing compatibility
             // Zur Sicherheit
             MEM_PushStringParam("FOV_MORPH1");
             MEM_CallByString("WLD_STOPEFFECT");
@@ -88,7 +88,7 @@ func int Spell_Logic_FMKManaForLife(var int healthInvested) {
 };
 
 func void Spell_Cast_FMKManaForLife(var int spellLevel) {
-    if (GOTHIC_BASE_VERSION == 2) { // Gothic 1 parsing compatibility
+    if (GOTHIC_BASE_VERSION == 130) || (GOTHIC_BASE_VERSION == 2) { // Gothic 1 parsing compatibility
         // Zur Sicherheit
         MEM_PushStringParam("FOV_MORPH1");
         MEM_CallByString("WLD_STOPEFFECT");
@@ -101,10 +101,12 @@ func void Spell_Cast_FMKManaForLife(var int spellLevel) {
  * Set health as the invest attribute to allow casting with zero mana
  */
 func void Spell_FMKManaForLife_SetToHP() {
-    var int spell; spell = MEMINT_SwitchG1G2(ESI, ECX);
-    var int spellID; spellID = MEM_ReadInt(spell+/*spellID*/84);
+    const int oCSpell_spellID_offset   = 84;
+    const int oCSpell_investATR_offset = 124;
+
+    var int spellID; spellID = MEM_ReadInt(ESI + oCSpell_spellID_offset);
     if (spellID == SPL_FMKManaForLife) {
-        MEM_WriteInt(spell+/*investATR*/124, ATR_HITPOINTS);
+        MEM_WriteInt(ESI + oCSpell_investATR_offset, ATR_HITPOINTS);
     };
 };
 
@@ -113,7 +115,6 @@ func void Spell_FMKManaForLife_SetToHP() {
  * Initialize to cast with zero mana
  */
 func void Spell_FMKManaForLife_Init() {
-    const int oCSpell__InitValues_G1 = 4701341; //0x47BC9D
-    const int oCSpell__InitValues_G2 = 4735143; //0x4840A7
-    HookEngineF(MEMINT_SwitchG1G2(oCSpell__InitValues_G1, oCSpell__InitValues_G2), 6, Spell_FMKManaForLife_SetToHP);
+    const int oCSpell__InitValues[4] = {/*G1*/4701341, /*G1A*/4743966, /*G2*/4729447, /*G2A*/4735143};
+    HookEngineF(oCSpell__InitValues[IDX_EXE], 6, Spell_FMKManaForLife_SetToHP);
 };
