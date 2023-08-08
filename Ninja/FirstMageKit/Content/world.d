@@ -83,7 +83,7 @@ func void Patch_FirstMageKit_PlaceSpellItems() {
     var int loaded;
     if (!loaded) {
         // Wait for player to be spawned
-        FF_ApplyOnceExt(Patch_FirstMageKit_AddRuneOnce, 1, 1);
+        HookEngineF(oCGame__Render, 7, Patch_FirstMageKit_AddRuneOnce);
         loaded = 1;
     };
 
@@ -106,7 +106,7 @@ func void Patch_FirstMageKit_PlaceSpellItems() {
         // loading, and we'll know next time that we already added the scrolls here. This method is more convenient than
         // checking variables, because we'd need one variable per unknown number(!) of worlds.
         // But it's best do to this once the player exists. So let's wait for that, see function below.
-        FF_ApplyOnceExt(Patch_FirstMageKit_AddIndicatorOnce, 1, 1);
+        HookEngineF(oCGame__Render, 7, Patch_FirstMageKit_AddIndicatorOnce);
     };
 };
 
@@ -115,6 +115,8 @@ func void Patch_FirstMageKit_PlaceSpellItems() {
  * Add an indicator item into the world - for each world only once ever. This function is called from init
  */
 func void Patch_FirstMageKit_AddIndicatorOnce() {
+    RemoveHookF(oCGame__Render, 7, Patch_FirstMageKit_AddIndicatorOnce);
+
     // That's all:
     Wld_InsertItem(ItSc_FMKPickLock, MEM_FARFARAWAY);
 
@@ -142,6 +144,7 @@ func void Patch_FirstMageKit_AddIndicatorOnce() {
  * Add the mana for life spell (as rune) to the player inventory - only once ever. This function is called from init
  */
 func void Patch_FirstMageKit_AddRuneOnce() {
+    RemoveHookF(oCGame__Render, 7, Patch_FirstMageKit_AddRuneOnce);
     if (!MEM_GetSymbol("SPL_ManaForLife")) {
         // Only add it if it does not exist in the mod already
         CreateInvItem(hero, ItRu_FMKManaForLife);
