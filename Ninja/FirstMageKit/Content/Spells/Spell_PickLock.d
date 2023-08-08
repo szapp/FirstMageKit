@@ -118,7 +118,7 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
             Snd_Play3D(self, "PICKLOCK_SUCCESS");
 
             // FX sound here, because VFX would also trigger it when aborting (releasing button prematurely)
-            Snd_Play("MFX_PICKLOCK_CAST");
+            Snd_Play("MFX_FMKPICKLOCK_CAST");
 
             // No handouts! SPL_SENDCAST does not decrease the mana
             if (GOTHIC_BASE_VERSION == 130) || (GOTHIC_BASE_VERSION == 2) {
