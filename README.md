@@ -6,16 +6,15 @@
 [![GitHub release](https://img.shields.io/github/v/release/szapp/FirstMageKit.svg)](https://github.com/szapp/FirstMageKit/releases/latest)
 
 Collection of spells to make the life of a mage easier (Gothic, Gothic Sequel, Gothic 2 and Gothic 2 NotR)  
-Lock picking scrolls are available from traders and in chests that contain lock picks  
-Mana-for-life rune is in the inventory
+Lock picking scrolls are available from traders and in chests that contain lock picks. A mana-for-life rune is in the inventory.
 
 This is a modular modification (a.k.a. patch or add-on) that can be installed and uninstalled at any time and is virtually compatible with any modification.
 It supports <kbd>Gothic 1</kbd>, <kbd>Gothic Sequel</kbd>, <kbd>Gothic II (Classic)</kbd> and <kbd>Gothic II: NotR</kbd>.
 
 ###### Generated from [szapp/patch-template](https://github.com/szapp/patch-template).
 
-![Screenshot](https://upload.worldofplayers.de/files11/fmk_01.png)
-![Screenshot](https://upload.worldofplayers.de/files11/fmk_02.png)
+<kbd><img src="https://upload.worldofplayers.de/files11/fmk_01.png" alt="Screenshot" width="390px" /></kbd> &nbsp;
+<kbd><img src="https://upload.worldofplayers.de/files11/fmk_02.png" alt="Screenshot" width="400px" /></kbd>
 
 ## Installation
 
