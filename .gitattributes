@@ -1,0 +1,35 @@
+* text=auto eol=lf
+
+# Exlcude (semi-) binary resources
+
+# Animation files
+*.[aA][sS][cC] linguist-detectable=false
+*.[mM][dD][sS] linguist-detectable=false
+*.[mM][dD][mM] linguist-detectable=false
+*.[mM][mM][bB] linguist-detectable=false
+*.[mM][aA][nN] linguist-detectable=false
+*.[mM][dD][lL] linguist-detectable=false
+*.[sS][sS][cC] linguist-detectable=false
+
+# Graphic files
+*.[tT][gG][aA] linguist-detectable=false
+*.[tT][eE][xX] linguist-detectable=false
+*.[fF][nN][tT] linguist-detectable=false
+
+# Mesh files
+*.3[dD][sS]    linguist-detectable=false
+*.[mM][rR][mM] linguist-detectable=false
+*.[zZ][eE][nN] linguist-detectable=false
+
+# Music files
+*.[dD][lL][sS] linguist-detectable=false
+*.[sS][tT][yY] linguist-detectable=false
+*.[sS][gG][tT] linguist-detectable=false
+
+# Sound files
+*.[wW][aA][vV] linguist-detectable=false
+*.[oO][gG][gG] linguist-detectable=false
+*.[mM][pP]3    linguist-detectable=false
+
+# Video files
+*.[bB][iI][kK] linguist-detectable=false
