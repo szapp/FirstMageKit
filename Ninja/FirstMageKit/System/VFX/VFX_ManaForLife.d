@@ -12,7 +12,7 @@ INSTANCE spellFX_FMKManaForLife (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_Base_
     emtrjloopmode_s         = "NONE";
     emtrjeasefunc_s         = "LINEAR";
     emSelfRotVel_S          = "0 500 -250";
-    emtrjdynupdatedelay     = 0.;
+    emtrjdynupdatedelay     = 0;
     emFXCreate_S            = "spellFX_FMKManaForLife_2OBJ";
     emFXInvestOrigin_S      = "spellFX_FMKManaForLife_INVEST"; // SPL_NEXTLEVEL
     };
@@ -31,7 +31,7 @@ INSTANCE spellFX_FMKManaForLife_2OBJ (/*CFx_Base_Proto*/ Patch_FirstMakeKit_CFx_
     emtrjloopmode_s         = "NONE";
     emtrjeasefunc_s         = "LINEAR";
     emSelfRotVel_S          = "500 0 250";
-    emtrjdynupdatedelay     = 0.;
+    emtrjdynupdatedelay     = 0;
     };
     INSTANCE spellFX_FMKManaForLife_2OBJ_KEY_INIT (C_ParticleFXEmitKey)
     {

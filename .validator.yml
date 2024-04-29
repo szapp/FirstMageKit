@@ -2,5 +2,9 @@
 # For more information, visit https://github.com/szapp/patch-validator/#configuration
 prefix:
   - FMK
+  - SPL_FMKManaForLife # Fixed by spells (no additional underscores)
+  - SPL_FMKPickLock
+  - spellFX_FMKManaForLife
+  - spellFX_FMKPickLock
 ignore-declaration:
 ignore-resource:
