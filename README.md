@@ -13,8 +13,8 @@ It supports <kbd>Gothic 1</kbd>, <kbd>Gothic Sequel</kbd>, <kbd>Gothic II (Class
 
 ###### Generated from [szapp/patch-template](https://github.com/szapp/patch-template).
 
-<kbd><img src="https://upload.worldofplayers.de/files11/fmk_01.png" alt="Screenshot" width="390px" /></kbd> &nbsp;
-<kbd><img src="https://upload.worldofplayers.de/files11/fmk_02.png" alt="Screenshot" width="400px" /></kbd>
+<img src="https://upload.worldofplayers.de/files11/fmk_01.png" alt="Screenshot" width="44%" /> &nbsp;
+<img src="https://upload.worldofplayers.de/files11/fmk_02.png" alt="Screenshot" width="45%" />
 
 ## Installation
 
