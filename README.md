@@ -5,16 +5,34 @@
 [![Build](https://github.com/szapp/FirstMageKit/actions/workflows/build.yml/badge.svg)](https://github.com/szapp/FirstMageKit/actions/workflows/build.yml)
 [![GitHub release](https://img.shields.io/github/v/release/szapp/FirstMageKit.svg)](https://github.com/szapp/FirstMageKit/releases/latest)
 
-Collection of spells to make the life of a mage easier (Gothic, Gothic Sequel, Gothic 2 and Gothic 2 NotR)  
-Lock picking scrolls are available from traders and in chests that contain lock picks. A mana-for-life rune is in the inventory.
+The patch contains a collection of spells to make the life of a mage easier (Gothic, Gothic Sequel, Gothic 2 and Gothic 2 NotR).
 
 This is a modular modification (a.k.a. patch or add-on) that can be installed and uninstalled at any time and is virtually compatible with any modification.
 It supports <kbd>Gothic 1</kbd>, <kbd>Gothic Sequel</kbd>, <kbd>Gothic II (Classic)</kbd> and <kbd>Gothic II: NotR</kbd>.
 
 ###### Generated from [szapp/patch-template](https://github.com/szapp/patch-template).
 
-<img src="https://upload.worldofplayers.de/files11/fmk_01.png" alt="Screenshot" width="44%" /> &nbsp;
-<img src="https://upload.worldofplayers.de/files11/fmk_02.png" alt="Screenshot" width="45%" />
+## About
+
+Gothic or any mod may be as polished as possible. If you've ever played a mage before, you might have had to take a hit: If you don't like to pick locks as it does not fit the profile of a mage, you may have longed for a lock picking spell. Furthermore, a full-mage character may have consumed all mana potions available in the game and wished for a spell to exchange mana for health points.
+
+This patch aims to alleviate these shortcomings with additional spells.
+
+- **Lock picking**  
+  Scrolls are available from traders and in chests that contain lock picks. The value of the scrolls is based on the value of lock picks in the played mod/game. Each latch of the lock requires 5 mana points (and around 1.5 seconds) and you open as many latches as long as the spell is kept alive or until you run out of mana. Harder locks thus may require multiple scrolls - just as you'd need several lock picks. That also means: If you don't have a lot of mana, you will have to use more scrolls for one lock. Consequently, lock picks remain favorable for non-magic players.
+
+- **Mana-for-life**  
+  This spell exchanges health points for mana points. The ratio can be adjusted in the Gothic.ini: `[MANAFORLIFE]` — `hpPerOneMana=2`. In order not to allow any unworthy novice to use the spell, it is available as rune of the third magic circle. The rune is placed in the player's inventory. To not use it as an money exploit, the rune carries no value.
+
+<img src="https://github.com/szapp/FirstMageKit/assets/20203034/8b664ca4-27e1-4087-8276-8aba74078835" alt="Screenshot" width="44%" /> &nbsp;
+<img src="https://github.com/szapp/FirstMageKit/assets/20203034/c4411525-9809-4b81-9af8-cc23033977b8" alt="Screenshot" width="45%" />
+
+## Notes
+
+* The names and descriptions of the spells automatically adjust to the game's/mod's language.
+* Should either of the spells already exist in a mod, they take precedence. The patch will not insert them, to not interfere with other mods.
+* The spell mana-for-life stems from the [Zauberpaket](https://forum.worldofplayers.de/forum/threads/1468949) (spell package).
+* The lock picking spell was release [here](https://forum.worldofplayers.de/forum/threads/1547129).
 
 ## Installation
 
@@ -22,7 +40,8 @@ It supports <kbd>Gothic 1</kbd>, <kbd>Gothic Sequel</kbd>, <kbd>Gothic II (Class
 
 2. Copy the file `FirstMageKit.vdf` to `[Gothic]\Data\`. To uninstall, remove the file again.
 
-The patch is also available in
+The patch is also available on
+- [World of Gothic](https://www.worldofgothic.de/dl/download_620.htm) | [Forum thread](https://forum.worldofplayers.de/forum/threads/1547130)
 - [Spine Mod-Manager](https://clockwork-origins.com/spine/)
 - [Steam Workshop Gothic 1](https://steamcommunity.com/sharedfiles/filedetails/?id=2787318379)
 - [Steam Workshop Gothic 2](https://steamcommunity.com/sharedfiles/filedetails/?id=2787317718)
