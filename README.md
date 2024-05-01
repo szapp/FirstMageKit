@@ -24,8 +24,10 @@ This patch aims to alleviate these shortcomings with additional spells.
 - **Mana-for-life**  
   This spell exchanges health points for mana points. The ratio can be adjusted in the Gothic.ini: `[MANAFORLIFE]` — `hpPerOneMana=2`. In order not to allow any unworthy novice to use the spell, it is available as rune of the third magic circle. The rune is placed in the player's inventory. To not use it as an money exploit, the rune carries no value.
 
+<div align="center">
 <img src="https://github.com/szapp/FirstMageKit/assets/20203034/8b664ca4-27e1-4087-8276-8aba74078835" alt="Screenshot" width="44%" /> &nbsp;
 <img src="https://github.com/szapp/FirstMageKit/assets/20203034/c4411525-9809-4b81-9af8-cc23033977b8" alt="Screenshot" width="45%" />
+</div>
 
 ## Notes
 
