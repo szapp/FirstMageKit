@@ -17,9 +17,11 @@ const int TARGET_TYPE_MOB       = 128;  // Technically invalid (see below)
 instance Spell_FMKPickLock (/*C_Spell_Proto*/ C_Spell) {
     // Remaining standards copied from C_Spell_Proto (might not exist in mod)
     // --- C_Spell_Proto ---
-    targetCollectAzi            = 60;
-    targetCollectElev           = 60;
+    targetCollectAzi                = 60;
+    targetCollectElev               = 60;
     // --- C_Spell_Proto ---
+    const int SPELL_NEUTRAL         = 1;
+    const int TARGET_COLLECT_FOCUS  = 2;
 
     time_per_mana               = IntToFloat(SPL_Time_FMKPickLock / SPL_Cost_FMKPickLock); // Do not change
     spelltype                   = SPELL_NEUTRAL;
@@ -52,6 +54,15 @@ func void Spell_FMKPickLock_ClearKeyBuffer() {
  * Modified from https://forum.worldofplayers.de/forum/threads/?p=12237820
  */
 func int Spell_Logic_FMKPickLock(var int manaInvested) {
+    const int SPL_RECEIVEINVEST     = 1;
+    const int SPL_SENDCAST          = 2;
+    const int SPL_SENDSTOP          = 3;
+    const int SPL_NEXTLEVEL         = 4;
+
+    const int PERC_ASSESSUSEMOB     = 32;
+
+    const int ATR_MANA              = 2;
+
     var oCNpc slf; slf = Hlp_GetNpc(self);
     var oCMobLockable mob;
     var int mobPtr;

@@ -18,11 +18,13 @@ const int SPL_FMKManaForLife_SplLevel = 0;    // Previously used AI-var AIV_Spel
 INSTANCE Spell_FMKManaForLife (/*C_Spell_Proto*/ C_Spell) {
     // Remaining standards copied from C_Spell_Proto (might not exist in mod)
     // --- C_Spell_Proto ---
-    canChangeTargetDuringInvest = 1;
-    targetCollectRange          = 10000;
-    targetCollectAzi            = 60;
-    targetCollectElev           = 60;
+    canChangeTargetDuringInvest     = 1;
+    targetCollectRange              = 10000;
+    targetCollectAzi                = 60;
+    targetCollectElev               = 60;
     // --- C_Spell_Proto ---
+    const int SPELL_NEUTRAL         = 1;
+    const int TARGET_COLLECT_CASTER = 1;
 
     time_per_mana           = IntToFloat((100 / SPL_FMKManaForLife_RELATION) + 1); // Make it depend on mana not hp
     spelltype               = SPELL_NEUTRAL;
@@ -33,6 +35,16 @@ INSTANCE Spell_FMKManaForLife (/*C_Spell_Proto*/ C_Spell) {
 };
 
 func int Spell_Logic_FMKManaForLife(var int healthInvested) {
+    const int SPL_RECEIVEINVEST     = 1;
+    const int SPL_SENDCAST          = 2;
+    const int SPL_SENDSTOP          = 3;
+    const int SPL_NEXTLEVEL         = 4;
+
+    const int ATR_HITPOINTS         = 0;
+    const int ATR_MANA              = 2;
+    const int ATR_MANA_MAX          = 3;
+
+
     /* Wenn NPCs diesen Spell benutzen sollen beachten, dass NPCs normaler-
      * weise immer volles Mana haben, siehe B_ReadySpell. Ausserdem muss
      * dann der spellFX angepasst werden, weil der ScreenFX ja sonst für den
@@ -101,6 +113,8 @@ func void Spell_Cast_FMKManaForLife(var int spellLevel) {
  * Set health as the invest attribute to allow casting with zero mana
  */
 func void Spell_FMKManaForLife_SetToHP() {
+    const int ATR_HITPOINTS            = 0;
+
     const int oCSpell_spellID_offset   = 84;
     const int oCSpell_investATR_offset = 124;
 

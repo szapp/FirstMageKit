@@ -2,6 +2,10 @@ const int Value_Sc_FMKManaForLife = 250;
 const int Value_Sc_FMKPickLock    =  10;
 
 instance ItRu_FMKManaForLife (C_Item) {
+    const int ITEM_KAT_RUNE = 1 << 9;
+    const int WEAR_EFFECT   = 16;
+    const int MAT_STONE     = 1;
+
     name                =   Patch_FirstMageKit_NAME_Rune;
 
     mainflag            =   ITEM_KAT_RUNE;
@@ -31,6 +35,10 @@ instance ItRu_FMKManaForLife (C_Item) {
 };
 
 instance ItRu_FMKPickLock (C_Item) {
+    const int ITEM_KAT_RUNE = 1 << 9;
+    const int WEAR_EFFECT   = 16;
+    const int MAT_STONE     = 1;
+
     name                =   Patch_FirstMageKit_NAME_Rune;
 
     mainflag            =   ITEM_KAT_RUNE;
@@ -58,6 +66,11 @@ instance ItRu_FMKPickLock (C_Item) {
 
 
 instance ItSc_FMKManaForLife (C_Item) {
+    const int ITEM_KAT_RUNE = 1 << 9;
+    const int ITEM_MULTI    = 1 << 21;
+    const int WEAR_EFFECT   = 16;
+    const int MAT_LEATHER   = 3;
+
     name                =   Patch_FirstMageKit_NAME_Spruchrolle;
 
     mainflag            =   ITEM_KAT_RUNE;
@@ -90,6 +103,11 @@ instance ItSc_FMKManaForLife (C_Item) {
 };
 
 instance ItSc_FMKPickLock (C_Item) {
+    const int ITEM_KAT_RUNE = 1 << 9;
+    const int ITEM_MULTI    = 1 << 21;
+    const int WEAR_EFFECT   = 16;
+    const int MAT_LEATHER   = 3;
+
     name                =   Patch_FirstMageKit_NAME_Spruchrolle;
 
     mainflag            =   ITEM_KAT_RUNE;

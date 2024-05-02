@@ -161,6 +161,8 @@ func int Patch_FirstMageKit_Spell_ProcessMana(var int manaInvested) {
     ContinueCall();
 };
 func int Patch_FirstMageKit_Spell_ProcessMana_Release(var int manaInvested) {
+    const int SPL_SENDCAST = 2;
+
     var int activeSpell; activeSpell = Npc_GetActiveSpell(self);
 
     if (activeSpell == SPL_FMKManaForLife     ) { return SPL_SENDCAST;                                  };

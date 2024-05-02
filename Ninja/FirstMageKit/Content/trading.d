@@ -54,6 +54,9 @@ func void Patch_FirstMageKit_SetupTrading() {
  * Supply (mage) traders with lock pick scrolls (on opening trading)
  */
 func void Patch_FirstMageKit_AddSPLOnTrade() {
+    const int INV_RUNE      = 3;
+    const int ITEM_KAT_RUNE = 1 << 9;
+
     // Minimum number of spells for traders to have
     const int TraderMinSpells = 5;
     const int oCInformationManager_npc_offset = 32;
