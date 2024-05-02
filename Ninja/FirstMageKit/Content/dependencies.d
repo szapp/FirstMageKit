@@ -3,6 +3,7 @@
  */
 class FMK_C_Spell {
     // TODO
+    var float time_per_mana;
 };
 
 class FMK_C_Focus {
