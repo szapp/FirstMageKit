@@ -3,4 +3,5 @@
 prefix:
   - FMK
 ignore-declaration:
+  - Focus_Magic
 ignore-resource:

@@ -113,9 +113,28 @@ func void Patch_FirstMageKit_SetMaxSpell(var int value) {
 func void Patch_FirstMageKit_SetSpell(var int spellID, var string spellFxInst, var string spellFxAniLetter,
                                       var string spellTxt) {
     // Set static arrays
-    MEM_WriteStatStringArr(spellFxInstanceNames, spellID, spellFxInst);
-    MEM_WriteStatStringArr(spellFxAniLetters,    spellID, spellFxAniLetter);
-    MEM_WriteStatStringArr(TXT_SPELLS,           spellID, spellTxt);
+    var int symbPtr; var zCPar_Symbol symb;
+
+    // MEM_WriteStatStringArr(spellFxInstanceNames, spellID, spellFxInst);
+    symbPtr = MEM_GetSymbol("spellFxInstanceNames");
+    if (symbPtr) {
+        symb = _^(symbPtr);
+        MEM_WriteStringArray(symb.content, spellID, spellFxInst);
+    };
+
+    // MEM_WriteStatStringArr(spellFxAniLetters,    spellID, spellFxAniLetter);
+    symbPtr = MEM_GetSymbol("spellFxAniLetters");
+    if (symbPtr) {
+        symb = _^(symbPtr);
+        MEM_WriteStringArray(symb.content, spellID, spellFxAniLetter);
+    };
+
+    // MEM_WriteStatStringArr(TXT_SPELLS,           spellID, spellTxt);
+    symbPtr = MEM_GetSymbol("TXT_SPELLS");
+    if (symbPtr) {
+        symb = _^(symbPtr);
+        MEM_WriteStringArray(symb.content, spellID, spellTxt);
+    };
 };
 
 

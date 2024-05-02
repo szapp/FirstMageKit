@@ -12,9 +12,7 @@ const int SPL_FMKPickLock       = 0;
 const int SPL_Cost_FMKPickLock  = 5;    // Mana cost per lock tick
 const int SPL_Time_FMKPickLock  = 1500; // MS per lock tick (not per mana!)
 
-const int TARGET_TYPE_MOB       = 128;  // Technically invalid (see below)
-
-instance Spell_FMKPickLock (/*C_Spell_Proto*/ C_Spell) {
+instance Spell_FMKPickLock (/*C_Spell_Proto*/ FMK_C_Spell) {
     // Remaining standards copied from C_Spell_Proto (might not exist in mod)
     // --- C_Spell_Proto ---
     targetCollectAzi                = 60;
@@ -22,6 +20,7 @@ instance Spell_FMKPickLock (/*C_Spell_Proto*/ C_Spell) {
     // --- C_Spell_Proto ---
     const int SPELL_NEUTRAL         = 1;
     const int TARGET_COLLECT_FOCUS  = 2;
+    const int TARGET_TYPE_MOB       = 128;  // Technically invalid (see below)
 
     time_per_mana               = IntToFloat(SPL_Time_FMKPickLock / SPL_Cost_FMKPickLock); // Do not change
     spelltype                   = SPELL_NEUTRAL;
@@ -218,7 +217,8 @@ func void Spell_FMKPickLock_Prio() {
  * Make the focus check mob specific (disallow NPC)
  */
 func void Spell_FMKPickLock_Focus() {
-    const int arg0_offset = 4;
+    const int TARGET_TYPE_MOB = 128;
+    const int arg0_offset     = 4;
 
     // Constructed case that will only happen for Spell_FMKPickLock
     if (ECX == TARGET_TYPE_MOB) {

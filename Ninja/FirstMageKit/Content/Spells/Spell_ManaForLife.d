@@ -15,7 +15,7 @@ const int SPL_FMKManaForLife_MAXHP    = 400;  // Maximum investbare HP
 const int SPL_FMKManaForLife_SAYTIME  = 50;   // Interval zum Stöhnen (pro HP) - OVERWRITTEN BELOW
 const int SPL_FMKManaForLife_SplLevel = 0;    // Previously used AI-var AIV_SpellLevel
 
-INSTANCE Spell_FMKManaForLife (/*C_Spell_Proto*/ C_Spell) {
+INSTANCE Spell_FMKManaForLife (/*C_Spell_Proto*/ FMK_C_Spell) {
     // Remaining standards copied from C_Spell_Proto (might not exist in mod)
     // --- C_Spell_Proto ---
     canChangeTargetDuringInvest     = 1;

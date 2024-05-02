@@ -1,6 +1,10 @@
 /*
  * Ensure that common dependencies exist
  */
+class FMK_C_Spell {
+    // TODO
+};
+
 class FMK_C_Focus {
     var int mob_prio;
 };
