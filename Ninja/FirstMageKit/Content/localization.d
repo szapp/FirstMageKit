@@ -11,7 +11,7 @@ func int Patch_FirstMageKit_GuessLocalization() {
             return 1;
         } else if (Hlp_StrCmp(panName, "Patelnia")) { // PL (Windows 1250)
             return 2;
-        } else if (Hlp_StrCmp(panName, "Ñêîâîğîäà")) { // RU (Windows 1251)
+        } else if (Hlp_StrCmp(panName, "Ã‘ÃªÃ®Ã¢Ã®Ã°Ã®Ã¤Ã ")) { // RU (Windows 1251)
             return 3;
         };
     };
@@ -46,8 +46,8 @@ func void Patch_FirstMageKit_LocalizeTexts() {
     if (lang == 1) { // DE (Windows 1252)
         NAME_SPL_FMKManaForLife                  = "Manasucht";
         NAME_SPL_FMKPickLock                     = "Entriegeln";
-        Patch_FirstMageKit_PRINT_NeverOpen       = "Da lässt sich nichts machen";
-        Patch_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Das Schloß ist geknackt";
+        Patch_FirstMageKit_PRINT_NeverOpen       = "Da lÃ¤sst sich nichts machen";
+        Patch_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Das SchloÃŸ ist geknackt";
         Patch_FirstMageKit_PRINT_Hitpoints       = "Lebenspunktkosten:";
         Patch_FirstMageKit_PRINT_Mana            = "Manasteigerung:";
         Patch_FirstMageKit_NAME_MinManakosten    = "Manakosten (min):";
@@ -59,31 +59,31 @@ func void Patch_FirstMageKit_LocalizeTexts() {
         Patch_FirstMageKit_NAME_Value            = "Wert:";
     } else if (lang == 2) { // PL (Windows 1250)
         NAME_SPL_FMKManaForLife                  = "Ofiara krwi";
-        NAME_SPL_FMKPickLock                     = "Otwieranie zamków";
-        Patch_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siê otworzyæ.";
+        NAME_SPL_FMKPickLock                     = "Otwieranie zamkÃ³w";
+        Patch_FirstMageKit_PRINT_NeverOpen       = "Tego nie da siÃª otworzyÃ¦.";
         Patch_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Zamek otwarty.";
-        Patch_FirstMageKit_PRINT_Hitpoints       = "Wydatek punktów trafieñ:";
+        Patch_FirstMageKit_PRINT_Hitpoints       = "Wydatek punktÃ³w trafieÃ±:";
         Patch_FirstMageKit_PRINT_Mana            = "Premia many:";
         Patch_FirstMageKit_NAME_MinManakosten    = "Min. wydatek many:";
-        Patch_FirstMageKit_NAME_MageScroll       = "Zwój";
+        Patch_FirstMageKit_NAME_MageScroll       = "ZwÃ³j";
         Patch_FirstMageKit_NAME_Rune             = "Runa";
-        Patch_FirstMageKit_NAME_Spruchrolle      = "Zwój";
-        Patch_FirstMageKit_NAME_Mag_Circle       = "Kr¹g:";
-        Patch_FirstMageKit_NAME_Spell_Invest     = "Zaklêcie sta³e";
-        Patch_FirstMageKit_NAME_Value            = "Wartoœæ:";
+        Patch_FirstMageKit_NAME_Spruchrolle      = "ZwÃ³j";
+        Patch_FirstMageKit_NAME_Mag_Circle       = "KrÂ¹g:";
+        Patch_FirstMageKit_NAME_Spell_Invest     = "ZaklÃªcie staÂ³e";
+        Patch_FirstMageKit_NAME_Value            = "WartoÅ“Ã¦:";
     } else if (lang == 3) { // RU (Windows 1251)
-        NAME_SPL_FMKManaForLife                  = "óâåëè÷åíèå ìàíû";
-        NAME_SPL_FMKPickLock                     = "Âñêğûòèå çàìêîâ";
-        Patch_FirstMageKit_PRINT_NeverOpen       = "İòî ìíå íèêîãäà íå îòêğûòü.";
-        Patch_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Çàìîê îòêğûò.";
-        Patch_FirstMageKit_PRINT_Hitpoints       = "Çäîğîâüå:";
-        Patch_FirstMageKit_PRINT_Mana            = "Ìàíà:";
-        Patch_FirstMageKit_NAME_MinManakosten    = "Ğàñõîä ìàíû:";
-        Patch_FirstMageKit_NAME_MageScroll       = "Ñâèòîê";
-        Patch_FirstMageKit_NAME_Rune             = "Ğóíà";
-        Patch_FirstMageKit_NAME_Spruchrolle      = "Ñâèòîê";
-        Patch_FirstMageKit_NAME_Mag_Circle       = "Êğóã:";
+        NAME_SPL_FMKManaForLife                  = "Ã³Ã¢Ã¥Ã«Ã¨Ã·Ã¥Ã­Ã¨Ã¥ Ã¬Ã Ã­Ã»";
+        NAME_SPL_FMKPickLock                     = "Ã‚Ã±ÃªÃ°Ã»Ã²Ã¨Ã¥ Ã§Ã Ã¬ÃªÃ®Ã¢";
+        Patch_FirstMageKit_PRINT_NeverOpen       = "ÃÃ²Ã® Ã¬Ã­Ã¥ Ã­Ã¨ÃªÃ®Ã£Ã¤Ã  Ã­Ã¥ Ã®Ã²ÃªÃ°Ã»Ã²Ã¼.";
+        Patch_FirstMageKit_PRINT_PICKLOCK_UNLOCK = "Ã‡Ã Ã¬Ã®Ãª Ã®Ã²ÃªÃ°Ã»Ã².";
+        Patch_FirstMageKit_PRINT_Hitpoints       = "Ã‡Ã¤Ã®Ã°Ã®Ã¢Ã¼Ã¥:";
+        Patch_FirstMageKit_PRINT_Mana            = "ÃŒÃ Ã­Ã :";
+        Patch_FirstMageKit_NAME_MinManakosten    = "ÃÃ Ã±ÃµÃ®Ã¤ Ã¬Ã Ã­Ã»:";
+        Patch_FirstMageKit_NAME_MageScroll       = "Ã‘Ã¢Ã¨Ã²Ã®Ãª";
+        Patch_FirstMageKit_NAME_Rune             = "ÃÃ³Ã­Ã ";
+        Patch_FirstMageKit_NAME_Spruchrolle      = "Ã‘Ã¢Ã¨Ã²Ã®Ãª";
+        Patch_FirstMageKit_NAME_Mag_Circle       = "ÃŠÃ°Ã³Ã£:";
         Patch_FirstMageKit_NAME_Spell_Invest     = "Sustainable spell"; // ??? in the Russian scripts
-        Patch_FirstMageKit_NAME_Value            = "Öåíà:";
+        Patch_FirstMageKit_NAME_Value            = "Ã–Ã¥Ã­Ã :";
     }; // Else: Keep default -> English
 };

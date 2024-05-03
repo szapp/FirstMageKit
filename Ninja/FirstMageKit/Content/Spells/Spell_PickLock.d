@@ -101,14 +101,14 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
             return SPL_SENDSTOP;
         };
 
-        //Für die Wahrnehmung so tun, als würde der Spieler das Mob benutzen
+        //FÃ¼r die Wahrnehmung so tun, als wÃ¼rde der Spieler das Mob benutzen
         slf.interactMob = slf.focus_vob;
         //Die anderen Npcs informieren:
         Npc_SendPassivePerc(self, PERC_ASSESSUSEMOB, self, self);
         //gegen Kamera zucken sofort wieder auf 0 setzen
         slf.interactMob = 0;
 
-        //Länge des "RLRLRR"-Strings insgesamt:
+        //LÃ¤nge des "RLRLRR"-Strings insgesamt:
         var int totalCharCount; totalCharCount = STR_Len(mob.pickLockStr);
         //davon schon aufgeschlossen:
         var int currCharCount; currCharCount = (mob.bitfield & oCMobLockable_bitfield_pickLockNr) >> 2;
@@ -116,7 +116,7 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
         //jetzt einer mehr
         currCharCount += 1;
 
-        //alten Wert im Bitfeld löschen, neuen reinschreiben:
+        //alten Wert im Bitfeld lÃ¶schen, neuen reinschreiben:
         mob.bitfield = mob.bitfield & ~oCMobLockable_bitfield_pickLockNr;
         mob.bitfield = mob.bitfield | (currCharCount << 2);
 

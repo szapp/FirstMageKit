@@ -8,11 +8,11 @@
 // Constants.d (adjusted during initialization)
 const int SPL_FMKManaForLife          = 0;
 
-// Einstellungsmöglichkeinten
+// EinstellungsmÃ¶glichkeinten
 const int SPL_FMKManaForLife_RELATION = 2;    // 1 HP entspricht wieviel MP - NO, IT'S REVERSED HERE!
-const int SPL_FMKManaForLife_MINHP    = 20;   // Minimum an HP übrig lassen
+const int SPL_FMKManaForLife_MINHP    = 20;   // Minimum an HP Ã¼brig lassen
 const int SPL_FMKManaForLife_MAXHP    = 400;  // Maximum investbare HP
-const int SPL_FMKManaForLife_SAYTIME  = 50;   // Interval zum Stöhnen (pro HP) - OVERWRITTEN BELOW
+const int SPL_FMKManaForLife_SAYTIME  = 50;   // Interval zum StÃ¶hnen (pro HP) - OVERWRITTEN BELOW
 const int SPL_FMKManaForLife_SplLevel = 0;    // Previously used AI-var AIV_SpellLevel
 
 INSTANCE Spell_FMKManaForLife (/*C_Spell_Proto*/ FMK_C_Spell) {
@@ -47,7 +47,7 @@ func int Spell_Logic_FMKManaForLife(var int healthInvested) {
 
     /* Wenn NPCs diesen Spell benutzen sollen beachten, dass NPCs normaler-
      * weise immer volles Mana haben, siehe B_ReadySpell. Ausserdem muss
-     * dann der spellFX angepasst werden, weil der ScreenFX ja sonst für den
+     * dann der spellFX angepasst werden, weil der ScreenFX ja sonst fÃ¼r den
      * Spieler zu sehen ist. */
 
     // Einmalige Abfrage zu Anfang
@@ -79,17 +79,17 @@ func int Spell_Logic_FMKManaForLife(var int healthInvested) {
     Npc_ChangeAttribute(self, ATR_MANA, +((healthInvested % SPL_FMKManaForLife_RELATION) == 0));
     SPL_FMKManaForLife_SplLevel += 1;
 
-    // Stöhnen: Die SVM hole ich manuell, weil B_Say für SC inkorrekt ist.
+    // StÃ¶hnen: Die SVM hole ich manuell, weil B_Say fÃ¼r SC inkorrekt ist.
     var String soundprefix; soundprefix = ConcatStrings(
         ConcatStrings("SVM_", IntToString(self.voice)), "_AARGH_");
     if (SPL_FMKManaForLife_SplLevel == SPL_FMKManaForLife_SAYTIME*1) {
-        // B_Say(self, self, "$Aargh_1"); // Nicht korrekt für Hero
+        // B_Say(self, self, "$Aargh_1"); // Nicht korrekt fÃ¼r Hero
         Snd_Play3D(self, ConcatStrings(soundprefix, "1"));
     } else if (SPL_FMKManaForLife_SplLevel == SPL_FMKManaForLife_SAYTIME*2) {
-        // B_Say(self, self, "$Aargh_2"); // Nicht korrekt für Hero
+        // B_Say(self, self, "$Aargh_2"); // Nicht korrekt fÃ¼r Hero
         Snd_Play3D(self, ConcatStrings(soundprefix, "2"));
     } else if (SPL_FMKManaForLife_SplLevel == SPL_FMKManaForLife_SAYTIME*3) {
-        // B_Say(self, self, "$Aargh_3"); // Nicht korrekt für Hero
+        // B_Say(self, self, "$Aargh_3"); // Nicht korrekt fÃ¼r Hero
         Snd_Play3D(self, ConcatStrings(soundprefix, "3"));
         SPL_FMKManaForLife_SplLevel = 0;
     };

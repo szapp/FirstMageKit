@@ -1,8 +1,9 @@
 * text=auto eol=lf
 
-# Checkout Windows-style line endings
+# Checkout Windows-style line endings and ensure correct encoding
+# See https://forum.worldofplayers.de/forum/threads/1537187/page3
 *.[sS][rR][cC] text eol=crlf
-*.[dD] text eol=crlf
+*.[dD] text working-tree-encoding=CP1252 eol=crlf
 
 # Exclude (semi-) binary resources from linguist stats
 
