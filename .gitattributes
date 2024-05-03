@@ -1,6 +1,10 @@
 * text=auto eol=lf
 
-# Exlcude (semi-) binary resources
+# Checkout Windows-style line endings
+*.[sS][rR][cC] text eol=crlf
+*.[dD] text eol=crlf
+
+# Exclude (semi-) binary resources from linguist stats
 
 # Animation files
 *.[aA][sS][cC] linguist-detectable=false
