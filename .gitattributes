@@ -7,34 +7,38 @@
 
 # Exclude (semi-) binary resources from linguist stats
 
+# Output units
+*.[cC][sS][lL] text linguist-detectable=false eol=crlf
+*.[bB][iI][nN] binary linguist-detectable=false
+
 # Animation files
-*.[aA][sS][cC] linguist-detectable=false
-*.[mM][dD][sS] linguist-detectable=false
-*.[mM][dD][mM] linguist-detectable=false
-*.[mM][mM][bB] linguist-detectable=false
-*.[mM][aA][nN] linguist-detectable=false
-*.[mM][dD][lL] linguist-detectable=false
-*.[sS][sS][cC] linguist-detectable=false
+*.[aA][sS][cC] text linguist-detectable=false eol=crlf
+*.[mM][dD][sS] text linguist-detectable=false eol=crlf
+*.[mM][dD][mM] binary linguist-detectable=false
+*.[mM][mM][bB] binary linguist-detectable=false
+*.[mM][aA][nN] binary linguist-detectable=false
+*.[mM][dD][lL] binary linguist-detectable=false
+*.[sS][sS][cC] binary linguist-detectable=false
 
 # Graphic files
-*.[tT][gG][aA] linguist-detectable=false
-*.[tT][eE][xX] linguist-detectable=false
-*.[fF][nN][tT] linguist-detectable=false
+*.[tT][gG][aA] binary linguist-detectable=false
+*.[tT][eE][xX] binary linguist-detectable=false
+*.[fF][nN][tT] binary linguist-detectable=false
 
 # Mesh files
-*.3[dD][sS]    linguist-detectable=false
-*.[mM][rR][mM] linguist-detectable=false
-*.[zZ][eE][nN] linguist-detectable=false
+*.3[dD][sS]    binary linguist-detectable=false
+*.[mM][rR][mM] binary linguist-detectable=false
+*.[zZ][eE][nN] text=auto linguist-detectable=false
 
 # Music files
-*.[dD][lL][sS] linguist-detectable=false
-*.[sS][tT][yY] linguist-detectable=false
-*.[sS][gG][tT] linguist-detectable=false
+*.[dD][lL][sS] binary linguist-detectable=false
+*.[sS][tT][yY] binary linguist-detectable=false
+*.[sS][gG][tT] binary linguist-detectable=false
 
 # Sound files
-*.[wW][aA][vV] linguist-detectable=false
-*.[oO][gG][gG] linguist-detectable=false
-*.[mM][pP]3    linguist-detectable=false
+*.[wW][aA][vV] binary linguist-detectable=false
+*.[oO][gG][gG] binary linguist-detectable=false
+*.[mM][pP]3    binary linguist-detectable=false
 
 # Video files
-*.[bB][iI][kK] linguist-detectable=false
+*.[bB][iI][kK] binary linguist-detectable=false
