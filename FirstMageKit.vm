@@ -43,7 +43,6 @@ _work\Data\Scripts\* -r
 .*
 
 [INCLUDE]
-
 ; License and README
 LICENSE
 README.md

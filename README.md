@@ -31,7 +31,11 @@ This patch aims to alleviate these shortcomings with additional spells.
 
 ## Notes
 
-* The names and descriptions of the spells automatically adjust to the game's/mod's language.
+* The names and descriptions of the spells automatically adjust to the game's language.
+[![](https://raw.githubusercontent.com/wiki/szapp/GothicFreeAim/media/flagDE.png)](#)
+[![](https://raw.githubusercontent.com/wiki/szapp/GothicFreeAim/media/flagEN.png)](#)
+[![](https://raw.githubusercontent.com/wiki/szapp/GothicFreeAim/media/flagPL.png)](#)
+[![](https://raw.githubusercontent.com/wiki/szapp/GothicFreeAim/media/flagRU.png)](#)
 * Should either of the spells already exist in a mod, they take precedence. The patch will not insert them, to not interfere with other mods.
 * The spell mana-for-life stems from the [Zauberpaket](https://forum.worldofplayers.de/forum/threads/1468949) (spell package).
 * The lock picking spell was release [here](https://forum.worldofplayers.de/forum/threads/1547129).
