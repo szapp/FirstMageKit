@@ -23,7 +23,7 @@ _work\Data\Worlds\*.ZEN
 ; Ninja resources
 Ninja\FirstMageKit\* -r
 
-; Lincense and README
+; License and README
 LICENSE
 README.md
 
@@ -43,5 +43,9 @@ _work\Data\Scripts\* -r
 .*
 
 [INCLUDE]
+
+; License and README
+LICENSE
+README.md
 
 [ENDVDF]

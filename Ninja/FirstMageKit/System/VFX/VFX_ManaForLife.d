@@ -16,7 +16,7 @@ INSTANCE spellFX_FMKManaForLife (/*CFx_Base_Proto*/ FMK_CFx_Base_Proto)
     emFXCreate_S            = "spellFX_FMKManaForLife_2OBJ";
     emFXInvestOrigin_S      = "spellFX_FMKManaForLife_INVEST"; // SPL_NEXTLEVEL
     };
-    INSTANCE spellFX_FMKManaForLife_KEY_CAST (C_ParticleFXEmitKey)
+    INSTANCE spellFX_FMKManaForLife_KEY_CAST (FMK_C_ParticleFXEmitKey)
     {
         visname_S           = "MFX_FMKManaForLife_ORIGIN";
         sfxid               = "SFX_FMKHealObsession";
@@ -33,11 +33,11 @@ INSTANCE spellFX_FMKManaForLife_2OBJ (/*CFx_Base_Proto*/ FMK_CFx_Base_Proto)
     emSelfRotVel_S          = "500 0 250";
     emtrjdynupdatedelay     = 0;
     };
-    INSTANCE spellFX_FMKManaForLife_2OBJ_KEY_INIT (C_ParticleFXEmitKey)
+    INSTANCE spellFX_FMKManaForLife_2OBJ_KEY_INIT (FMK_C_ParticleFXEmitKey)
     {
         pfx_ppsisloopingChg  = 1; // Beenden sonst bleibt es nach Zauber
     };
-    INSTANCE spellFX_FMKManaForLife_2OBJ_KEY_CAST (C_ParticleFXEmitKey)
+    INSTANCE spellFX_FMKManaForLife_2OBJ_KEY_CAST (FMK_C_ParticleFXEmitKey)
     {
         pfx_ppsisloopingChg  = 1; // Beenden sonst bleibt es nach Zauber
 };

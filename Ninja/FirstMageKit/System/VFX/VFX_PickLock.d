@@ -6,12 +6,12 @@ instance spellFX_FMKPickLock (/*CFx_Base_Proto*/ FMK_CFx_Base_Proto) {
     emtrjeasefunc_s         = "LINEAR";
     emFXInvestTarget_S      = "spellFX_FMKPickLock_InvestTarget";
     };
-    instance spellFX_FMKPickLock_KEY_INVEST_1 (C_ParticleFXEmitKey) { };
-    instance spellFX_FMKPickLock_KEY_INVEST_2 (C_ParticleFXEmitKey) {
+    instance spellFX_FMKPickLock_KEY_INVEST_1 (FMK_C_ParticleFXEmitKey) { };
+    instance spellFX_FMKPickLock_KEY_INVEST_2 (FMK_C_ParticleFXEmitKey) {
         emtrjmode_s         = "TARGET";
         emtrjeasevel        = 500;
     };
-    instance spellFX_FMKPickLock_KEY_CAST (C_ParticleFXEmitKey) {
+    instance spellFX_FMKPickLock_KEY_CAST (FMK_C_ParticleFXEmitKey) {
         pfx_ppsisloopingChg = 1;
         emtrjmode_s         = "FIXED";
         emtrjeasevel        = 0.000001;
