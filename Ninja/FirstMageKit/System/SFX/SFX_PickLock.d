@@ -1,4 +1,4 @@
-instance MFX_FMKPICKLOCK_INVEST (/*C_SFX_DEF*/ C_SFX) {
+instance MFX_FMKPICKLOCK_INVEST (/*C_SFX_DEF*/ FMK_C_SFX) {
     file = "MFX_FMK_PICKLOCK_INVEST.WAV";
     vol  = 80;
 
@@ -7,7 +7,7 @@ instance MFX_FMKPICKLOCK_INVEST (/*C_SFX_DEF*/ C_SFX) {
     reverbLevel   = 1;
 };
 
-instance MFX_FMKPICKLOCK_CAST (/*C_SFX_DEF*/ C_SFX) {
+instance MFX_FMKPICKLOCK_CAST (/*C_SFX_DEF*/ FMK_C_SFX) {
     file = "MFX_FMK_PICKLOCK_CAST.WAV";
     vol  = 127;
 
