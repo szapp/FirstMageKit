@@ -19,7 +19,7 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
     // Retrieve rate from ini
     SPL_FMKManaForLife_RELATION = STR_ToInt(MEM_GetGothOpt("MANAFORLIFE", "hpPerOneMana"));
     if (SPL_FMKManaForLife_RELATION < 1) { // Force positive values
-        SPL_FMKManaForLife_RELATION = MEMINT_SwitchExe(10, 10, 2, 2); // Default values
+        SPL_FMKManaForLife_RELATION = FMK_SwitchExe(10, 10, 2, 2); // Default values
         MEM_SetGothOpt("MANAFORLIFE", "hpPerOneMana", IntToString(SPL_FMKManaForLife_RELATION));
     };
 

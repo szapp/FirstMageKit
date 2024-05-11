@@ -66,7 +66,7 @@ func int Spell_Logic_FMKPickLock(var int manaInvested) {
     var oCMobLockable mob;
     var int mobPtr;
 
-    if (Npc_GetActiveSpellLevel(self) <= MEMINT_SwitchExe(2, 2, 1, 1)) { // G1 needs one level more for starting the FX
+    if (Npc_GetActiveSpellLevel(self) <= FMK_SwitchExe(2, 2, 1, 1)) { // G1 needs one level more for starting the FX
         if (!Hlp_Is_oCMobLockable(slf.focus_vob)) {
             return SPL_SENDSTOP;
         };
