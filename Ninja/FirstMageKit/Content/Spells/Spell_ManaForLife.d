@@ -130,5 +130,5 @@ func void Spell_FMKManaForLife_SetToHP() {
  */
 func void Spell_FMKManaForLife_Init() {
     const int oCSpell__InitValues[4] = {/*G1*/4701341, /*G1A*/4743966, /*G2*/4729447, /*G2A*/4735143};
-    HookEngineF(oCSpell__InitValues[IDX_EXE], 6, Spell_FMKManaForLife_SetToHP);
+    HookEngineF(oCSpell__InitValues[FMK_EXE], 6, Spell_FMKManaForLife_SetToHP);
 };

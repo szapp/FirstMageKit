@@ -34,7 +34,7 @@ func void Patch_FirstMageKit_SetupTrading() {
     };
 
     const int oCInformationManager__OnTradeBegin_setNpc[4] = {/*G1*/7528916, /*G1A*/7784467, /*G2*/7838996, /*G2A*/6696756};
-    HookEngineF(oCInformationManager__OnTradeBegin_setNpc[IDX_EXE], 6, Patch_FirstMageKit_AddSPLOnTrade);
+    HookEngineF(oCInformationManager__OnTradeBegin_setNpc[FMK_EXE], 6, Patch_FirstMageKit_AddSPLOnTrade);
 
     // Adjust value of scroll to match lock pick item
     var int valueSymbPtr;

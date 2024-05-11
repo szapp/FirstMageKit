@@ -27,8 +27,8 @@ func void Patch_FirstMageKit_MatchItemInContainers(var string findItemInst, var 
     if (CALL_Begin(call)) {
         CALL_PtrParam(_@(vobTreePtr));
         CALL_PtrParam(_@(vobListPtr));
-        CALL_PtrParam(_@(oCMobContainer__classDef[IDX_EXE]));
-        CALL__thiscall(_@(worldPtr), zCWorld__SearchVobListByBaseClass[IDX_EXE]);
+        CALL_PtrParam(_@(oCMobContainer__classDef[FMK_EXE]));
+        CALL__thiscall(_@(worldPtr), zCWorld__SearchVobListByBaseClass[FMK_EXE]);
         call = CALL_End();
     };
 
@@ -39,7 +39,7 @@ func void Patch_FirstMageKit_MatchItemInContainers(var string findItemInst, var 
         if (CALL_Begin(call2)) {
             CALL_PtrParam(_@(itemSymbID));
             CALL_PutRetValTo(_@(amount));
-            CALL__thiscall(_@(containerPtr), oCMobContainer__IsIn[IDX_EXE]);
+            CALL__thiscall(_@(containerPtr), oCMobContainer__IsIn[FMK_EXE]);
             call2 = CALL_End();
         };
 
@@ -55,7 +55,7 @@ func void Patch_FirstMageKit_MatchItemInContainers(var string findItemInst, var 
         const int call3 = 0;
         if (CALL_Begin(call3)) {
             CALL_PtrParam(_@(contentStrPtr));
-            CALL__thiscall(_@(containerPtr), oCMobContainer__CreateContents[IDX_EXE]);
+            CALL__thiscall(_@(containerPtr), oCMobContainer__CreateContents[FMK_EXE]);
             call3 = CALL_End();
         };
 
@@ -134,7 +134,7 @@ func void Patch_FirstMageKit_AddIndicatorOnce() {
         CALL_FloatParam(_@(FLOATNULL));   // Z
         CALL_FloatParam(_@(abyss));       // Y Very negative integer float
         CALL_FloatParam(_@(FLOATNULL));   // X
-        CALL__thiscall(_@(itmPtr), zCVob__Move[IDX_EXE]);
+        CALL__thiscall(_@(itmPtr), zCVob__Move[FMK_EXE]);
         call = CALL_End();
     };
 };

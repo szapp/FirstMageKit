@@ -26,7 +26,7 @@ func void Patch_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNe
     // Free the content of the symbol
     const int call = 0;
     if (CALL_Begin(call)) {
-        CALL__thiscall(_@(symbPtr), zCPar_Symbol___zCPar_Symbol[IDX_EXE]);
+        CALL__thiscall(_@(symbPtr), zCPar_Symbol___zCPar_Symbol[FMK_EXE]);
         call = CALL_End();
     };
 
@@ -38,7 +38,7 @@ func void Patch_FirstMageKit_EnlargeStatStringArr(var int symbPtr, var int numNe
     // Have Gothic allocate the space for the content (we cannot do this ourselves, because it's tied to a pool)
     const int call2 = 0;
     if (CALL_Begin(call2)) {
-        CALL__thiscall(_@(symbPtr), zCPar_Symbol__AllocSpace[IDX_EXE]);
+        CALL__thiscall(_@(symbPtr), zCPar_Symbol__AllocSpace[FMK_EXE]);
         call2 = CALL_End();
     };
 

@@ -43,7 +43,7 @@ func void Spell_FMKPickLock_ClearKeyBuffer() {
     const int zCInput_Win32__ClearKeyBuffer[4] = {/*G1*/5016288, /*G1A*/5081840, /*G2*/5058576, /*G2A*/5068240};
     const int call = 0;
     if (CALL_Begin(call)) {
-        CALL__thiscall(zCInput_zinput, zCInput_Win32__ClearKeyBuffer[IDX_EXE]);
+        CALL__thiscall(zCInput_zinput, zCInput_Win32__ClearKeyBuffer[FMK_EXE]);
         call = CALL_End();
     };
 };
@@ -245,12 +245,12 @@ func void Spell_FMKPickLock_Init() {
 
     MEM_InitAll();
 
-    HookEngineF(oCSpell__IsTargetTypeValid[IDX_EXE], 5, Spell_FMKPickLock_Focus);
-    HookEngineF(oCSpell__Setup[IDX_EXE],             7, Spell_FMKPickLock_Prio);
-    HookEngineF(oCMag_Book__SetFrontSpell[IDX_EXE],  7, Spell_FMKPickLock_ResetFocus);
+    HookEngineF(oCSpell__IsTargetTypeValid[FMK_EXE], 5, Spell_FMKPickLock_Focus);
+    HookEngineF(oCSpell__Setup[FMK_EXE],             7, Spell_FMKPickLock_Prio);
+    HookEngineF(oCMag_Book__SetFrontSpell[FMK_EXE],  7, Spell_FMKPickLock_ResetFocus);
 
     // Ensure that Focus_Magic is not empty (necessary for Spell_FMKPickLock_Prio). For details see GothicFreeAim
-    var int fMagicPtr; fMagicPtr = MEM_ReadIntArray(oCNpcFocus__focuslist[IDX_EXE], Focus_Magic_Index);
+    var int fMagicPtr; fMagicPtr = MEM_ReadIntArray(oCNpcFocus__focuslist[FMK_EXE], Focus_Magic_Index);
     if (fMagicPtr) {
         MEM_Info("Spell_FMKPickLock: Reassigning Focus_Magic instance");
         Focus_Magic = _^(fMagicPtr);
