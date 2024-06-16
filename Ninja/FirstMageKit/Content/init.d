@@ -12,6 +12,10 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
 
     MEM_InitAll();
 
+    if (NINJA_VERSION < 3000) {
+        MEM_SendToSpy(zERR_TYPE_FATAL, "First Mage Kit requires at least Ninja 3 or higher.");
+    };
+
     Patch_FirstMageKit_LocalizeTexts();
     Patch_FirstMageKit_CreateSpells();
     Patch_FirstMageKit_SetupTrading();
