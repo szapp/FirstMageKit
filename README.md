@@ -3,7 +3,11 @@
 [![Scripts](https://github.com/szapp/FirstMageKit/actions/workflows/scripts.yml/badge.svg)](https://github.com/szapp/FirstMageKit/actions/workflows/scripts.yml)
 [![Validation](https://github.com/szapp/FirstMageKit/actions/workflows/validation.yml/badge.svg)](https://github.com/szapp/FirstMageKit/actions/workflows/validation.yml)
 [![Build](https://github.com/szapp/FirstMageKit/actions/workflows/build.yml/badge.svg)](https://github.com/szapp/FirstMageKit/actions/workflows/build.yml)
-[![GitHub release](https://img.shields.io/github/v/release/szapp/FirstMageKit.svg)](https://github.com/szapp/FirstMageKit/releases/latest)
+[![GitHub release](https://img.shields.io/github/v/release/szapp/FirstMageKit.svg)](https://github.com/szapp/FirstMageKit/releases/latest)  
+[![World of Gothic](https://raw.githubusercontent.com/szapp/patch-template/main/.github/actions/initialization/badges/wog.svg)](https://www.worldofgothic.de/dl/download_620.htm)
+[![Spine](https://raw.githubusercontent.com/szapp/patch-template/main/.github/actions/initialization/badges/spine.svg)](https://clockwork-origins.com/spine)
+[![Steam Gothic 1](https://img.shields.io/badge/steam-Gothic%201-2a3f5a?logo=steam&labelColor=1b2838)](https://steamcommunity.com/sharedfiles/filedetails/?id=2787318379)
+[![Steam Gothic 2](https://img.shields.io/badge/steam-Gothic%202-2a3f5a?logo=steam&labelColor=1b2838)](https://steamcommunity.com/sharedfiles/filedetails/?id=2787317718)
 
 The patch contains a collection of spells to make the life of a mage easier (Gothic, Gothic Sequel, Gothic 2 and Gothic 2 NotR).
 
@@ -56,7 +60,7 @@ The patch is also available on
 
 <table><thead><tr><th>Gothic</th><th>Gothic Sequel</th><th>Gothic II (Classic)</th><th>Gothic II: NotR</th></tr></thead>
 <tbody><tr><td><a href="https://www.worldofgothic.de/dl/download_34.htm">Version 1.08k_mod</a></td><td>Version 1.12f</td><td><a href="https://www.worldofgothic.de/dl/download_278.htm">Report version 1.30.0.0</a></td><td><a href="https://www.worldofgothic.de/dl/download_278.htm">Report version 2.6.0.0</a></td></tr></tbody>
-<tbody><tr><td colspan="4" align="center"><a href="https://github.com/szapp/Ninja">Ninja 2.8</a> or higher</td></tr></tbody></table>
+<tbody><tr><td colspan="4" align="center"><a href="https://github.com/szapp/Ninja/wiki#wiki-content">Ninja 3</a> or higher</td></tr></tbody></table>
 
 <!--
 
