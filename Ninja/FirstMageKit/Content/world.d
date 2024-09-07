@@ -115,7 +115,7 @@ func void Patch_FirstMageKit_PlaceSpellItems() {
  * Add an indicator item into the world - for each world only once ever. This function is called from init
  */
 func void Patch_FirstMageKit_AddIndicatorOnce() {
-    RemoveHookF(oCGame__Render, 7, Patch_FirstMageKit_AddIndicatorOnce);
+    RemoveHookF(oCGame__Render, 0, Patch_FirstMageKit_AddIndicatorOnce);
 
     // That's all:
     Wld_InsertItem(ItSc_FMKPickLock, MEM_FARFARAWAY);
@@ -144,7 +144,7 @@ func void Patch_FirstMageKit_AddIndicatorOnce() {
  * Add the mana for life spell (as rune) to the player inventory - only once ever. This function is called from init
  */
 func void Patch_FirstMageKit_AddRuneOnce() {
-    RemoveHookF(oCGame__Render, 7, Patch_FirstMageKit_AddRuneOnce);
+    RemoveHookF(oCGame__Render, 0, Patch_FirstMageKit_AddRuneOnce);
     if (!MEM_GetSymbol("SPL_ManaForLife")) {
         // Only add it if it does not exist in the mod already
         CreateInvItem(hero, ItRu_FMKManaForLife);
