@@ -27,7 +27,7 @@ func void Ninja_FirstMageKit_Menu(var int menuPtr) {
         MEM_SetGothOpt("MANAFORLIFE", "hpPerOneMana", IntToString(SPL_FMKManaForLife_RELATION));
     };
 
-    // Has to be initialized before first loading (Patch_FirstMageKit_Init is too late)
+    // Has to be initialized before first loading (Ninja_FirstMageKit_Init is too late)
     Spell_FMKManaForLife_Init();
 };
 

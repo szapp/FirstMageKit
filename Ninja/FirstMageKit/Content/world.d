@@ -147,6 +147,8 @@ func void Patch_FirstMageKit_AddRuneOnce() {
     RemoveHookF(oCGame__Render, 0, Patch_FirstMageKit_AddRuneOnce);
     if (!MEM_GetSymbol("SPL_ManaForLife")) {
         // Only add it if it does not exist in the mod already
-        CreateInvItem(hero, ItRu_FMKManaForLife);
+        if (Npc_HasItems(hero, ItRu_FMKManaForLife) < 1) {
+            CreateInvItem(hero, ItRu_FMKManaForLife);
+        };
     };
 };
