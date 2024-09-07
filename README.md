@@ -44,6 +44,9 @@ This patch aims to alleviate these shortcomings with additional spells.
 * The spell mana-for-life stems from the [Zauberpaket](https://forum.worldofplayers.de/forum/threads/1468949) (spell package).
 * The lock picking spell was release [here](https://forum.worldofplayers.de/forum/threads/1547129).
 
+> [!Note]
+> When removing the patch it's best to un-equip the spells before.
+
 ## Installation
 
 1. Download the latest release of `FirstMageKit.vdf` from the [releases page](https://github.com/szapp/FirstMageKit/releases/latest).
